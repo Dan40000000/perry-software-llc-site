@@ -6,12 +6,18 @@
     <title>DermPro by Perry Software | Dermatology Practice Management</title>
     <meta
       name="description"
-      content="DermPro is a modern EHR and practice management system built specifically for dermatology. Scheduling, clinical notes, billing, and patient engagement in one platform."
+      content="DermPro is a modern EHR and practice management system built specifically for dermatology. Scheduling, clinical notes, billing, analytics, and patient engagement in one platform."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="hero">
+      <div class="hero-shapes">
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+      </div>
       <div class="wrap">
         <div class="brand">Perry Software</div>
         <h1>Practice Management Built for Dermatology</h1>
@@ -31,6 +37,96 @@
     </header>
 
     <main>
+      <!-- Product Showcase Section -->
+      <section class="showcase">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>See DermPro in Action</h2>
+            <p>Powerful tools designed for the way dermatology practices actually work</p>
+          </div>
+          <div class="showcase-grid">
+            <div class="showcase-card">
+              <div class="showcase-screen screen-schedule">
+                <div class="screen-content">
+                  <div class="calendar-blocks">
+                    <div class="cal-block"></div>
+                    <div class="cal-block"></div>
+                    <div class="cal-block"></div>
+                    <div class="cal-block"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-info">
+                <h3>Smart Scheduling</h3>
+                <p>Visual calendar with drag-and-drop appointments, provider availability, and automatic waitlist management.</p>
+              </div>
+            </div>
+            <div class="showcase-card">
+              <div class="showcase-screen screen-analytics">
+                <div class="screen-content">
+                  <div class="analytics-header"></div>
+                  <div class="analytics-chart">
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-info">
+                <h3>Practice Analytics</h3>
+                <p>Real-time dashboards showing revenue, patient volume, provider productivity, and key performance metrics.</p>
+              </div>
+            </div>
+            <div class="showcase-card">
+              <div class="showcase-screen screen-flow">
+                <div class="screen-content">
+                  <div class="flow-row">
+                    <div class="flow-avatar"></div>
+                    <div class="flow-info">
+                      <div class="flow-name"></div>
+                      <div class="flow-detail"></div>
+                    </div>
+                    <div class="flow-status">Ready</div>
+                  </div>
+                  <div class="flow-row">
+                    <div class="flow-avatar"></div>
+                    <div class="flow-info">
+                      <div class="flow-name"></div>
+                      <div class="flow-detail"></div>
+                    </div>
+                    <div class="flow-status">Waiting</div>
+                  </div>
+                  <div class="flow-row">
+                    <div class="flow-avatar"></div>
+                    <div class="flow-info">
+                      <div class="flow-name"></div>
+                      <div class="flow-detail"></div>
+                    </div>
+                    <div class="flow-status">In Exam</div>
+                  </div>
+                  <div class="flow-row">
+                    <div class="flow-avatar"></div>
+                    <div class="flow-info">
+                      <div class="flow-name"></div>
+                      <div class="flow-detail"></div>
+                    </div>
+                    <div class="flow-status">Checkout</div>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-info">
+                <h3>Patient Flow</h3>
+                <p>Track every patient from check-in to checkout. Know exactly where patients are and optimize your workflow.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
       <section class="features">
         <div class="wrap">
           <div class="section-header">
@@ -42,47 +138,62 @@
                 <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               </div>
               <h3>Smart Scheduling</h3>
-              <p>Drag-and-drop calendar, provider availability, waitlist auto-fill, and appointment reminders.</p>
+              <p>Drag-and-drop calendar with waitlist auto-fill and reminders.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               </div>
-              <h3>Clinical Documentation</h3>
-              <p>Touch-friendly notes, templates, vitals, and streamlined visit workflows.</p>
+              <h3>Clinical Notes</h3>
+              <p>Touch-friendly documentation with templates and quick macros.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/></svg>
               </div>
               <h3>Derm-Specific Tools</h3>
-              <p>Body mapping, lesion tracking, photo timeline comparison, and pathology integration.</p>
+              <p>Body mapping, lesion tracking, and photo timeline comparison.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
               <h3>Billing & Coding</h3>
-              <p>Charge capture, CPT/ICD linking, claims management, and financial dashboards.</p>
+              <p>Charge capture, CPT/ICD linking, and claims management.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               </div>
               <h3>Patient Portal</h3>
-              <p>Online check-in, secure messaging, document access, and bill pay.</p>
+              <p>Online check-in, messaging, document access, and bill pay.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
               </div>
-              <h3>Telehealth Ready</h3>
-              <p>Built-in video visits, virtual waiting room, and integrated notes.</p>
+              <h3>Telehealth</h3>
+              <p>Built-in video visits with virtual waiting room.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <h3>Analytics</h3>
+              <p>Real-time dashboards for revenue, volume, and productivity.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h3>Practice Flow</h3>
+              <p>Track patients from check-in to checkout in real-time.</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Benefits Section -->
       <section class="benefits">
         <div class="wrap">
           <div class="section-header">
@@ -121,11 +232,12 @@
         </div>
       </section>
 
+      <!-- Contact Section -->
       <section class="contact" id="contact">
         <div class="wrap">
           <div class="section-header">
-            <h2>See DermPro in Action</h2>
-            <p>Schedule a personalized demo or give us a call — we'd love to show you what DermPro can do for your practice.</p>
+            <h2>Ready to Transform Your Practice?</h2>
+            <p>Schedule a personalized demo or give us a call — we'd love to show you what DermPro can do.</p>
           </div>
           <div class="contact-grid">
             <div class="contact-form">
