@@ -20,9 +20,9 @@
       </div>
       <div class="wrap">
         <div class="brand">Perry Software</div>
-        <h1>Practice Management Built for Dermatology</h1>
+        <h1>Practice Management Built for Dental Practices</h1>
         <p class="lead">
-          Streamline scheduling, clinical documentation, billing, and patient engagement — all in one modern, touch-friendly platform.
+          Streamline scheduling, clinical documentation, billing, and patient engagement in one modern, touch-friendly platform. We specialize in dermatology workflows.
         </p>
         <div class="cta-group">
           <a href="#contact" class="btn btn-primary">Request a Demo</a>
@@ -242,7 +242,12 @@
           <div class="contact-grid">
             <div class="contact-form">
               <h3>Request a Demo</h3>
-              <form id="demo-form" action="https://formspree.io/f/xreadryd" method="POST">
+              <form
+                id="demo-form"
+                action="https://formspree.io/f/xreadryd"
+                method="POST"
+                data-formspree-endpoint="https://formspree.io/f/xreadryd"
+              >
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" required placeholder="Your name">
@@ -259,7 +264,14 @@
                   <label for="phone">Phone (optional)</label>
                   <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
                 </div>
+                <div class="form-group">
+                  <label for="message">Message (optional)</label>
+                  <textarea id="message" name="message" rows="4" placeholder="Tell us about your practice and goals"></textarea>
+                </div>
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+                <input type="hidden" name="_subject" value="DermPro demo request">
                 <button type="submit" class="btn btn-primary btn-submit">Request Demo</button>
+                <p id="demo-form-status" class="form-status" aria-live="polite"></p>
               </form>
             </div>
             <div class="contact-info">
@@ -278,8 +290,8 @@
                   <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
                 <div>
-                  <a href="mailto:danperry1988@gmail.com">danperry1988@gmail.com</a><br>
-                  <span>We'll respond within 24 hours</span>
+                  <a href="mailto:dan@perrysoftwarellc.com">dan@perrysoftwarellc.com</a><br>
+                  <span>Primary business inbox (we typically reply within 24 hours)</span>
                 </div>
               </div>
               <div class="contact-info-item">
@@ -305,6 +317,66 @@
 
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      const demoForm = document.getElementById('demo-form');
+      const statusEl = document.getElementById('demo-form-status');
+
+      function setFormStatus(type, message) {
+        if (!statusEl) return;
+        statusEl.className = `form-status ${type ? `form-status--${type}` : ''}`.trim();
+        statusEl.textContent = message || '';
+      }
+
+      if (demoForm) {
+        demoForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const endpoint = (demoForm.dataset.formspreeEndpoint || demoForm.action || '').trim();
+          const isLikelyFormspree = /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(endpoint);
+          if (!isLikelyFormspree) {
+            setFormStatus('error', 'Form endpoint is not configured correctly.');
+            return;
+          }
+
+          const submitButton = demoForm.querySelector('button[type="submit"]');
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+          }
+          setFormStatus('', '');
+
+          try {
+            const formData = new FormData(demoForm);
+            const payload = Object.fromEntries(formData.entries());
+            const response = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+              demoForm.reset();
+              setFormStatus('success', 'Request received. We will contact you shortly.');
+            } else {
+              const body = await response.json().catch(() => ({}));
+              const apiMessage = Array.isArray(body?.errors) && body.errors[0]?.message
+                ? body.errors[0].message
+                : body?.error || 'Unable to submit right now. Please try again.';
+              setFormStatus('error', apiMessage);
+            }
+          } catch (_error) {
+            setFormStatus('error', 'Network error while submitting. Please try again.');
+          } finally {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = 'Request Demo';
+            }
+          }
+        });
+      }
     </script>
   </body>
 </html>
