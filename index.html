@@ -3,12 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DermPro by Perry Software | Dermatology Practice Management</title>
+    <title>Perry Software | Medical Practice Management</title>
     <meta
       name="description"
-      content="DermPro is a modern EHR and practice management system built specifically for dermatology. Scheduling, clinical notes, billing, analytics, and patient engagement in one platform."
+      content="Perry Software is a modern EHR and practice management platform for medical practices, with specialized dermatology workflows. Scheduling, clinical notes, billing, analytics, and patient engagement in one platform."
     />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .showcase-screen {
+        height: 230px;
+        background: #f1f5f9;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+      }
+
+      .showcase-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 3px 14px rgba(15, 23, 42, 0.12);
+      }
+    </style>
   </head>
   <body>
     <header class="hero">
@@ -37,95 +57,6 @@
     </header>
 
     <main>
-      <!-- Product Showcase Section -->
-      <section class="showcase">
-        <div class="wrap">
-          <div class="section-header">
-            <h2>See DermPro in Action</h2>
-            <p>Powerful tools designed for the way dermatology practices actually work</p>
-          </div>
-          <div class="showcase-grid">
-            <div class="showcase-card">
-              <div class="showcase-screen screen-schedule">
-                <div class="screen-content">
-                  <div class="calendar-blocks">
-                    <div class="cal-block"></div>
-                    <div class="cal-block"></div>
-                    <div class="cal-block"></div>
-                    <div class="cal-block"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="showcase-info">
-                <h3>Smart Scheduling</h3>
-                <p>Visual calendar with drag-and-drop appointments, provider availability, and automatic waitlist management.</p>
-              </div>
-            </div>
-            <div class="showcase-card">
-              <div class="showcase-screen screen-analytics">
-                <div class="screen-content">
-                  <div class="analytics-header"></div>
-                  <div class="analytics-chart">
-                    <div class="chart-bar"></div>
-                    <div class="chart-bar"></div>
-                    <div class="chart-bar"></div>
-                    <div class="chart-bar"></div>
-                    <div class="chart-bar"></div>
-                    <div class="chart-bar"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="showcase-info">
-                <h3>Practice Analytics</h3>
-                <p>Real-time dashboards showing revenue, patient volume, provider productivity, and key performance metrics.</p>
-              </div>
-            </div>
-            <div class="showcase-card">
-              <div class="showcase-screen screen-flow">
-                <div class="screen-content">
-                  <div class="flow-row">
-                    <div class="flow-avatar"></div>
-                    <div class="flow-info">
-                      <div class="flow-name"></div>
-                      <div class="flow-detail"></div>
-                    </div>
-                    <div class="flow-status">Ready</div>
-                  </div>
-                  <div class="flow-row">
-                    <div class="flow-avatar"></div>
-                    <div class="flow-info">
-                      <div class="flow-name"></div>
-                      <div class="flow-detail"></div>
-                    </div>
-                    <div class="flow-status">Waiting</div>
-                  </div>
-                  <div class="flow-row">
-                    <div class="flow-avatar"></div>
-                    <div class="flow-info">
-                      <div class="flow-name"></div>
-                      <div class="flow-detail"></div>
-                    </div>
-                    <div class="flow-status">In Exam</div>
-                  </div>
-                  <div class="flow-row">
-                    <div class="flow-avatar"></div>
-                    <div class="flow-info">
-                      <div class="flow-name"></div>
-                      <div class="flow-detail"></div>
-                    </div>
-                    <div class="flow-status">Checkout</div>
-                  </div>
-                </div>
-              </div>
-              <div class="showcase-info">
-                <h3>Patient Flow</h3>
-                <p>Track every patient from check-in to checkout. Know exactly where patients are and optimize your workflow.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Features Section -->
       <section class="features">
         <div class="wrap">
@@ -193,11 +124,50 @@
         </div>
       </section>
 
+      <!-- Product Showcase Section -->
+      <section class="showcase">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>See the Platform in Action</h2>
+            <p>Real screenshots from the live product your team uses day to day.</p>
+          </div>
+          <div class="showcase-grid">
+            <div class="showcase-card">
+              <div class="showcase-screen">
+                <img src="assets/screenshots/schedule-page.png" alt="Scheduling calendar and appointment management screen" class="showcase-image">
+              </div>
+              <div class="showcase-info">
+                <h3>Schedule and Check-In</h3>
+                <p>Manage provider calendars, check-ins, and same-day changes from one schedule workspace.</p>
+              </div>
+            </div>
+            <div class="showcase-card">
+              <div class="showcase-screen">
+                <img src="assets/screenshots/dashboard.png" alt="Practice dashboard with key performance metrics" class="showcase-image">
+              </div>
+              <div class="showcase-info">
+                <h3>Operational Dashboard</h3>
+                <p>Track daily operations, appointment load, and high-priority actions in real time.</p>
+              </div>
+            </div>
+            <div class="showcase-card">
+              <div class="showcase-screen">
+                <img src="assets/screenshots/patients-page.png" alt="Patient records and visit history screen" class="showcase-image">
+              </div>
+              <div class="showcase-info">
+                <h3>Patient Records</h3>
+                <p>Access visit history, photos, documents, and treatment context without jumping between systems.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Benefits Section -->
       <section class="benefits">
         <div class="wrap">
           <div class="section-header">
-            <h2>Why Medical Practices Choose DermPro</h2>
+            <h2>Why Medical Practices Choose Perry Software</h2>
           </div>
           <div class="benefits-grid">
             <div class="benefit-item">
@@ -237,7 +207,7 @@
         <div class="wrap">
           <div class="section-header">
             <h2>Ready to Transform Your Practice?</h2>
-            <p>Schedule a personalized demo or give us a call — we'd love to show you what DermPro can do.</p>
+            <p>Schedule a personalized demo or give us a call. We will show you exactly how the platform fits your workflow.</p>
           </div>
           <div class="contact-grid">
             <div class="contact-form">
@@ -269,7 +239,7 @@
                   <textarea id="message" name="message" rows="4" placeholder="Tell us about your practice and goals"></textarea>
                 </div>
                 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
-                <input type="hidden" name="_subject" value="DermPro demo request">
+                <input type="hidden" name="_subject" value="Practice platform demo request">
                 <button type="submit" class="btn btn-primary btn-submit">Request Demo</button>
                 <p id="demo-form-status" class="form-status" aria-live="polite"></p>
               </form>
