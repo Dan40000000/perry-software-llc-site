@@ -675,10 +675,45 @@ section {
   color: var(--muted);
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
 .btn-submit {
   width: 100%;
   margin-top: 0.5rem;
   border-radius: 8px;
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-status {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  min-height: 1.25rem;
+}
+
+.form-status--success {
+  color: #059669;
+}
+
+.form-status--error {
+  color: #dc2626;
 }
 
 /* Contact Info */
