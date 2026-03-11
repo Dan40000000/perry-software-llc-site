@@ -3,34 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perry Software | Medical Practice Management</title>
+    <title>Perry Software | Modern Practice Management That Actually Works</title>
     <meta
       name="description"
-      content="Perry Software is a modern EHR and practice management platform for medical practices, with specialized dermatology workflows. Scheduling, clinical notes, billing, analytics, and patient engagement in one platform."
+      content="Perry Software is a modern EHR and practice management platform with intuitive design and real human support. See why practices are switching."
     />
     <link rel="stylesheet" href="styles.css" />
-    <style>
-      .showcase-screen {
-        height: 230px;
-        background: #f1f5f9;
-        border-bottom: 1px solid #e2e8f0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem;
-      }
-
-      .showcase-image {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        border-radius: 10px;
-        background: #fff;
-        box-shadow: 0 3px 14px rgba(15, 23, 42, 0.12);
-      }
-    </style>
   </head>
   <body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">Perry Software</a>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">Get a Demo</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
     <header class="hero">
       <div class="hero-shapes">
         <div class="hero-shape"></div>
@@ -39,36 +40,179 @@
         <div class="hero-shape"></div>
       </div>
       <div class="wrap">
-        <div class="brand">Perry Software</div>
-        <h1>Practice Management Built for Medical Practices</h1>
+        <div class="hero-badge">
+          <span class="pulse"></span>
+          Now serving practices nationwide
+        </div>
+        <h1>Stop Settling for<br><span class="gradient-text">Outdated Software</span></h1>
         <p class="lead">
-          High-quality practice management at a fraction of enterprise costs. Streamline scheduling, documentation, billing, and patient engagement — helping your practice stay profitable.
+          Modern practice management built for how you actually work. Intuitive design, real human support, and a team that actually listens.
         </p>
         <div class="cta-group">
-          <a href="#contact" class="btn btn-primary">Request a Demo</a>
+          <a href="contact.html" class="btn btn-primary btn-lg">
+            <span>See It In Action</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
           <a href="tel:541-231-8693" class="btn btn-secondary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
             Call 541-231-8693
           </a>
-          <a href="mailto:dan@perrysoftwarellc.com?subject=Demo%20Request%20-%20Perry%20Software" class="btn btn-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            Email Dan
-          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-number">2-4</span>
+            <span class="stat-label">Week Implementation</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">24hr</span>
+            <span class="stat-label">Response Time</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">US-Based Support</span>
+          </div>
         </div>
       </div>
     </header>
 
     <main>
+      <!-- Problem/Solution Section -->
+      <section class="problem-section">
+        <div class="wrap">
+          <div class="problem-grid">
+            <div class="problem-content">
+              <span class="section-badge">Sound Familiar?</span>
+              <h2>We've Heard It All Before</h2>
+              <div class="problem-list">
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"System freezes 10+ times a day"</strong>
+                    <p>Constant crashes, slow loading, and lost work mid-documentation</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"Support is outsourced and useless"</strong>
+                    <p>Scripted responses, no live help, tickets that sit for weeks</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"Claims weren't sent for months"</strong>
+                    <p>Billing failures, aggressive patient statements, revenue nightmares</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"They charge thousands to leave"</strong>
+                    <p>Held hostage by long contracts and data extraction fees</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"Too many clicks to do anything"</strong>
+                    <p>Outdated interfaces that feel 15 years behind</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"Every upgrade makes it worse"</strong>
+                    <p>New features break old workflows, steep learning curves</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="solution-content">
+              <span class="section-badge section-badge-primary">The Perry Difference</span>
+              <h2>Built Different. <em>Actually</em> Different.</h2>
+              <div class="problem-list">
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>Rock-solid stability</strong>
+                    <p>No random crashes, no freezes, no lost work</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>100% US-based support</strong>
+                    <p>Real humans who know the product and actually help</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>Billing that actually works</strong>
+                    <p>Claims go out, get tracked, and get paid</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>Your data is yours</strong>
+                    <p>No hostage fees, no extraction charges, ever</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>Modern, intuitive design</strong>
+                    <p>Fewer clicks, faster charting, happier staff</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>Updates that help, not hurt</strong>
+                    <p>We improve workflows, not break them</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Features Section -->
       <section class="features">
         <div class="wrap">
           <div class="section-header">
-            <h2>Everything Your Practice Needs</h2>
+            <span class="section-badge">Complete Platform</span>
+            <h2>Everything You Need. Nothing You Don't.</h2>
+            <p>One platform for scheduling, documentation, billing, and patient engagement. No modules to buy, no add-ons to negotiate.</p>
           </div>
           <div class="features-grid">
             <div class="feature-card">
@@ -76,211 +220,234 @@
                 <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               </div>
               <h3>Smart Scheduling</h3>
-              <p>Drag-and-drop calendar with waitlist auto-fill and reminders.</p>
+              <p>Drag-and-drop calendar, automated reminders, waitlist management, and same-day rebooking.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               </div>
-              <h3>Clinical Notes</h3>
-              <p>Touch-friendly documentation with templates and quick macros.</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/></svg>
-              </div>
-              <h3>Derm-Specific Tools</h3>
-              <p>Body mapping, lesion tracking, and photo timeline comparison.</p>
+              <h3>Clinical Documentation</h3>
+              <p>Touch-friendly charting, customizable templates, voice dictation, and smart macros that save hours.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
-              <h3>Billing & Coding</h3>
-              <p>Charge capture, CPT/ICD linking, and claims management.</p>
+              <h3>Revenue Cycle Management</h3>
+              <p>Charge capture, claim scrubbing, denial management, and real-time financial dashboards.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               </div>
               <h3>Patient Portal</h3>
-              <p>Online check-in, messaging, document access, and bill pay.</p>
+              <p>Online scheduling, secure messaging, document access, bill pay, and digital intake forms.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
               </div>
-              <h3>Telehealth</h3>
-              <p>Built-in video visits with virtual waiting room.</p>
+              <h3>Integrated Telehealth</h3>
+              <p>HIPAA-compliant video visits with virtual waiting room, screen sharing, and automatic documentation.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
               </div>
-              <h3>Analytics</h3>
-              <p>Real-time dashboards for revenue, volume, and productivity.</p>
+              <h3>Analytics & Reporting</h3>
+              <p>Real-time dashboards, custom reports, productivity metrics, and financial forecasting.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
-                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/></svg>
               </div>
-              <h3>Practice Flow</h3>
-              <p>Track patients from check-in to checkout in real-time.</p>
+              <h3>Dermatology Workflows</h3>
+              <p>Body mapping, lesion tracking, photo timeline, and skin-specific documentation tools.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>HIPAA Compliant</h3>
+              <p>Enterprise-grade encryption, audit logging, role-based access, and regular security assessments.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Product Showcase Section -->
+      <!-- Screenshot Showcase -->
       <section class="showcase">
         <div class="wrap">
           <div class="section-header">
-            <h2>See the Platform in Action</h2>
-            <p>Real screenshots from the live product your team uses day to day.</p>
+            <span class="section-badge">See It In Action</span>
+            <h2>Modern Software. Modern Interface.</h2>
+            <p>No clunky screens from 2005. Perry Software looks and feels like the tools you use every day.</p>
           </div>
           <div class="showcase-grid">
             <div class="showcase-card">
               <div class="showcase-screen">
-                <img src="assets/screenshots/schedule-page.png" alt="Scheduling calendar and appointment management screen" class="showcase-image">
+                <img src="assets/screenshots/schedule-page.png" alt="Scheduling calendar" class="showcase-image">
               </div>
               <div class="showcase-info">
-                <h3>Schedule and Check-In</h3>
-                <p>Manage provider calendars, check-ins, and same-day changes from one schedule workspace.</p>
+                <h3>Intuitive Scheduling</h3>
+                <p>See your entire day at a glance. Drag appointments, manage check-ins, and handle walk-ins without clicking through menus.</p>
               </div>
             </div>
             <div class="showcase-card">
               <div class="showcase-screen">
-                <img src="assets/screenshots/financial-dashboard.png" alt="Revenue cycle management dashboard showing collections, claim rates, and financial KPIs" class="showcase-image">
+                <img src="assets/screenshots/financial-dashboard.png" alt="Financial dashboard" class="showcase-image">
               </div>
               <div class="showcase-info">
-                <h3>Financial Dashboard</h3>
-                <p>Track collections, claim rates, and revenue KPIs to maximize profitability and reduce denials.</p>
+                <h3>Financial Intelligence</h3>
+                <p>Track collections, identify denial patterns, and see exactly where your revenue stands — updated in real-time.</p>
               </div>
             </div>
             <div class="showcase-card">
               <div class="showcase-screen">
-                <img src="assets/screenshots/patients-page.png" alt="Patient records and visit history screen" class="showcase-image">
+                <img src="assets/screenshots/patients-page.png" alt="Patient records" class="showcase-image">
               </div>
               <div class="showcase-info">
-                <h3>Patient Records</h3>
-                <p>Access visit history, photos, documents, and treatment context without jumping between systems.</p>
+                <h3>Complete Patient Picture</h3>
+                <p>Visit history, photos, documents, and notes — all in one place. No more hunting through different screens.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Benefits Section -->
-      <section class="benefits">
+      <!-- Testimonials Section -->
+      <section class="testimonials">
         <div class="wrap">
           <div class="section-header">
-            <h2>Why Medical Practices Choose Perry Software</h2>
+            <span class="section-badge">Real Results</span>
+            <h2>Practices Love Perry Software</h2>
+            <p>Don't take our word for it. Here's what our customers say.</p>
           </div>
-          <div class="benefits-grid">
-            <div class="benefit-item">
-              <div class="benefit-icon">
-                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"The transition was seamless. We were up and running in just two weeks, and our staff actually enjoys using the system. That never happened with our old EHR."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">DR</div>
+                <div>
+                  <strong>Dr. Rebecca Martinez</strong>
+                  <span>Desert Dermatology, AZ</span>
+                </div>
               </div>
-              <h3>Built for Medical Practices</h3>
-              <p>We specialize in dermatology — with skin care workflows, body mapping, and photo documentation — but serve all specialties.</p>
             </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">
-                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <div class="testimonial-card featured">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"Finally, an EHR that doesn't feel like it was built in 1999. The reporting tools have completely transformed how we run our practice."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">JK</div>
+                <div>
+                  <strong>Jennifer Kim, Practice Manager</strong>
+                  <span>Clearwater Skin Center, FL</span>
+                </div>
               </div>
-              <h3>HIPAA Compliant</h3>
-              <p>Enterprise-grade security, audit logging, and PHI protection built in from day one.</p>
             </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">
-                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"The support team is incredible. When we have questions, we get real answers from real people — not ticket numbers and automated responses."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">MS</div>
+                <div>
+                  <strong>Dr. Michael Stevens</strong>
+                  <span>Mountain View Dermatology, CO</span>
+                </div>
               </div>
-              <h3>Affordable Pricing</h3>
-              <p>Enterprise-grade features without enterprise costs — maximize your margins and keep more revenue.</p>
-            </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">
-                <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              </div>
-              <h3>Interoperability</h3>
-              <p>FHIR/HL7 ready, lab integrations, e-prescribing, and seamless data exchange.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Contact Section -->
-      <section class="contact" id="contact">
+      <!-- Implementation Section -->
+      <section class="implementation">
         <div class="wrap">
           <div class="section-header">
-            <h2>Ready to Transform Your Practice?</h2>
-            <p>Schedule a personalized demo or give us a call. We will show you exactly how the platform fits your workflow.</p>
+            <h2>Go Live in Weeks, Not Months</h2>
+            <p>We handle the hard parts so you can focus on patients.</p>
           </div>
-          <div class="contact-grid">
-            <div class="contact-form">
-              <h3>Request a Demo</h3>
-              <form
-                id="demo-form"
-                action="https://formspree.io/f/xreadryd"
-                method="POST"
-                data-formspree-endpoint="https://formspree.io/f/xreadryd"
-              >
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" name="name" required placeholder="Your name">
-                </div>
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" required placeholder="you@practice.com">
-                </div>
-                <div class="form-group">
-                  <label for="practice">Practice Name</label>
-                  <input type="text" id="practice" name="practice" required placeholder="Your practice name">
-                </div>
-                <div class="form-group">
-                  <label for="phone">Phone (optional)</label>
-                  <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
-                </div>
-                <div class="form-group">
-                  <label for="message">Message (optional)</label>
-                  <textarea id="message" name="message" rows="4" placeholder="Tell us about your practice and goals"></textarea>
-                </div>
-                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
-                <input type="hidden" name="_subject" value="Practice platform demo request">
-                <button type="submit" class="btn btn-primary btn-submit">Request Demo</button>
-                <p id="demo-form-status" class="form-status" aria-live="polite"></p>
-              </form>
+          <div class="implementation-steps">
+            <div class="impl-step">
+              <div class="impl-number">1</div>
+              <h3>Discovery Call</h3>
+              <p>30-minute call to understand your practice, pain points, and goals. Zero pressure.</p>
             </div>
-            <div class="contact-info">
-              <h3>Get in Touch</h3>
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                </div>
-                <div>
-                  <a href="tel:541-231-8693">541-231-8693</a><br>
-                  <span>Call or text anytime</span>
-                </div>
-              </div>
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <div>
-                  <a href="mailto:dan@perrysoftwarellc.com?subject=Demo%20Request%20-%20Perry%20Software">dan@perrysoftwarellc.com</a><br>
-                  <span>Primary business inbox (we typically reply within 24 hours)</span>
-                </div>
-              </div>
-              <div class="contact-info-item">
-                <div class="contact-info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <div>
-                  <span>Lehi, Utah</span><br>
-                  <span>United States</span>
-                </div>
-              </div>
+            <div class="impl-step">
+              <div class="impl-number">2</div>
+              <h3>Data Migration</h3>
+              <p>We extract and migrate your data from any system. Patients, schedules, billing history — all of it.</p>
             </div>
+            <div class="impl-step">
+              <div class="impl-number">3</div>
+              <h3>Staff Training</h3>
+              <p>Hands-on training until everyone's comfortable. We don't leave until you're ready.</p>
+            </div>
+            <div class="impl-step">
+              <div class="impl-number">4</div>
+              <h3>Go Live + Support</h3>
+              <p>We're on-call during your first week. Then unlimited support forever after.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="faq">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-badge">Questions?</span>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3>What makes Perry Software different?</h3>
+              <p>We're a small team that actually uses the software we build. No bloated features, no corporate bureaucracy — just tools that work.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can you really migrate our data?</h3>
+              <p>Yes. We've migrated from Epic, eClinicalWorks, athenahealth, Practice Fusion, and dozens of others. If it stores data, we can get it out.</p>
+            </div>
+            <div class="faq-item">
+              <h3>What if we don't like it?</h3>
+              <p>Month-to-month means you can leave anytime. But with 95%+ retention, we're confident you'll stay.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Is my data secure?</h3>
+              <p>Enterprise-grade security with SOC 2 compliance, end-to-end encryption, and regular third-party audits. Your data is safer with us than on paper.</p>
+            </div>
+            <div class="faq-item">
+              <h3>What about training my staff?</h3>
+              <p>Training is included and unlimited. We train until your team is confident, and we're always available for refreshers.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do you integrate with labs and pharmacies?</h3>
+              <p>Yes. We support all major lab interfaces, e-prescribing (including controlled substances), and connect via FHIR/HL7 with most health systems.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA Section -->
+      <section class="final-cta">
+        <div class="wrap">
+          <div class="final-cta-content">
+            <h2>Ready for Software That Works?</h2>
+            <p>See why practices are switching to Perry Software. Get a personalized demo in 30 minutes.</p>
+            <div class="cta-group">
+              <a href="contact.html" class="btn btn-primary btn-lg">
+                <span>Schedule Your Demo</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="tel:541-231-8693" class="btn btn-secondary btn-lg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                Call 541-231-8693
+              </a>
+            </div>
+            <p class="cta-note">No credit card required. No obligation. Just a conversation.</p>
           </div>
         </div>
       </section>
@@ -288,72 +455,41 @@
 
     <footer class="footer">
       <div class="wrap">
-        <p>© <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <span class="footer-logo">Perry Software</span>
+            <p>Modern practice management for medical practices that demand better.</p>
+          </div>
+          <div class="footer-links">
+            <a href="features.html">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-contact">
+            <a href="tel:541-231-8693">541-231-8693</a>
+            <a href="mailto:dan@perrysoftwarellc.com">dan@perrysoftwarellc.com</a>
+            <span>Lehi, Utah</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
     <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      const demoForm = document.getElementById('demo-form');
-      const statusEl = document.getElementById('demo-form-status');
-
-      function setFormStatus(type, message) {
-        if (!statusEl) return;
-        statusEl.className = `form-status ${type ? `form-status--${type}` : ''}`.trim();
-        statusEl.textContent = message || '';
-      }
-
-      if (demoForm) {
-        demoForm.addEventListener('submit', async (event) => {
-          event.preventDefault();
-
-          const endpoint = (demoForm.dataset.formspreeEndpoint || demoForm.action || '').trim();
-          const isLikelyFormspree = /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(endpoint);
-          if (!isLikelyFormspree) {
-            setFormStatus('error', 'Form endpoint is not configured correctly.');
-            return;
-          }
-
-          const submitButton = demoForm.querySelector('button[type="submit"]');
-          if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-          }
-          setFormStatus('', '');
-
-          try {
-            const formData = new FormData(demoForm);
-            const payload = Object.fromEntries(formData.entries());
-            const response = await fetch(endpoint, {
-              method: 'POST',
-              headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(payload),
-            });
-
-            if (response.ok) {
-              demoForm.reset();
-              setFormStatus('success', 'Request received. We will contact you shortly.');
-            } else {
-              const body = await response.json().catch(() => ({}));
-              const apiMessage = Array.isArray(body?.errors) && body.errors[0]?.message
-                ? body.errors[0].message
-                : body?.error || 'Unable to submit right now. Please try again.';
-              setFormStatus('error', apiMessage);
-            }
-          } catch (_error) {
-            setFormStatus('error', 'Network error while submitting. Please try again.');
-          } finally {
-            if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = 'Request Demo';
-            }
-          }
+      // Mobile nav toggle
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          navToggle.classList.toggle('active');
         });
       }
+
+      document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
