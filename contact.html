@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Perry Software</title>
+    <meta name="description" content="Contact Perry Software for a demo, quote, or questions about our practice management platform. We typically respond within 24 hours." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">Perry Software</a>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">Request Demo</a>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="wrap">
+        <h1>Let's Talk</h1>
+        <p>Ready to see Perry Software in action? Have questions? We'd love to hear from you.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="contact" style="padding-top: 4rem;">
+        <div class="wrap">
+          <div class="contact-grid">
+            <div class="contact-form">
+              <h3>Request a Demo</h3>
+              <form
+                id="demo-form"
+                action="https://formspree.io/f/xreadryd"
+                method="POST"
+                data-formspree-endpoint="https://formspree.io/f/xreadryd"
+              >
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required placeholder="you@practice.com">
+                </div>
+                <div class="form-group">
+                  <label for="practice">Practice Name</label>
+                  <input type="text" id="practice" name="practice" required placeholder="Your practice name">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone (optional)</label>
+                  <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                </div>
+                <div class="form-group">
+                  <label for="providers">Number of Providers (optional)</label>
+                  <input type="number" id="providers" name="providers" placeholder="e.g., 3">
+                </div>
+                <div class="form-group">
+                  <label for="current-ehr">Current EHR System (optional)</label>
+                  <input type="text" id="current-ehr" name="current_ehr" placeholder="e.g., Epic, eClinicalWorks, etc.">
+                </div>
+                <div class="form-group">
+                  <label for="message">Message (optional)</label>
+                  <textarea id="message" name="message" rows="4" placeholder="Tell us about your practice and what you're looking for"></textarea>
+                </div>
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+                <input type="hidden" name="_subject" value="Demo Request - Perry Software">
+                <button type="submit" class="btn btn-primary btn-submit">Request Demo</button>
+                <p id="demo-form-status" class="form-status" aria-live="polite"></p>
+              </form>
+            </div>
+            <div class="contact-info">
+              <h3>Get in Touch Directly</h3>
+              <p style="color: var(--muted); margin-bottom: 2rem;">Prefer to talk? We're here for you.</p>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <a href="tel:541-231-8693">541-231-8693</a><br>
+                  <span>Call or text anytime</span>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <a href="mailto:dan@perrysoftwarellc.com?subject=Demo%20Request%20-%20Perry%20Software">dan@perrysoftwarellc.com</a><br>
+                  <span>We typically reply within 24 hours</span>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <span>Lehi, Utah</span><br>
+                  <span>United States</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 3rem; padding: 1.5rem; background: var(--primary-light); border-radius: 12px;">
+                <h4 style="margin: 0 0 0.5rem; color: var(--primary-dark);">What happens next?</h4>
+                <ol style="margin: 0; padding-left: 1.25rem; color: var(--text); font-size: 0.9rem; line-height: 1.8;">
+                  <li>We'll reach out within 24 hours</li>
+                  <li>Quick discovery call to understand your needs</li>
+                  <li>Personalized demo of the platform</li>
+                  <li>Custom quote based on your practice</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          navToggle.classList.toggle('active');
+        });
+      }
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const demoForm = document.getElementById('demo-form');
+      const statusEl = document.getElementById('demo-form-status');
+
+      function setFormStatus(type, message) {
+        if (!statusEl) return;
+        statusEl.className = `form-status ${type ? `form-status--${type}` : ''}`.trim();
+        statusEl.textContent = message || '';
+      }
+
+      if (demoForm) {
+        demoForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const endpoint = (demoForm.dataset.formspreeEndpoint || demoForm.action || '').trim();
+          const isLikelyFormspree = /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(endpoint);
+          if (!isLikelyFormspree) {
+            setFormStatus('error', 'Form endpoint is not configured correctly.');
+            return;
+          }
+
+          const submitButton = demoForm.querySelector('button[type="submit"]');
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+          }
+          setFormStatus('', '');
+
+          try {
+            const formData = new FormData(demoForm);
+            const payload = Object.fromEntries(formData.entries());
+            const response = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+              demoForm.reset();
+              setFormStatus('success', 'Thanks! We\'ll be in touch within 24 hours.');
+            } else {
+              const body = await response.json().catch(() => ({}));
+              const apiMessage = Array.isArray(body?.errors) && body.errors[0]?.message
+                ? body.errors[0].message
+                : body?.error || 'Unable to submit right now. Please try again.';
+              setFormStatus('error', apiMessage);
+            }
+          } catch (_error) {
+            setFormStatus('error', 'Network error while submitting. Please try again.');
+          } finally {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = 'Request Demo';
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Perry Software</title>
+    <meta name="description" content="Learn about Perry Software — a modern practice management platform built to help medical practices thrive with easy implementation and ongoing support." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">Perry Software</a>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">Request Demo</a>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="wrap">
+        <h1>Built Different, On Purpose</h1>
+        <p>We're not another faceless EHR vendor. We're a small team obsessed with making practice management actually work.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="about-section">
+        <div class="wrap">
+          <div class="about-content">
+            <h2>Our Story</h2>
+            <p>Perry Software was born from frustration. After watching medical practices struggle with bloated, expensive EHR systems that seemed designed to make work harder — not easier — we decided to build something better.</p>
+
+            <p>Based in Lehi, Utah, we're a small team with a simple mission: create practice management software that medical professionals actually enjoy using, at a price that makes sense for independent practices.</p>
+
+            <h2>Why We're Different</h2>
+            <p>Big EHR companies have thousands of customers. They can't possibly give you the attention you deserve. We can. When you call us, you talk to people who know your practice and your challenges.</p>
+
+            <p>We don't nickel-and-dime you with per-user fees, implementation charges, or hidden costs. We don't lock you into long-term contracts. We earn your business every single month by being the best solution for your practice.</p>
+
+            <h2>Easy Transition, Real Support</h2>
+            <p>We know switching systems feels daunting. That's why we handle the heavy lifting. Our team migrates your data, trains your staff, and stays by your side through go-live and beyond. Most practices are fully operational within 2-4 weeks.</p>
+
+            <p>And our support doesn't end after implementation. Unlimited phone, email, and chat support is included — not as an upsell, but as part of who we are. Real humans, fast responses, no ticket queues.</p>
+
+            <div class="about-values">
+              <div class="about-value">
+                <h3>Simplicity</h3>
+                <p>Software should make work easier, not harder. We obsess over usability.</p>
+              </div>
+              <div class="about-value">
+                <h3>Transparency</h3>
+                <p>No hidden fees, no surprise charges, no BS. What you see is what you get.</p>
+              </div>
+              <div class="about-value">
+                <h3>Partnership</h3>
+                <p>Your success is our success. We're in this together for the long haul.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="wrap">
+          <h2>Ready to Make the Switch?</h2>
+          <p>Let's talk about how we can make your practice more efficient and more profitable.</p>
+          <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          navToggle.classList.toggle('active');
+        });
+      }
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
