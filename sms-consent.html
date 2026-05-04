@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMS Consent | Perry Software</title>
+    <meta
+      name="description"
+      content="Consent form for operational SMS messages sent by Perry Software and its healthcare demo environment."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .legal-shell {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 5rem;
+      }
+      .legal-card {
+        background: #ffffff;
+        border: 1px solid rgba(14, 165, 233, 0.12);
+        border-radius: 20px;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        padding: 2rem;
+      }
+      .legal-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: #0ea5e9;
+        background: rgba(14, 165, 233, 0.08);
+        border-radius: 999px;
+        padding: 0.45rem 0.8rem;
+      }
+      .legal-card h1 {
+        margin: 1rem 0 0.75rem;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.05;
+        color: #0f172a;
+      }
+      .legal-card p,
+      .legal-card li,
+      .legal-card label {
+        color: #334155;
+        line-height: 1.7;
+      }
+      .legal-grid {
+        display: grid;
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+      .legal-panel {
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 16px;
+        padding: 1.15rem 1.25rem;
+        background: #f8fbff;
+      }
+      .legal-panel h2 {
+        margin: 0 0 0.5rem;
+        color: #0f172a;
+        font-size: 1.05rem;
+      }
+      .consent-form {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .consent-form input,
+      .consent-form textarea {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid #cbd5e1;
+        padding: 0.85rem 0.95rem;
+        font: inherit;
+      }
+      .consent-form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .consent-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+      }
+      .consent-checkbox input {
+        width: 18px;
+        height: 18px;
+        margin-top: 0.2rem;
+      }
+      .legal-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .legal-links a {
+        color: #0369a1;
+        font-weight: 700;
+      }
+      .form-status {
+        min-height: 1.4rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+      .form-status--success {
+        color: #166534;
+      }
+      .form-status--error {
+        color: #b91c1c;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="legal-shell">
+      <section class="legal-card">
+        <span class="legal-kicker">Operational Text Messaging</span>
+        <h1>SMS Consent Form</h1>
+        <p>
+          Use this form to opt in to operational text messages from <strong>Perry Software LLC</strong> and its
+          healthcare practice demo environment. These messages may include appointment reminders, scheduling updates,
+          billing notices, prescription coordination, and care follow-up messages.
+        </p>
+
+        <div class="legal-grid">
+          <div class="legal-panel">
+            <h2>What you are agreeing to</h2>
+            <ul>
+              <li>Message frequency varies based on your activity and office workflow.</li>
+              <li>Message and data rates may apply.</li>
+              <li>Reply <strong>HELP</strong> for help or <strong>STOP</strong> to opt out at any time.</li>
+              <li>Consent is not a condition of treatment, purchase, or payment.</li>
+            </ul>
+          </div>
+
+          <div class="legal-panel">
+            <h2>Support</h2>
+            <p>
+              Questions about text messaging can be sent to
+              <a href="mailto:dan@perrysoftwarellc.com">dan@perrysoftwarellc.com</a>
+              or by calling
+              <a href="tel:541-231-8693">541-231-8693</a>.
+            </p>
+            <div class="legal-links">
+              <a href="sms-terms.html">SMS Terms of Service</a>
+              <a href="sms-privacy.html">SMS Privacy Policy</a>
+              <a href="contact.html">Contact Perry Software</a>
+            </div>
+          </div>
+        </div>
+
+        <form
+          id="sms-consent-form"
+          class="consent-form"
+          action="https://formspree.io/f/xreadryd"
+          method="POST"
+          data-formspree-endpoint="https://formspree.io/f/xreadryd"
+        >
+          <input type="hidden" name="_subject" value="SMS Consent Request - Perry Software" />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+
+          <div>
+            <label for="full-name">Full name</label>
+            <input id="full-name" name="full_name" type="text" required placeholder="Jane Doe" />
+          </div>
+
+          <div>
+            <label for="mobile-number">Mobile number</label>
+            <input id="mobile-number" name="mobile_number" type="tel" required placeholder="(555) 123-4567" />
+          </div>
+
+          <div>
+            <label for="organization">Practice or organization (optional)</label>
+            <input id="organization" name="organization" type="text" placeholder="Dermatology DEMO Office" />
+          </div>
+
+          <div>
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" placeholder="Anything we should know about your messaging request"></textarea>
+          </div>
+
+          <label class="consent-checkbox" for="sms-consent-checkbox">
+            <input id="sms-consent-checkbox" name="sms_consent" type="checkbox" required />
+            <span>
+              I agree to receive operational SMS messages from Perry Software LLC and its healthcare practice demo
+              environment at the mobile number provided above. I understand that message frequency varies, message and
+              data rates may apply, I can reply HELP for help, and I can reply STOP to opt out at any time.
+            </span>
+          </label>
+
+          <button type="submit" class="btn btn-primary">Submit SMS Consent</button>
+          <p id="sms-consent-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const consentForm = document.getElementById('sms-consent-form');
+      const statusEl = document.getElementById('sms-consent-status');
+
+      function setFormStatus(type, message) {
+        if (!statusEl) return;
+        statusEl.className = `form-status ${type ? `form-status--${type}` : ''}`.trim();
+        statusEl.textContent = message || '';
+      }
+
+      if (consentForm) {
+        consentForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const endpoint = (consentForm.dataset.formspreeEndpoint || consentForm.action || '').trim();
+          if (!/^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(endpoint)) {
+            setFormStatus('error', 'Consent form endpoint is not configured correctly.');
+            return;
+          }
+
+          const submitButton = consentForm.querySelector('button[type="submit"]');
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+          }
+          setFormStatus('', '');
+
+          try {
+            const formData = new FormData(consentForm);
+            const payload = Object.fromEntries(formData.entries());
+            const response = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+              const body = await response.json().catch(() => ({}));
+              const apiMessage = Array.isArray(body?.errors) && body.errors[0]?.message
+                ? body.errors[0].message
+                : body?.error || 'Unable to submit right now. Please try again.';
+              throw new Error(apiMessage);
+            }
+
+            consentForm.reset();
+            setFormStatus('success', 'Thanks. Your SMS consent request has been submitted.');
+          } catch (error) {
+            setFormStatus('error', error instanceof Error ? error.message : 'Unable to submit right now. Please try again.');
+          } finally {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = 'Submit SMS Consent';
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
