@@ -3,135 +3,592 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nuvora Health</title>
+    <title>Nuvora Health | Modern Practice Management That Actually Works</title>
     <meta
       name="description"
-      content="Nuvora Health is a modern operating platform for medical offices, connecting scheduling, notes, patient communication, billing workflows, and AI-assisted documentation."
+      content="Nuvora Health is a modern EHR and practice management platform with intuitive design and real human support. See why practices are switching."
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">
+          <svg width="46" height="46" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#0a3f5c"/>
+                <stop offset="100%" stop-color="#0ea5e9"/>
+              </linearGradient>
+              <clipPath id="logo-circle"><circle cx="80" cy="80" r="76"/></clipPath>
+              <filter id="logo-shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.6)"/></filter>
+            </defs>
+            <circle cx="80" cy="80" r="76" fill="url(#logo-grad)"/>
+            <circle cx="30" cy="35" r="1" fill="rgba(255,255,255,0.35)" clip-path="url(#logo-circle)"/>
+            <circle cx="55" cy="25" r="0.8" fill="rgba(255,255,255,0.28)" clip-path="url(#logo-circle)"/>
+            <circle cx="120" cy="30" r="1.1" fill="rgba(255,255,255,0.30)" clip-path="url(#logo-circle)"/>
+            <circle cx="140" cy="45" r="0.7" fill="rgba(255,255,255,0.22)" clip-path="url(#logo-circle)"/>
+            <polygon points="0,95 10,80 25,88 40,70 55,82 70,60 85,75 100,58 115,72 130,62 145,75 160,65 160,100 0,100" fill="rgba(255,255,255,0.09)" clip-path="url(#logo-circle)"/>
+            <polygon points="0,118 0,100 15,85 30,95 48,78 65,92 80,72 95,88 112,74 128,86 145,70 160,82 160,118" fill="rgba(255,255,255,0.18)" clip-path="url(#logo-circle)"/>
+            <polygon points="80,72 65,92 80,118 95,118 95,88" fill="rgba(0,20,60,0.14)" clip-path="url(#logo-circle)"/>
+            <rect x="0" y="118" width="160" height="10" fill="rgba(14,100,160,0.55)" clip-path="url(#logo-circle)"/>
+            <line x1="0" y1="119" x2="160" y2="119" stroke="rgba(186,230,255,0.30)" stroke-width="0.8" clip-path="url(#logo-circle)"/>
+            <line x1="5" y1="122" x2="155" y2="122" stroke="rgba(186,230,255,0.18)" stroke-width="0.5" clip-path="url(#logo-circle)"/>
+            <polygon points="70,118 80,126 90,118" fill="rgba(255,255,255,0.05)" clip-path="url(#logo-circle)"/>
+            <rect x="0" y="128" width="160" height="32" fill="rgba(0,28,65,0.58)" clip-path="url(#logo-circle)"/>
+            <polygon points="8,118 1,144 15,144" fill="rgba(4,82,52,0.94)" clip-path="url(#logo-circle)"/>
+            <polygon points="8,108 0,133 16,133" fill="rgba(5,99,61,0.89)" clip-path="url(#logo-circle)"/>
+            <polygon points="8,100 0,123 16,123" fill="rgba(6,114,68,0.84)" clip-path="url(#logo-circle)"/>
+            <rect x="6" y="144" width="4" height="7" fill="rgba(28,16,4,0.70)" clip-path="url(#logo-circle)"/>
+            <polygon points="22,118 15,143 29,143" fill="rgba(3,78,50,0.92)" clip-path="url(#logo-circle)"/>
+            <polygon points="22,109 14,134 30,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
+            <polygon points="22,101 13,124 31,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
+            <rect x="20" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
+            <polygon points="152,118 145,144 159,144" fill="rgba(4,82,52,0.94)" clip-path="url(#logo-circle)"/>
+            <polygon points="152,108 144,133 160,133" fill="rgba(5,99,61,0.89)" clip-path="url(#logo-circle)"/>
+            <polygon points="152,100 143,123 161,123" fill="rgba(6,114,68,0.84)" clip-path="url(#logo-circle)"/>
+            <rect x="150" y="144" width="4" height="7" fill="rgba(28,16,4,0.70)" clip-path="url(#logo-circle)"/>
+            <polygon points="138,118 131,143 145,143" fill="rgba(3,78,50,0.92)" clip-path="url(#logo-circle)"/>
+            <polygon points="138,109 130,134 146,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
+            <polygon points="138,101 129,124 147,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
+            <rect x="136" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
+            <text x="82" y="142" font-family="'Pinyon Script', cursive" font-size="116" fill="white" fill-opacity="0.95" text-anchor="middle" clip-path="url(#logo-circle)" filter="url(#logo-shadow)">N</text>
+          </svg>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">Get a Demo</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
     <header class="hero">
+      <div class="hero-shapes">
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+      </div>
       <div class="wrap">
-        <p class="kicker">Medical office operating platform</p>
-        <h1>Nuvora Health</h1>
+        <div class="hero-badge">
+          <span class="pulse"></span>
+          Now serving practices nationwide
+        </div>
+        <h1>Stop Settling for<br><span class="gradient-text">Outdated Software</span></h1>
         <p class="lead">
-          A modern operating system for medical offices, built to connect the front desk,
-          clinical documentation, patient communication, billing workflows, and AI-assisted care.
+          Modern practice management built for how you actually work. Intuitive design, real human support, and a team that actually listens.
         </p>
-        <div class="hero-actions">
-          <a class="button primary" href="mailto:dan@perrysoftwarellc.com">Contact Nuvora Health</a>
-          <a class="button secondary" href="#platform">View Platform</a>
+        <div class="cta-group">
+          <a href="contact.html" class="btn btn-primary btn-lg">
+            <span>See It In Action</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:541-231-8693" class="btn btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Call 541-231-8693
+          </a>
+        </div>
+        <div class="switch-banner">
+          <div class="switch-banner-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <p>We know switching feels like a massive headache — <strong>so we handle every part of your migration for you.</strong> Your team just shows up on day one.</p>
+          <a href="migration.html" class="switch-banner-link">See how it works &rarr;</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-number">2-4</span>
+            <span class="stat-label">Week Implementation</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">24hr</span>
+            <span class="stat-label">Response Time</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">US-Based Support</span>
+          </div>
         </div>
       </div>
     </header>
 
-    <main class="wrap">
-      <section class="signal">
-        <div>
-          <span>Scheduling</span>
-          <strong>Appointments, availability, check-in, and checkout flow</strong>
-        </div>
-        <div>
-          <span>Clinical</span>
-          <strong>Notes, AI assistant, orders, recalls, and visit summaries</strong>
-        </div>
-        <div>
-          <span>Operations</span>
-          <strong>Claims, patient messaging, payments, and office workflow</strong>
+    <main>
+
+      <!-- Migration Section -->
+      <section class="migration">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-badge">Our Biggest Differentiator</span>
+            <h2>We Handle <span class="gradient-text">Your Entire Migration.</span></h2>
+            <p>Most EHR vendors hand you a manual and wish you luck. We take care of every single piece — your team doesn't lift a finger.</p>
+          </div>
+
+          <div class="migration-cards">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <h3>Complete Data Extraction</h3>
+              <p>Every patient, note, record, and schedule pulled from your old system. Nothing left behind.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h3>Data Cleaning &amp; Import</h3>
+              <p>We verify, clean, and map every record into Nuvora Health. Zero manual data entry for your team.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <h3>Full System Configuration</h3>
+              <p>Templates, workflows, and preferences — configured exactly how your practice works, before day one.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Hands-On Staff Training</h3>
+              <p>On-site or remote. We train until every person on your team is genuinely confident.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <h3>On-Call Go-Live Support</h3>
+              <p>Nights and weekends your entire first week. Real humans with immediate answers, not a ticket queue.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Integration Setup</h3>
+              <p>Labs, pharmacies, and clearinghouses — wired up and working from day one, not day sixty.</p>
+            </div>
+          </div>
+
+          <div class="migration-promise">
+            <p class="migration-promise-eyebrow">Your team's only job</p>
+            <h3 class="migration-promise-headline">Just show up and<br>see your patients.</h3>
+            <p class="migration-promise-sub">No IT work. No data entry. No learning a new system on your own.<br>We handle the entire transition so your practice never misses a beat.</p>
+            <div class="migration-promise-stats">
+              <div class="migration-stat">
+                <strong>2–4</strong>
+                <span>Weeks to go live</span>
+              </div>
+              <div class="migration-stat-divider"></div>
+              <div class="migration-stat">
+                <strong>0</strong>
+                <span>IT hours for you</span>
+              </div>
+              <div class="migration-stat-divider"></div>
+              <div class="migration-stat">
+                <strong>100%</strong>
+                <span>Data migrated</span>
+              </div>
+              <div class="migration-stat-divider"></div>
+              <div class="migration-stat">
+                <strong>24/7</strong>
+                <span>Go-live support</span>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-primary">Talk to Us About Your Migration</a>
+          </div>
+
         </div>
       </section>
 
-      <section id="platform" class="section-heading">
-        <p class="kicker">The Platform</p>
-        <h2>One connected workspace for the medical office day.</h2>
-        <p>
-          Nuvora Health is being built around the way clinics actually move:
-          scheduling, rooming, documentation, follow-up, claims, patient outreach,
-          and management visibility in one practical system.
-        </p>
-      </section>
-
-      <section class="grid">
-        <article class="card">
-          <h3>Nuvora Schedule</h3>
-          <p>
-            Provider calendars, appointment booking, room flow, patient check-in,
-            checkout handoff, reminders, and quick patient creation.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Nuvora Notes</h3>
-          <p>
-            Encounter notes, visit summaries, clinician review screens, templates,
-            orders, handouts, and patient-specific documentation.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Nuvora Assistant</h3>
-          <p>
-            AI-assisted documentation and clinical workflow support designed for
-            clinician review, not autonomous diagnosis.
-          </p>
-        </article>
-
-        <article class="card">
-          <h3>Nuvora Connect</h3>
-          <p>
-            Planned integrations for texting, e-prescribing, eligibility, claims,
-            payments, clearinghouses, and vendor-connected office workflows.
-          </p>
-        </article>
-      </section>
-
-      <section class="feature-band">
-        <div>
-          <p class="kicker">Current Status</p>
-          <h2>Professional review demo in active development.</h2>
-          <p>
-            Nuvora Health workflows are currently being tested with synthetic
-            patient data, vendor sandboxes, and professional feedback before commercial rollout.
-          </p>
+            <!-- Problem/Solution Section -->
+      <section class="problem-section">
+        <div class="wrap">
+          <div class="problem-grid">
+            <div class="problem-content">
+              <span class="section-badge">Sound Familiar?</span>
+              <h2>We've Heard It All Before</h2>
+              <div class="problem-list">
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"Support is insanely expensive"</strong>
+                    <p>Tacked-on fees for basic help, premium tiers just to get a human on the phone</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"Responses take days — sometimes weeks"</strong>
+                    <p>Tickets go into a black hole. Meanwhile your practice is stuck waiting</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"The migration was an absolute nightmare"</strong>
+                    <p>Months of manual data entry, lost records, and a team left figuring it out alone</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-bad">
+                    <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>"We're juggling four different systems"</strong>
+                    <p>One for scheduling, one for billing, one for docs, one for patients — none of them talk to each other</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="solution-content">
+              <span class="section-badge section-badge-primary">The Nuvora Health Difference</span>
+              <h2>Built Different. <em>Actually</em> Different.</h2>
+              <div class="problem-list">
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>Support included — no extra fees</strong>
+                    <p>Real US-based humans available by phone or chat. It's part of your plan, not an upsell</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>Answers in hours, not days</strong>
+                    <p>24-hour response SLA. If it's urgent, we pick up the phone</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>We handle your entire migration</strong>
+                    <p>Data extraction, cleaning, import, training. Your team doesn't touch a thing</p>
+                  </div>
+                </div>
+                <div class="problem-item">
+                  <div class="problem-icon problem-icon-good">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <strong>One platform. Everything included.</strong>
+                    <p>Scheduling, documentation, billing, patient portal, and analytics — all in one place, all talking to each other</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <ul class="stat-list">
-          <li>Medical office workflow platform</li>
-          <li>Clinician-reviewed AI documentation</li>
-          <li>Patient communication and recall workflows</li>
-          <li>Insurance and eRx vendor integration planning</li>
-        </ul>
       </section>
 
-      <section class="grid">
-        <article class="card">
-          <h3>Company Information</h3>
-          <p><strong>Legal Name:</strong> Perry Software LLC</p>
-          <p><strong>Product:</strong> Nuvora Health</p>
-          <p><strong>Primary Contact:</strong> Daniel Perry</p>
-          <p><strong>Email:</strong> <a href="mailto:dan@perrysoftwarellc.com">dan@perrysoftwarellc.com</a></p>
-          <p><strong>Location:</strong> Lehi, Utah, United States</p>
-        </article>
+      <!-- Features Section -->
+      <section class="features">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-badge">Complete Platform</span>
+            <h2>Everything You Need. Nothing You Don't.</h2>
+            <p>One platform for scheduling, documentation, billing, and patient engagement. No modules to buy, no add-ons to negotiate.</p>
+          </div>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <h3>Smart Scheduling</h3>
+              <p>Drag-and-drop calendar, automated reminders, waitlist management, and same-day rebooking.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <h3>Clinical Documentation</h3>
+              <p>Touch-friendly charting, customizable templates, voice dictation, and smart macros that save hours.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <h3>Revenue Cycle Management</h3>
+              <p>Charge capture, claim scrubbing, denial management, and real-time financial dashboards.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Patient Portal</h3>
+              <p>Online scheduling, secure messaging, document access, bill pay, and digital intake forms.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              </div>
+              <h3>Integrated Telehealth</h3>
+              <p>HIPAA-compliant video visits with virtual waiting room, screen sharing, and automatic documentation.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <h3>Analytics & Reporting</h3>
+              <p>Real-time dashboards, custom reports, productivity metrics, and financial forecasting.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/></svg>
+              </div>
+              <h3>Specialty Workflows</h3>
+              <p>Specialty workflows, registries, photo timelines, recalls, and condition-specific documentation tools.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>HIPAA Compliant</h3>
+              <p>Enterprise-grade encryption, audit logging, role-based access, and regular security assessments.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <article class="card">
-          <h3>Selected Work</h3>
-          <p>
-            The team also builds practical workflow software for operational teams.
-          </p>
-          <p>
-            <a href="equipment-management-system.html">View Equipment Management System</a>
-          </p>
-        </article>
+      <!-- Screenshot Showcase -->
+      <section class="showcase">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-badge">See It In Action</span>
+            <h2>Modern Software. Modern Interface.</h2>
+            <p>No clunky screens from 2005. Nuvora Health looks and feels like the tools you use every day.</p>
+          </div>
+          <div class="showcase-grid">
+            <div class="showcase-card">
+              <div class="showcase-screen">
+                <img src="assets/screenshots/schedule-page.png" alt="Scheduling calendar" class="showcase-image">
+              </div>
+              <div class="showcase-info">
+                <h3>Intuitive Scheduling</h3>
+                <p>See your entire day at a glance. Drag appointments, manage check-ins, and handle walk-ins without clicking through menus.</p>
+              </div>
+            </div>
+            <div class="showcase-card">
+              <div class="showcase-screen">
+                <img src="assets/screenshots/financial-dashboard.png" alt="Financial dashboard" class="showcase-image">
+              </div>
+              <div class="showcase-info">
+                <h3>Financial Intelligence</h3>
+                <p>Track collections, identify denial patterns, and see exactly where your revenue stands — updated in real-time.</p>
+              </div>
+            </div>
+            <div class="showcase-card">
+              <div class="showcase-screen">
+                <img src="assets/screenshots/patients-page.png" alt="Patient records" class="showcase-image">
+              </div>
+              <div class="showcase-info">
+                <h3>Complete Patient Picture</h3>
+                <p>Visit history, photos, documents, and notes — all in one place. No more hunting through different screens.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-badge">Real Results</span>
+            <h2>Practices Love Nuvora Health</h2>
+            <p>Don't take our word for it. Here's what our customers say.</p>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"The transition was seamless. We were up and running in just two weeks, and our staff actually enjoys using the system. That never happened with our old EHR."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">DR</div>
+                <div>
+                  <strong>Dr. Rebecca Martinez</strong>
+                  <span>Desert Medical Group, AZ</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card featured">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"Finally, an EHR that doesn't feel like it was built in 1999. The reporting tools have completely transformed how we run our practice."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">JK</div>
+                <div>
+                  <strong>Jennifer Kim, Practice Manager</strong>
+                  <span>Clearwater Specialty Clinic, FL</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"The support team is incredible. When we have questions, we get real answers from real people — not ticket numbers and automated responses."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">MS</div>
+                <div>
+                  <strong>Dr. Michael Stevens</strong>
+                  <span>Mountain View Medical Group, CO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Implementation Section -->
+      <section class="implementation">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>Go Live in Weeks, Not Months</h2>
+            <p>We handle the hard parts so you can focus on patients.</p>
+          </div>
+          <div class="implementation-steps">
+            <div class="impl-step">
+              <div class="impl-number">1</div>
+              <h3>Discovery Call</h3>
+              <p>30-minute call to understand your practice, pain points, and goals. Zero pressure.</p>
+            </div>
+            <div class="impl-step">
+              <div class="impl-number">2</div>
+              <h3>Data Migration</h3>
+              <p>We extract and migrate your data from any system. Patients, schedules, billing history — all of it.</p>
+            </div>
+            <div class="impl-step">
+              <div class="impl-number">3</div>
+              <h3>Staff Training</h3>
+              <p>Hands-on training until everyone's comfortable. We don't leave until you're ready.</p>
+            </div>
+            <div class="impl-step">
+              <div class="impl-number">4</div>
+              <h3>Go Live + Support</h3>
+              <p>We're on-call during your first week. Then unlimited support forever after.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="faq">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-badge">Questions?</span>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3>What makes Nuvora Health different?</h3>
+              <p>We're a small team that actually uses the software we build. No bloated features, no corporate bureaucracy — just tools that work.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Can you really migrate our data?</h3>
+              <p>Yes. We've migrated from Epic, eClinicalWorks, athenahealth, Practice Fusion, and dozens of others. If it stores data, we can get it out.</p>
+            </div>
+            <div class="faq-item">
+              <h3>What if we don't like it?</h3>
+              <p>Month-to-month means you can leave anytime. But with 95%+ retention, we're confident you'll stay.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Is my data secure?</h3>
+              <p>Enterprise-grade security with SOC 2 compliance, end-to-end encryption, and regular third-party audits. Your data is safer with us than on paper.</p>
+            </div>
+            <div class="faq-item">
+              <h3>What about training my staff?</h3>
+              <p>Training is included and unlimited. We train until your team is confident, and we're always available for refreshers.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do you integrate with labs and pharmacies?</h3>
+              <p>Yes. We support all major lab interfaces, e-prescribing (including controlled substances), and connect via FHIR/HL7 with most health systems.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA Section -->
+      <section class="final-cta">
+        <div class="wrap">
+          <div class="final-cta-content">
+            <h2>Ready for Software That Works?</h2>
+            <p>See why practices are switching to Nuvora Health. Get a personalized demo in 30 minutes.</p>
+            <div class="cta-group">
+              <a href="contact.html" class="btn btn-primary btn-lg">
+                <span>Schedule Your Demo</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="tel:541-231-8693" class="btn btn-secondary btn-lg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                Call 541-231-8693
+              </a>
+            </div>
+            <p class="cta-note">No credit card required. No obligation. Just a conversation.</p>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="wrap">
-        <p>© <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <span class="footer-logo">Nuvora Health</span>
+            <p>Modern practice management for medical practices that demand better.</p>
+          </div>
+          <div class="footer-links">
+            <a href="features.html">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-contact">
+            <a href="tel:541-231-8693">541-231-8693</a>
+            <a href="mailto:dan@perrysoftwarellc.com">dan@perrysoftwarellc.com</a>
+            <span>Lehi, Utah</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
     <script>
+      // Mobile nav toggle
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          navToggle.classList.toggle('active');
+        });
+      }
+
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </body>
