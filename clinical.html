@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clinical Tools | Nuvora Health</title>
+    <meta name="description" content="AI-powered clinical documentation built for dermatology. Ambient scribe, SOAP notes, interactive body diagram, e-prescribing, lab management, and clinical photography." />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-blue-20260515" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* ── Page Shell ── */
+      .clin-page { background: var(--bg); }
+
+      /* ── Hero ── */
+      .clin-hero {
+        background: var(--gradient-2);
+        padding: 8rem 2rem 6rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .clin-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,132,255,0.28) 0%, transparent 65%),
+          radial-gradient(ellipse 40% 40% at 80% 80%, rgba(0,194,255,0.10) 0%, transparent 60%);
+        pointer-events: none;
+      }
+      .clin-hero-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
+      .clin-hero h1 {
+        font-size: clamp(2.4rem, 5vw, 3.8rem);
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: -0.04em;
+        line-height: 1.08;
+        margin: 0 0 1.25rem;
+        font-family: 'Fraunces', serif;
+      }
+      .clin-hero p {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.65);
+        line-height: 1.75;
+        max-width: 580px;
+        margin: 0 auto 2.5rem;
+      }
+      .clin-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 100px;
+        padding: 0.4rem 1rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #60c5ff;
+        margin-bottom: 1.75rem;
+      }
+      .clin-badge-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: #38bdf8;
+        animation: clin-pulse 2s ease-in-out infinite;
+      }
+      @keyframes clin-pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.7); }
+      }
+
+      /* ── Section Base ── */
+      .clin-section {
+        padding: 5.5rem 2rem;
+      }
+      .clin-section.alt { background: #fff; }
+      .clin-section-header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 3.5rem;
+      }
+      .clin-section-header h2 {
+        font-family: 'Fraunces', serif;
+        font-size: clamp(1.7rem, 3vw, 2.4rem);
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: -0.03em;
+        margin: 0.5rem 0 0.75rem;
+      }
+      .clin-section-header p {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      /* ── AI Scribe ── */
+      .scribe-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .scribe-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+      .scribe-step {
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+      }
+      .scribe-step-num {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        background: var(--gradient-1);
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: var(--shadow-glow);
+      }
+      .scribe-step-body h4 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 0.25rem; }
+      .scribe-step-body p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6; }
+      .scribe-stats {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+        flex-wrap: wrap;
+      }
+      .scribe-stat strong { display: block; font-size: 1.6rem; font-weight: 800; color: var(--primary); line-height: 1; }
+      .scribe-stat span { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; display: block; }
+
+      /* SOAP Note Preview Card */
+      .soap-preview {
+        background: var(--text);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow-glow), 0 20px 60px rgba(0,0,0,0.3);
+      }
+      .soap-preview-header {
+        background: rgba(255,255,255,0.05);
+        padding: 0.85rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+      }
+      .soap-preview-header span { font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+      .soap-preview-badge {
+        font-size: 0.65rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #0b63f6, #00c2ff);
+        color: #fff;
+        padding: 0.2rem 0.6rem;
+        border-radius: 100px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .soap-preview-body { padding: 1.25rem; }
+      .soap-block { margin-bottom: 1rem; }
+      .soap-block:last-child { margin-bottom: 0; }
+      .soap-label {
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #38bdf8;
+        margin-bottom: 0.35rem;
+      }
+      .soap-text {
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.7);
+        line-height: 1.6;
+        font-family: 'Space Grotesk', sans-serif;
+      }
+
+      /* ── Feature Grid ── */
+      .clin-feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.25rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .clin-feat-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+      }
+      .clin-feat-card .clin-feat-icon {
+        width: 32px; height: 32px;
+        border-radius: 8px;
+        background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--primary);
+      }
+      .clin-feat-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--text); margin: 0 0 0.2rem; }
+      .clin-feat-card p { font-size: 0.8rem; color: var(--muted); margin: 0; line-height: 1.5; }
+
+      /* ── Body Diagram Section ── */
+      .body-diagram-section { background: var(--gradient-2); padding: 5.5rem 2rem; }
+      .body-diagram-section .clin-section-header h2 { color: #fff; }
+      .body-diagram-section .clin-section-header p { color: rgba(255,255,255,0.60); }
+      .body-diagram-section .section-badge { background: rgba(255,255,255,0.1); color: #60c5ff; border-color: rgba(96,197,255,0.3); }
+      .lesion-lifecycle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+        margin: 2.5rem 0;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .lifecycle-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 1rem;
+        position: relative;
+      }
+      .lifecycle-step:not(:last-child)::after {
+        content: '→';
+        position: absolute;
+        right: -0.6rem;
+        top: 1.1rem;
+        color: rgba(255,255,255,0.3);
+        font-size: 1rem;
+      }
+      .lifecycle-dot {
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: 0.02em;
+      }
+      .lifecycle-label { font-size: 0.75rem; color: rgba(255,255,255,0.55); text-align: center; }
+      .lesion-types-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .lesion-type-card {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 14px;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+      .lesion-type-dot {
+        width: 14px; height: 14px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .lesion-type-card h4 { font-size: 0.9rem; font-weight: 700; color: #fff; margin: 0 0 0.15rem; }
+      .lesion-type-card p { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin: 0; }
+      .body-features-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+        margin-top: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .body-feature-pill {
+        background: rgba(11,99,246,0.25);
+        border: 1px solid rgba(0,132,255,0.3);
+        color: #60c5ff;
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 0.4rem 1rem;
+        border-radius: 100px;
+      }
+
+      /* ── Rx / Labs split grid ── */
+      .detail-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .detail-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: flex; flex-direction: column; gap: 0.6rem; }
+      .detail-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .detail-list li::before {
+        content: '';
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+        flex-shrink: 0;
+      }
+
+      /* Mock Rx Card */
+      .mock-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(11,99,246,0.08);
+      }
+      .mock-card-header {
+        background: var(--gradient-1);
+        padding: 1rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .mock-card-header span { color: #fff; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+      .mock-card-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+      .mock-rx-row { display: flex; justify-content: space-between; align-items: baseline; }
+      .mock-rx-label { font-size: 0.78rem; color: var(--muted); }
+      .mock-rx-value { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+      .mock-rx-drug { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
+      .mock-rx-divider { height: 1px; background: var(--line); }
+      .mock-status-pill {
+        display: inline-block;
+        background: rgba(34,197,94,0.1);
+        color: #16a34a;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.2rem 0.75rem;
+        border-radius: 100px;
+        border: 1px solid rgba(34,197,94,0.25);
+      }
+
+      /* Lab order cards */
+      .lab-order-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+      .lab-order-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .lab-order-left h4 { font-size: 0.9rem; font-weight: 700; color: var(--text); margin: 0 0 0.15rem; }
+      .lab-order-left p { font-size: 0.78rem; color: var(--muted); margin: 0; }
+      .lab-order-badge {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 100px;
+        white-space: nowrap;
+      }
+      .lab-badge-derm { background: rgba(11,99,246,0.1); color: var(--primary); border: 1px solid rgba(11,99,246,0.2); }
+      .lab-badge-monitor { background: rgba(234,179,8,0.1); color: #854d0e; border: 1px solid rgba(234,179,8,0.2); }
+      .lab-badge-accutane { background: rgba(239,68,68,0.1); color: #991b1b; border: 1px solid rgba(239,68,68,0.2); }
+      .lab-badge-auto { background: rgba(168,85,247,0.1); color: #6b21a8; border: 1px solid rgba(168,85,247,0.2); }
+      .lab-badge-patch { background: rgba(34,197,94,0.1); color: #14532d; border: 1px solid rgba(34,197,94,0.2); }
+
+      /* Photography */
+      .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; max-width: 900px; margin: 0 auto; }
+      .photo-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      }
+      .photo-card-thumb {
+        background: var(--primary-light);
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .photo-card-thumb svg { color: var(--primary); opacity: 0.4; }
+      .photo-card-info { padding: 1rem 1.25rem; }
+      .photo-card-info h4 { font-size: 0.9rem; font-weight: 700; color: var(--text); margin: 0 0 0.2rem; }
+      .photo-card-info p { font-size: 0.78rem; color: var(--muted); margin: 0; line-height: 1.5; }
+
+      /* ── CTA ── */
+      .clin-cta {
+        background: var(--gradient-2);
+        padding: 5rem 2rem;
+        text-align: center;
+      }
+      .clin-cta h2 { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: #fff; letter-spacing: -0.03em; margin: 0 0 1rem; }
+      .clin-cta p { color: rgba(255,255,255,0.60); font-size: 1rem; margin: 0 0 2.5rem; }
+      .clin-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+      /* ── Responsive ── */
+      @media (max-width: 768px) {
+        .scribe-grid,
+        .detail-split { grid-template-columns: 1fr; }
+        .lesion-lifecycle { gap: 0.5rem; }
+        .lifecycle-step:not(:last-child)::after { display: none; }
+      }
+    </style>
+  </head>
+  <body class="clin-page">
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">
+          <svg width="46" height="46" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#0a3f5c"/>
+                <stop offset="100%" stop-color="#0ea5e9"/>
+              </linearGradient>
+              <clipPath id="logo-circle"><circle cx="80" cy="80" r="76"/></clipPath>
+              <filter id="logo-shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.6)"/></filter>
+            </defs>
+            <circle cx="80" cy="80" r="76" fill="url(#logo-grad)"/>
+            <circle cx="30" cy="35" r="1" fill="rgba(255,255,255,0.35)" clip-path="url(#logo-circle)"/>
+            <circle cx="55" cy="25" r="0.8" fill="rgba(255,255,255,0.28)" clip-path="url(#logo-circle)"/>
+            <circle cx="120" cy="30" r="1.1" fill="rgba(255,255,255,0.30)" clip-path="url(#logo-circle)"/>
+            <circle cx="140" cy="45" r="0.7" fill="rgba(255,255,255,0.22)" clip-path="url(#logo-circle)"/>
+            <polygon points="0,95 10,80 25,88 40,70 55,82 70,60 85,75 100,58 115,72 130,62 145,75 160,65 160,100 0,100" fill="rgba(255,255,255,0.09)" clip-path="url(#logo-circle)"/>
+            <polygon points="0,118 0,100 15,85 30,95 48,78 65,92 80,72 95,88 112,74 128,86 145,70 160,82 160,118" fill="rgba(255,255,255,0.18)" clip-path="url(#logo-circle)"/>
+            <polygon points="80,72 65,92 80,118 95,118 95,88" fill="rgba(0,20,60,0.14)" clip-path="url(#logo-circle)"/>
+            <rect x="0" y="118" width="160" height="10" fill="rgba(14,100,160,0.55)" clip-path="url(#logo-circle)"/>
+            <line x1="0" y1="119" x2="160" y2="119" stroke="rgba(186,230,255,0.30)" stroke-width="0.8" clip-path="url(#logo-circle)"/>
+            <line x1="5" y1="122" x2="155" y2="122" stroke="rgba(186,230,255,0.18)" stroke-width="0.5" clip-path="url(#logo-circle)"/>
+            <polygon points="70,118 80,126 90,118" fill="rgba(255,255,255,0.05)" clip-path="url(#logo-circle)"/>
+            <rect x="0" y="128" width="160" height="32" fill="rgba(0,28,65,0.58)" clip-path="url(#logo-circle)"/>
+            <polygon points="8,118 1,144 15,144" fill="rgba(4,82,52,0.94)" clip-path="url(#logo-circle)"/>
+            <polygon points="8,108 0,133 16,133" fill="rgba(5,99,61,0.89)" clip-path="url(#logo-circle)"/>
+            <polygon points="8,100 0,123 16,123" fill="rgba(6,114,68,0.84)" clip-path="url(#logo-circle)"/>
+            <rect x="6" y="144" width="4" height="7" fill="rgba(28,16,4,0.70)" clip-path="url(#logo-circle)"/>
+            <polygon points="22,118 15,143 29,143" fill="rgba(3,78,50,0.92)" clip-path="url(#logo-circle)"/>
+            <polygon points="22,109 14,134 30,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
+            <polygon points="22,101 13,124 31,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
+            <rect x="20" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
+            <polygon points="152,118 145,144 159,144" fill="rgba(4,82,52,0.94)" clip-path="url(#logo-circle)"/>
+            <polygon points="152,108 144,133 160,133" fill="rgba(5,99,61,0.89)" clip-path="url(#logo-circle)"/>
+            <polygon points="152,100 143,123 161,123" fill="rgba(6,114,68,0.84)" clip-path="url(#logo-circle)"/>
+            <rect x="150" y="144" width="4" height="7" fill="rgba(28,16,4,0.70)" clip-path="url(#logo-circle)"/>
+            <polygon points="138,118 131,143 145,143" fill="rgba(3,78,50,0.92)" clip-path="url(#logo-circle)"/>
+            <polygon points="138,109 130,134 146,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
+            <polygon points="138,101 129,124 147,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
+            <rect x="136" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
+            <text x="82" y="142" font-family="'Pinyon Script', cursive" font-size="116" fill="white" fill-opacity="0.95" text-anchor="middle" clip-path="url(#logo-circle)" filter="url(#logo-shadow)">N</text>
+          </svg>
+          <span class="nav-wordmark">Nuvora Health</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links" style="gap:1.6rem">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="clinical.html" class="active">Clinical</a></li>
+          <li><a href="billing.html">Billing &amp; RCM</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">Get a Demo</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="clin-hero">
+      <div class="clin-hero-inner">
+        <div class="clin-badge">
+          <span class="clin-badge-dot"></span>
+          AI-Powered Clinical Tools
+        </div>
+        <h1>Clinical Tools Built for<br><span class="gradient-text">Dermatology</span></h1>
+        <p>From AI-generated SOAP notes to interactive body diagrams and e-prescribing — every clinical workflow a modern derm practice needs, in one platform.</p>
+        <div class="cta-group">
+          <a href="contact.html" class="btn btn-primary btn-lg">
+            <span>See It In Action</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="billing.html" class="btn btn-secondary">Explore Billing &amp; RCM &rarr;</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- 1. AI Ambient Scribe -->
+      <section class="clin-section">
+        <div class="wrap">
+          <div class="scribe-grid">
+            <div>
+              <span class="section-badge">AI Ambient Scribe</span>
+              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 1rem;">
+                Document Visits in<br><span class="gradient-text">90 Seconds</span>
+              </h2>
+              <p style="color:var(--muted);line-height:1.7;margin-bottom:1.5rem;">Powered by OpenAI Whisper + Claude AI. Records your visit audio, transcribes every word, and generates a structured SOAP note draft — ready for your review before the patient even leaves the room.</p>
+              <div class="scribe-steps">
+                <div class="scribe-step">
+                  <div class="scribe-step-num">1</div>
+                  <div class="scribe-step-body">
+                    <h4>Record</h4>
+                    <p>Tap to start — the scribe listens to the full visit conversation in the background.</p>
+                  </div>
+                </div>
+                <div class="scribe-step">
+                  <div class="scribe-step-num">2</div>
+                  <div class="scribe-step-body">
+                    <h4>Transcribe</h4>
+                    <p>OpenAI Whisper converts audio to text with medical vocabulary support, in real time.</p>
+                  </div>
+                </div>
+                <div class="scribe-step">
+                  <div class="scribe-step-num">3</div>
+                  <div class="scribe-step-body">
+                    <h4>Generate</h4>
+                    <p>Claude AI structures the note: HPI, Subjective, Assessment, Plan — formatted for your template.</p>
+                  </div>
+                </div>
+                <div class="scribe-step">
+                  <div class="scribe-step-num">4</div>
+                  <div class="scribe-step-body">
+                    <h4>Review &amp; Sign</h4>
+                    <p>Provider reviews the draft, makes any edits, and signs. Average review time: 90 seconds.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="scribe-stats">
+                <div class="scribe-stat">
+                  <strong>2 hrs</strong>
+                  <span>Saved per day</span>
+                </div>
+                <div class="scribe-stat">
+                  <strong>90 sec</strong>
+                  <span>Review time</span>
+                </div>
+                <div class="scribe-stat">
+                  <strong>96%</strong>
+                  <span>Accuracy</span>
+                </div>
+              </div>
+            </div>
+            <div class="soap-preview">
+              <div class="soap-preview-header">
+                <span>SOAP Note Draft</span>
+                <span class="soap-preview-badge">AI Generated</span>
+              </div>
+              <div class="soap-preview-body">
+                <div class="soap-block">
+                  <div class="soap-label">Subjective / HPI</div>
+                  <div class="soap-text">Patient is a 42-year-old female presenting with a 3-month history of a changing lesion on her left upper back. She reports the lesion has grown approximately 3mm and developed asymmetric borders. Denies pain or bleeding. Family history of melanoma (mother).</div>
+                </div>
+                <div class="soap-block">
+                  <div class="soap-label">Assessment</div>
+                  <div class="soap-text">1. Atypical melanocytic lesion, left upper back — irregular borders, diameter ~7mm. ABCDE criteria: asymmetry, border irregularity present. Dermoscopy performed.<br>2. Rule out melanoma — biopsy indicated.</div>
+                </div>
+                <div class="soap-block">
+                  <div class="soap-label">Plan</div>
+                  <div class="soap-text">1. Excisional biopsy left upper back today — CPT 11102.<br>2. Pathology to Dermatopathology Lab — H&amp;E and Melan-A staining.<br>3. Follow up in 10 days for results review.<br>4. Patient counseled on sun protection and self-exam.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. SOAP Notes & Documentation -->
+      <section class="clin-section alt">
+        <div class="wrap">
+          <div class="clin-section-header">
+            <span class="section-badge">Documentation</span>
+            <h2>SOAP Notes &amp; Documentation</h2>
+            <p>Derm-specific templates for every visit type — from routine exams to MOHS surgery. Spend less time typing and more time treating.</p>
+          </div>
+          <div class="clin-feature-grid">
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <div><h4>Derm-Specific Templates</h4><p>Pre-built templates for every dermatology visit type.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              <div><h4>Body Diagram Integration</h4><p>Mark lesion locations directly on anatomical diagrams.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </div>
+              <div><h4>Lesion Documentation</h4><p>Size, color, morphology, and ABCDE criteria tracking.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div><h4>MOHS Procedure Notes</h4><p>Stage tracking, margin documentation, and repair notes.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div><h4>Cosmetic Documentation</h4><p>Botox, filler, and laser treatment records with photos.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <div><h4>Biopsy Workflow</h4><p>Site marking, consent, specimen labeling, and pathology tracking.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div><h4>Treatment Response Tracking</h4><p>Compare before/after measurements and photo series over time.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div><h4>Photo Comparison Notes</h4><p>Side-by-side visit photos linked directly to chart notes.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <div><h4>ICD-10 Auto-Suggestions</h4><p>Context-aware diagnosis code suggestions as you type.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div><h4>Custom Macros</h4><p>One-tap text expansion for your most-used phrases and orders.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div><h4>One-Tap Charge Capture</h4><p>CPT codes suggested from note content, ready to sign off.</p></div>
+            </div>
+            <div class="clin-feat-card">
+              <div class="clin-feat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              </div>
+              <div><h4>iPad Kiosk Mode</h4><p>Touch-optimized interface for tablet charting at the point of care.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Interactive Body Diagram -->
+      <section class="body-diagram-section">
+        <div class="wrap">
+          <div class="clin-section-header">
+            <span class="section-badge">Body Diagram</span>
+            <h2 style="color:#fff;">Interactive Body Diagram &amp;<br>Lesion Lifecycle Tracking</h2>
+            <p>Tap any body location to add, track, and manage lesions across every visit. Complete lifecycle from identification to resolution.</p>
+          </div>
+
+          <div class="lesion-lifecycle">
+            <div class="lifecycle-step">
+              <div class="lifecycle-dot" style="background:rgba(96,197,255,0.25);border:2px solid #38bdf8;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <span class="lifecycle-label">Identified</span>
+            </div>
+            <div class="lifecycle-step">
+              <div class="lifecycle-dot" style="background:rgba(234,179,8,0.2);border:2px solid #eab308;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <span class="lifecycle-label">Monitored</span>
+            </div>
+            <div class="lifecycle-step">
+              <div class="lifecycle-dot" style="background:rgba(249,115,22,0.2);border:2px solid #f97316;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/></svg>
+              </div>
+              <span class="lifecycle-label">Biopsied</span>
+            </div>
+            <div class="lifecycle-step">
+              <div class="lifecycle-dot" style="background:rgba(168,85,247,0.2);border:2px solid #a855f7;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <span class="lifecycle-label">Pathology</span>
+            </div>
+            <div class="lifecycle-step">
+              <div class="lifecycle-dot" style="background:rgba(34,197,94,0.2);border:2px solid #22c55e;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="lifecycle-label">Resolved</span>
+            </div>
+          </div>
+
+          <div class="lesion-types-grid">
+            <div class="lesion-type-card">
+              <div class="lesion-type-dot" style="background:#ef4444;box-shadow:0 0 8px rgba(239,68,68,0.5);"></div>
+              <div><h4>BCC</h4><p>Basal Cell Carcinoma — tracked with margin status and treatment type.</p></div>
+            </div>
+            <div class="lesion-type-card">
+              <div class="lesion-type-dot" style="background:#f97316;box-shadow:0 0 8px rgba(249,115,22,0.5);"></div>
+              <div><h4>SCC</h4><p>Squamous Cell Carcinoma — depth, differentiation, and perineural status.</p></div>
+            </div>
+            <div class="lesion-type-card">
+              <div class="lesion-type-dot" style="background:#a855f7;box-shadow:0 0 8px rgba(168,85,247,0.5);"></div>
+              <div><h4>Melanoma</h4><p>Breslow depth, Clark level, sentinel node, and staging tracked.</p></div>
+            </div>
+            <div class="lesion-type-card">
+              <div class="lesion-type-dot" style="background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,0.5);"></div>
+              <div><h4>Benign</h4><p>Seborrheic keratosis, nevi, angiomas — monitored with photos.</p></div>
+            </div>
+          </div>
+
+          <div class="body-features-list">
+            <span class="body-feature-pill">Tap any body location to add lesion</span>
+            <span class="body-feature-pill">Photo attachment per site</span>
+            <span class="body-feature-pill">Automatic pathology linking</span>
+            <span class="body-feature-pill">Side-by-side visit comparison</span>
+            <span class="body-feature-pill">Full lesion history timeline</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. E-Prescribing -->
+      <section class="clin-section alt" id="prescriptions">
+        <div class="wrap">
+          <div class="detail-split">
+            <div>
+              <span class="section-badge">E-Prescribing</span>
+              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Surescripts-Connected<br>E-Prescribing</h2>
+              <p style="color:var(--muted);line-height:1.7;">Full Surescripts network integration with real-time PDMP access, formulary lookup, and EPCS for controlled substances. Derm-specific workflows for biologics, Accutane REMS, and specialty topicals.</p>
+              <ul class="detail-list">
+                <li>Surescripts network integration</li>
+                <li>PDMP access at point of prescribing</li>
+                <li>Real-time drug interaction checks</li>
+                <li>Formulary and prior auth lookup</li>
+                <li>EPCS — controlled substance e-prescribing</li>
+                <li>Biologic Rx with PA workflow built in</li>
+                <li>iPLEDGE / Accutane REMS integration</li>
+                <li>Topical compounding directions</li>
+                <li>Medication history from pharmacy network</li>
+              </ul>
+            </div>
+            <div>
+              <div class="mock-card">
+                <div class="mock-card-header">
+                  <span>New Prescription</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="mock-card-body">
+                  <div class="mock-rx-row">
+                    <span class="mock-rx-label">Patient</span>
+                    <span class="mock-rx-value">Sarah K., DOB 03/14/1982</span>
+                  </div>
+                  <div class="mock-rx-divider"></div>
+                  <div>
+                    <div class="mock-rx-label" style="margin-bottom:0.3rem;">Drug</div>
+                    <div class="mock-rx-drug">Dupilumab 300mg/2mL</div>
+                    <div class="mock-rx-value" style="font-size:0.82rem;margin-top:0.2rem;">Dupixent injection, subcutaneous</div>
+                  </div>
+                  <div class="mock-rx-divider"></div>
+                  <div class="mock-rx-row">
+                    <span class="mock-rx-label">Sig</span>
+                    <span class="mock-rx-value">300mg SQ q2 weeks after loading dose</span>
+                  </div>
+                  <div class="mock-rx-row">
+                    <span class="mock-rx-label">Qty / Refills</span>
+                    <span class="mock-rx-value">2 syringes / 5 refills</span>
+                  </div>
+                  <div class="mock-rx-row">
+                    <span class="mock-rx-label">Formulary Status</span>
+                    <span class="mock-rx-value" style="color:#eab308;font-weight:700;">PA Required</span>
+                  </div>
+                  <div class="mock-rx-row">
+                    <span class="mock-rx-label">Interactions</span>
+                    <span class="mock-status-pill">None Detected</span>
+                  </div>
+                  <div class="mock-rx-row">
+                    <span class="mock-rx-label">PDMP Check</span>
+                    <span class="mock-status-pill">Cleared</span>
+                  </div>
+                  <div style="margin-top:0.5rem;">
+                    <button style="width:100%;background:var(--gradient-1);color:#fff;border:none;border-radius:10px;padding:0.75rem;font-weight:700;font-size:0.9rem;cursor:pointer;">Send to Pharmacy via Surescripts</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Lab Management -->
+      <section class="clin-section" id="labs">
+        <div class="wrap">
+          <div class="detail-split">
+            <div>
+              <span class="section-badge">Lab Management</span>
+              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Integrated Lab Ordering &amp;<br>Result Management</h2>
+              <p style="color:var(--muted);line-height:1.7;">HL7 v2.x bidirectional integration with major reference labs. Derm-specific order sets built in — from skin biopsies to biologic monitoring panels. Results flow directly into the patient chart.</p>
+              <ul class="detail-list">
+                <li>HL7 v2.x bidirectional lab integration</li>
+                <li>Quest, LabCorp, and regional lab support</li>
+                <li>One-tap derm order sets</li>
+                <li>Automatic result routing to provider</li>
+                <li>Critical value alerts</li>
+                <li>Trending graphs for serial labs</li>
+              </ul>
+            </div>
+            <div class="lab-order-grid">
+              <div class="lab-order-card">
+                <div class="lab-order-left">
+                  <h4>Skin Biopsy Panel</h4>
+                  <p>H&amp;E, special stains, immunohistochemistry (Melan-A, S100, CD117)</p>
+                </div>
+                <span class="lab-order-badge lab-badge-derm">Derm Path</span>
+              </div>
+              <div class="lab-order-card">
+                <div class="lab-order-left">
+                  <h4>Biologic Monitoring</h4>
+                  <p>CBC with diff, CMP, LFTs — Dupixent, Skyrizi, Taltz monitoring</p>
+                </div>
+                <span class="lab-order-badge lab-badge-monitor">Monitoring</span>
+              </div>
+              <div class="lab-order-card">
+                <div class="lab-order-left">
+                  <h4>Accutane / iPLEDGE Panel</h4>
+                  <p>Pregnancy test (urine hCG), fasting lipids, LFTs — monthly</p>
+                </div>
+                <span class="lab-order-badge lab-badge-accutane">REMS Required</span>
+              </div>
+              <div class="lab-order-card">
+                <div class="lab-order-left">
+                  <h4>Autoimmune Panel</h4>
+                  <p>ANA, anti-dsDNA, C3/C4, CRP, ESR — lupus/connective tissue</p>
+                </div>
+                <span class="lab-order-badge lab-badge-auto">Autoimmune</span>
+              </div>
+              <div class="lab-order-card">
+                <div class="lab-order-left">
+                  <h4>Patch Test Panel</h4>
+                  <p>TRUE Test 35-allergen, extended series, or custom panels</p>
+                </div>
+                <span class="lab-order-badge lab-badge-patch">Allergy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Clinical Photography -->
+      <section class="clin-section alt">
+        <div class="wrap">
+          <div class="clin-section-header">
+            <span class="section-badge">Clinical Photography</span>
+            <h2>Medical-Grade Clinical Photography</h2>
+            <p>Standardized photo protocols, dermoscopy integration, and AI-assisted comparison — all attached directly to the patient chart and lesion record.</p>
+          </div>
+          <div class="photo-grid">
+            <div class="photo-card">
+              <div class="photo-card-thumb">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+              <div class="photo-card-info">
+                <h4>Standard Clinical Photos</h4>
+                <p>Consistent positioning protocols with anatomical reference guides.</p>
+              </div>
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-thumb">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><circle cx="11" cy="11" r="3"/></svg>
+              </div>
+              <div class="photo-card-info">
+                <h4>Dermoscopy</h4>
+                <p>Polarized dermoscopy images linked to lesion records with metadata.</p>
+              </div>
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-thumb">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div class="photo-card-info">
+                <h4>Before &amp; After Series</h4>
+                <p>Multi-visit comparison series with overlaid measurement tools.</p>
+              </div>
+            </div>
+            <div class="photo-card">
+              <div class="photo-card-thumb">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="photo-card-info">
+                <h4>Baseline Documentation</h4>
+                <p>Full-body baseline photography for high-risk patients, stored securely.</p>
+              </div>
+            </div>
+          </div>
+          <div style="text-align:center;margin-top:2rem;padding:1.5rem;background:var(--primary-light);border-radius:14px;max-width:600px;margin-left:auto;margin-right:auto;">
+            <p style="margin:0;color:var(--primary-dark);font-weight:600;font-size:0.92rem;">
+              <span style="font-size:1.1rem;">✦</span>&nbsp; AI-Assisted Photo Comparison — automatically highlights differences between visit photos and flags new or changed lesions for provider review.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. CTA -->
+      <section class="clin-cta">
+        <div class="wrap">
+          <span class="section-badge" style="background:rgba(255,255,255,0.1);color:#60c5ff;border-color:rgba(96,197,255,0.3);margin-bottom:1.25rem;display:inline-block;">Ready When You Are</span>
+          <h2>Ready to See It in Action?</h2>
+          <p>See how Nuvora Health's clinical tools transform the daily workflow in a dermatology practice. Book a 30-minute demo.</p>
+          <div class="clin-cta-btns">
+            <a href="contact.html" class="btn btn-primary btn-lg">
+              <span>Schedule a Demo</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="billing.html" class="btn btn-secondary">Explore Billing &amp; RCM &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <span class="footer-logo">Nuvora Health</span>
+            <p>Modern practice management for medical practices that demand better.</p>
+          </div>
+          <div class="footer-links">
+            <a href="features.html">Features</a>
+            <a href="clinical.html">Clinical</a>
+            <a href="billing.html">Billing &amp; RCM</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-contact">
+            <a href="tel:541-231-8693">541-231-8693</a>
+            <a href="mailto:dan@perrysoftwarellc.com">dan@perrysoftwarellc.com</a>
+            <span>Lehi, Utah</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          navToggle.classList.toggle('active');
+        });
+      }
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

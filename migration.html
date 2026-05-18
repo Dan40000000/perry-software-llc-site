@@ -744,9 +744,11 @@
       <button class="nav-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links">
+      <ul class="nav-links" style="gap:1.6rem">
         <li><a href="index.html">Home</a></li>
         <li><a href="features.html">Features</a></li>
+        <li><a href="clinical.html">Clinical</a></li>
+        <li><a href="billing.html">Billing &amp; RCM</a></li>
         <li><a href="pricing.html">Pricing</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -1043,5 +1045,32 @@
     </div>
   </section>
 
+  <footer class="footer" style="background:#060f1a;border-top:1px solid rgba(255,255,255,0.07);">
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo" style="color:#fff;">Nuvora Health</span>
+          <p style="color:rgba(255,255,255,0.45);">Modern practice management for medical practices that demand better.</p>
+        </div>
+        <div class="footer-links">
+          <a href="features.html" style="color:rgba(255,255,255,0.55);">Features</a>
+          <a href="clinical.html" style="color:rgba(255,255,255,0.55);">Clinical</a>
+          <a href="billing.html" style="color:rgba(255,255,255,0.55);">Billing &amp; RCM</a>
+          <a href="pricing.html" style="color:rgba(255,255,255,0.55);">Pricing</a>
+          <a href="about.html" style="color:rgba(255,255,255,0.55);">About</a>
+          <a href="contact.html" style="color:rgba(255,255,255,0.55);">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <a href="tel:541-231-8693" style="color:rgba(255,255,255,0.55);">541-231-8693</a>
+          <a href="mailto:dan@perrysoftwarellc.com" style="color:rgba(255,255,255,0.55);">dan@perrysoftwarellc.com</a>
+          <span style="color:rgba(255,255,255,0.35);">Lehi, Utah</span>
+        </div>
+      </div>
+      <div class="footer-bottom" style="border-top-color:rgba(255,255,255,0.07);">
+        <p style="color:rgba(255,255,255,0.3);">&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
