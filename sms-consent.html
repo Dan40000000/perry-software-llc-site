@@ -126,7 +126,9 @@
         <p>
           Use this form to opt in to operational text messages from <strong>Nuvora Health</strong>, operated by Perry Software LLC, and its
           healthcare practice demo environment. These messages may include appointment reminders, scheduling updates,
-          billing notices, prescription coordination, and care follow-up messages.
+          billing notices, prescription coordination, and care follow-up messages. This SMS opt-in is optional and
+          is not required to receive treatment, complete registration, schedule an appointment, make a payment, or
+          use other office services.
         </p>
 
         <div class="legal-grid">
@@ -136,7 +138,7 @@
               <li>Message frequency varies based on your activity and office workflow.</li>
               <li>Message and data rates may apply.</li>
               <li>Reply <strong>HELP</strong> for help or <strong>STOP</strong> to opt out at any time.</li>
-              <li>Consent is not a condition of treatment, purchase, or payment.</li>
+              <li>SMS consent is optional and is not a condition of treatment, purchase, payment, appointment scheduling, or account registration.</li>
             </ul>
           </div>
 
@@ -187,15 +189,17 @@
           </div>
 
           <label class="consent-checkbox" for="sms-consent-checkbox">
-            <input id="sms-consent-checkbox" name="sms_consent" type="checkbox" required />
+            <input id="sms-consent-checkbox" name="sms_consent" type="checkbox" value="yes" />
             <span>
-              I agree to receive operational SMS messages from Nuvora Health, operated by Perry Software LLC, and its healthcare practice demo
-              environment at the mobile number provided above. I understand that message frequency varies, message and
-              data rates may apply, I can reply HELP for help, and I can reply STOP to opt out at any time.
+              Optional SMS opt-in: I agree to receive operational SMS messages from Nuvora Health, operated by Perry
+              Software LLC, and its healthcare practice demo environment at the mobile number provided above. I
+              understand that message frequency varies, message and data rates may apply, I can reply HELP for help,
+              and I can reply STOP to opt out at any time. I understand that checking this box is not required for
+              treatment, payment, registration, appointments, or any other service.
             </span>
           </label>
 
-          <button type="submit" class="btn btn-primary">Submit SMS Consent</button>
+          <button type="submit" class="btn btn-primary">Submit Optional SMS Preference</button>
           <p id="sms-consent-status" class="form-status" aria-live="polite"></p>
         </form>
       </section>
@@ -249,13 +253,13 @@
             }
 
             consentForm.reset();
-            setFormStatus('success', 'Thanks. Your SMS consent request has been submitted.');
+            setFormStatus('success', 'Thanks. Your optional SMS preference has been submitted.');
           } catch (error) {
             setFormStatus('error', error instanceof Error ? error.message : 'Unable to submit right now. Please try again.');
           } finally {
             if (submitButton) {
               submitButton.disabled = false;
-              submitButton.textContent = 'Submit SMS Consent';
+              submitButton.textContent = 'Submit Optional SMS Preference';
             }
           }
         });
