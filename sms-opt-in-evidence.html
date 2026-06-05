@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SMS Opt-In Evidence | Nuvora Health</title>
+    <meta
+      name="description"
+      content="Public evidence for operational SMS opt-in paths used by Nuvora Health, operated by Perry Software LLC."
+    />
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+
+    <link rel="stylesheet" href="styles.css?v=nuvora-blue-quote-20260515" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+      .legal-shell { max-width: 920px; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
+      .legal-card {
+        background: #ffffff;
+        border: 1px solid rgba(11, 99, 246, 0.12);
+        border-radius: 20px;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        padding: 2rem;
+      }
+      .legal-card h1, .legal-card h2 { color: #0f172a; }
+      .legal-card p, .legal-card li { color: #334155; line-height: 1.75; }
+      .legal-card h1 { margin-top: 0; font-size: clamp(2rem, 4vw, 3rem); }
+      .legal-card h2 { margin-top: 2rem; font-size: 1.1rem; }
+      .evidence-step {
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 16px;
+        padding: 1.15rem 1.25rem;
+        background: #f8fbff;
+        margin-top: 1rem;
+      }
+      .disclosure {
+        border-left: 4px solid #0b63f6;
+        background: #eef6ff;
+        border-radius: 12px;
+        padding: 1rem 1.15rem;
+      }
+      .legal-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+      .legal-links a { color: #0369a1; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <main class="legal-shell">
+      <section class="legal-card">
+        <h1>SMS Opt-In Evidence</h1>
+        <p>
+          This public page documents the operational SMS call to action used by <strong>Nuvora Health</strong>, operated by Perry Software LLC,
+          so messaging reviewers can verify the consent flow without logging into the patient portal.
+        </p>
+
+        <h2>Where SMS consent is captured</h2>
+        <div class="evidence-step">
+          <h3>1. Public SMS preference form</h3>
+          <p>
+            Patients can submit an optional SMS preference at
+            <a href="https://perry-software-site.vercel.app/sms-consent.html">https://perry-software-site.vercel.app/sms-consent.html</a>.
+            The SMS checkbox is optional, unchecked by default, and not required to submit the form.
+          </p>
+        </div>
+
+        <div class="evidence-step">
+          <h3>2. Patient intake, check-in, and portal registration</h3>
+          <p>
+            During intake, check-in, and portal registration, patients provide or verify their mobile number and see
+            the same SMS disclosure before choosing whether to receive operational text messages.
+          </p>
+        </div>
+
+        <div class="evidence-step">
+          <h3>3. Staff-assisted registration</h3>
+          <p>
+            Staff may record the patient preference only after the patient provides a mobile number and confirms the
+            SMS disclosure. Staff can also record that the patient declined SMS.
+          </p>
+        </div>
+
+        <h2>Exact disclosure shown at opt-in</h2>
+        <p class="disclosure">
+          Optional SMS opt-in: I agree to receive operational SMS messages from Nuvora Health, operated by Perry
+          Software LLC, and its healthcare practice demo environment at the mobile number provided above. I understand
+          that message frequency varies, message and data rates may apply, I can reply HELP for help, and I can reply
+          STOP to opt out at any time. I understand that checking this box is not required for treatment, payment,
+          registration, appointments, or any other service.
+        </p>
+
+        <h2>Program details</h2>
+        <ul>
+          <li>Business/operator: Perry Software LLC.</li>
+          <li>Product name shown to patients: Nuvora Health.</li>
+          <li>Use case: operational patient notifications for dermatology care and account workflows.</li>
+          <li>Message types: appointment reminders, scheduling updates, billing notices, prescription coordination, and care follow-up messages.</li>
+          <li>Message frequency varies. Message and data rates may apply.</li>
+          <li>Help: reply HELP, email dan@perrysoftwarellc.com, or call 541-231-8693.</li>
+          <li>Opt-out: reply STOP at any time.</li>
+          <li>SMS consent is optional and is not required for treatment, purchase, payment, appointment scheduling, registration, or any other office service.</li>
+        </ul>
+
+        <div class="legal-links">
+          <a href="sms-consent.html">SMS Consent Form</a>
+          <a href="sms-privacy.html">SMS Privacy Policy</a>
+          <a href="sms-terms.html">SMS Terms of Service</a>
+          <a href="contact.html">Contact Nuvora Health</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
