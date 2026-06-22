@@ -280,7 +280,7 @@
         return el("span", `status-badge ${tone}`.trim(), labelize(text));
       }
 
-      function requestRow(request) {
+      function requestRow(request, ownerActions = false) {
         const row = el("div", "crm-request-row");
         const main = el("div");
         main.append(el("strong", "", request.title));
@@ -288,6 +288,22 @@
         const meta = el("div", "crm-row-meta");
         meta.append(statusPill(request.priority, request.priority === "high" || request.priority === "urgent" ? "warning" : ""));
         meta.append(statusPill(request.status));
+        if (ownerActions && request.status !== "completed" && request.status !== "cancelled") {
+          const actions = el("div", "request-actions");
+          [
+            ["in_review", "Review"],
+            ["scheduled", "Schedule"],
+            ["completed", "Done"],
+          ].forEach(([status, label]) => {
+            if (request.status === status) return;
+            const button = el("button", "request-action-btn", label);
+            button.type = "button";
+            button.dataset.requestId = request.id;
+            button.dataset.requestStatus = status;
+            actions.append(button);
+          });
+          meta.append(actions);
+        }
         row.append(main, meta);
         return row;
       }
@@ -532,6 +548,8 @@
         accountPanel.classList.remove("client-mode");
 
         const root = el("div", "owner-dashboard owner-crm-dashboard");
+        const notice = renderNotice();
+        if (notice) root.append(notice);
         const hero = el("section", "owner-hero owner-crm-hero");
         const heroCopy = el("div", "owner-hero-copy");
         heroCopy.append(el("span", "portal-kicker", "Perry Software operating system"));
@@ -558,7 +576,7 @@
         const operating = el("section", "crm-workboard-grid");
         const requestPanel = portalPanel("Action Queue", "Provider adds, billing issues, integrations, and support requests.");
         const requestList = el("div", "crm-list");
-        activeRequests.slice(0, 8).forEach((request) => requestList.append(requestRow(request)));
+        activeRequests.slice(0, 8).forEach((request) => requestList.append(requestRow(request, true)));
         requestPanel.append(activeRequests.length ? requestList : emptyState("No open client requests."));
 
         const billingPanel = portalPanel("Billing Desk", "Open invoices and payment exposure across every account.");
@@ -730,6 +748,29 @@
           showError(accountError, error.message || "Unable to submit provider request.");
         } finally {
           if (submit) submit.disabled = false;
+        }
+      });
+      dashboardContent.addEventListener("click", async (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const button = target.closest("[data-request-id][data-request-status]");
+        if (!(button instanceof HTMLButtonElement)) return;
+        const requestId = button.dataset.requestId;
+        const status = button.dataset.requestStatus;
+        if (!requestId || !status) return;
+        button.disabled = true;
+        showError(accountError, "");
+        try {
+          await api(`/api/crm/owner/requests/${encodeURIComponent(requestId)}`, {
+            method: "PATCH",
+            body: JSON.stringify({ status }),
+          });
+          state.notice = `Request moved to ${labelize(status)}.`;
+          await loadAccount();
+        } catch (error) {
+          showError(accountError, error.message || "Unable to update request.");
+        } finally {
+          button.disabled = false;
         }
       });
 
