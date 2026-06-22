@@ -7,7 +7,7 @@
     <meta name="description" content="Transparent, affordable pricing for Nuvora Health practice management. Contact us for a custom quote tailored to your practice size and needs." />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="styles.css?v=nuvora-blue-20260515" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-blue-quote-20260515" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -29,6 +29,7 @@
           <li><a href="billing.html">Billing &amp; RCM</a></li>
           <li><a href="pricing.html" class="active">Pricing</a></li>
           <li><a href="about.html">About</a></li>
+          <li><a href="account/">Account Login</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <a href="contact.html" class="nav-cta">Request Demo</a>
@@ -64,6 +65,84 @@
 
             <a href="contact.html" class="btn btn-primary" style="margin-top: 2rem;">Get Your Custom Quote</a>
           </div>
+
+          <section class="quote-calculator" aria-labelledby="quote-calculator-title">
+            <div class="quote-copy">
+              <span class="section-badge">Quick Quote Calculator</span>
+              <h2 id="quote-calculator-title">See the savings in under 30 seconds.</h2>
+              <p>
+                Enter a few practice details and compare your estimated current monthly software
+                spend against a planning estimate for Nuvora Health.
+              </p>
+              <p class="quote-disclaimer">
+                Planning estimate only. Final pricing depends on modules, migration scope, integrations,
+                contract terms, and support requirements.
+              </p>
+            </div>
+
+            <div class="quote-panel">
+              <div class="quote-inputs">
+                <label class="quote-field" for="quote-providers">
+                  <span>Providers</span>
+                  <input id="quote-providers" type="number" min="1" max="200" value="3" inputmode="numeric" />
+                </label>
+                <label class="quote-field" for="quote-staff">
+                  <span>Staff / users</span>
+                  <input id="quote-staff" type="number" min="0" max="500" value="8" inputmode="numeric" />
+                </label>
+                <label class="quote-field" for="quote-locations">
+                  <span>Locations</span>
+                  <input id="quote-locations" type="number" min="1" max="100" value="1" inputmode="numeric" />
+                </label>
+                <label class="quote-field" for="quote-current-provider">
+                  <span>Current cost per provider / mo</span>
+                  <input id="quote-current-provider" type="number" min="0" max="10000" value="750" inputmode="decimal" />
+                </label>
+                <label class="quote-field" for="quote-current-user">
+                  <span>Current staff add-on / user / mo</span>
+                  <input id="quote-current-user" type="number" min="0" max="1000" value="75" inputmode="decimal" />
+                </label>
+                <label class="quote-field" for="quote-current-fees">
+                  <span>Other monthly fees</span>
+                  <input id="quote-current-fees" type="number" min="0" max="50000" value="500" inputmode="decimal" />
+                </label>
+              </div>
+
+              <div class="quote-results" aria-live="polite">
+                <div class="quote-result-main">
+                  <span>Estimated annual savings</span>
+                  <strong id="quote-annual-savings">$0</strong>
+                </div>
+                <div class="quote-result-grid">
+                  <div>
+                    <span>Current monthly</span>
+                    <strong id="quote-current-monthly">$0</strong>
+                  </div>
+                  <div>
+                    <span>Nuvora estimate</span>
+                    <strong id="quote-nuvora-monthly">$0</strong>
+                  </div>
+                  <div>
+                    <span>Monthly savings</span>
+                    <strong id="quote-monthly-savings">$0</strong>
+                  </div>
+                  <div>
+                    <span>Estimated lower</span>
+                    <strong id="quote-percent-savings">0%</strong>
+                  </div>
+                </div>
+                <div class="quote-assumptions">
+                  <strong>Estimator assumptions:</strong>
+                  <span>$399/provider/mo, $49/staff user/mo, $149/location/mo.</span>
+                </div>
+                <div class="quote-actions">
+                  <button type="button" class="btn btn-primary" id="quote-copy-button">Copy Quote Summary</button>
+                  <a href="contact.html" class="btn btn-secondary">Review With Us</a>
+                </div>
+                <p id="quote-copy-status" class="quote-copy-status" aria-live="polite"></p>
+              </div>
+            </div>
+          </section>
 
           <div class="pricing-compare">
             <div class="section-header" style="margin-top: 5rem;">
@@ -158,6 +237,94 @@
         });
       }
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      const quoteConfig = {
+        nuvoraProvider: 399,
+        nuvoraStaff: 49,
+        nuvoraLocation: 149
+      };
+
+      const quoteFields = {
+        providers: document.getElementById('quote-providers'),
+        staff: document.getElementById('quote-staff'),
+        locations: document.getElementById('quote-locations'),
+        currentProvider: document.getElementById('quote-current-provider'),
+        currentUser: document.getElementById('quote-current-user'),
+        currentFees: document.getElementById('quote-current-fees')
+      };
+
+      const quoteOutputs = {
+        currentMonthly: document.getElementById('quote-current-monthly'),
+        nuvoraMonthly: document.getElementById('quote-nuvora-monthly'),
+        monthlySavings: document.getElementById('quote-monthly-savings'),
+        annualSavings: document.getElementById('quote-annual-savings'),
+        percentSavings: document.getElementById('quote-percent-savings'),
+        copyButton: document.getElementById('quote-copy-button'),
+        copyStatus: document.getElementById('quote-copy-status')
+      };
+
+      const money = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      });
+
+      const readNumber = (input, fallback = 0) => {
+        const value = Number(input?.value);
+        return Number.isFinite(value) && value >= 0 ? value : fallback;
+      };
+
+      function calculateQuote() {
+        const providers = Math.max(1, readNumber(quoteFields.providers, 1));
+        const staff = readNumber(quoteFields.staff);
+        const locations = Math.max(1, readNumber(quoteFields.locations, 1));
+        const currentProvider = readNumber(quoteFields.currentProvider);
+        const currentUser = readNumber(quoteFields.currentUser);
+        const currentFees = readNumber(quoteFields.currentFees);
+
+        const currentMonthly = (providers * currentProvider) + (staff * currentUser) + currentFees;
+        const nuvoraMonthly = (providers * quoteConfig.nuvoraProvider) + (staff * quoteConfig.nuvoraStaff) + (locations * quoteConfig.nuvoraLocation);
+        const monthlySavings = Math.max(0, currentMonthly - nuvoraMonthly);
+        const annualSavings = monthlySavings * 12;
+        const percentSavings = currentMonthly > 0 ? Math.max(0, Math.round((monthlySavings / currentMonthly) * 100)) : 0;
+
+        quoteOutputs.currentMonthly.textContent = money.format(currentMonthly);
+        quoteOutputs.nuvoraMonthly.textContent = money.format(nuvoraMonthly);
+        quoteOutputs.monthlySavings.textContent = money.format(monthlySavings);
+        quoteOutputs.annualSavings.textContent = money.format(annualSavings);
+        quoteOutputs.percentSavings.textContent = `${percentSavings}%`;
+
+        const summary = [
+          `Providers: ${providers}`,
+          `Staff/users: ${staff}`,
+          `Locations: ${locations}`,
+          `Current estimated monthly spend: ${money.format(currentMonthly)}`,
+          `Nuvora estimated monthly spend: ${money.format(nuvoraMonthly)}`,
+          `Estimated monthly savings: ${money.format(monthlySavings)}`,
+          `Estimated annual savings: ${money.format(annualSavings)}`,
+          `Estimator assumptions: $399/provider/mo, $49/staff user/mo, $149/location/mo.`
+        ].join('\n');
+
+        return summary;
+      }
+
+      if (quoteOutputs.copyButton) {
+        Object.values(quoteFields).forEach((field) => {
+          field?.addEventListener('input', calculateQuote);
+        });
+
+        quoteOutputs.copyButton.addEventListener('click', async () => {
+          const summary = calculateQuote();
+          try {
+            await navigator.clipboard.writeText(summary);
+            quoteOutputs.copyStatus.textContent = 'Quote summary copied.';
+          } catch (error) {
+            quoteOutputs.copyStatus.textContent = summary;
+          }
+        });
+
+        calculateQuote();
+      }
     </script>
   </body>
 </html>
