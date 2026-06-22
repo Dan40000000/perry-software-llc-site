@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Account Login | Nuvora Health</title>
+    <title>Account Portal | Nuvora Health</title>
     <meta
       name="description"
-      content="Sign in to your Perry Software account to view client status, subscriptions, AI usage, and managed vendor connections."
+      content="Sign in to your Perry Software account to view client status, subscriptions, AI usage, providers, and managed vendor connections."
     />
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260622b" />
+    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260622c" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -40,30 +40,42 @@
       </div>
     </nav>
 
-    <main class="account-shell">
-      <section class="account-panel" aria-labelledby="accountTitle">
-        <div class="account-topbar">
+    <main class="account-shell account-shell-v2">
+      <section id="accountPanel" class="account-panel account-panel-v2" aria-labelledby="accountTitle">
+        <div class="account-topbar portal-topbar">
           <div>
-            <div class="eyebrow">Client Account</div>
-            <h1 id="accountTitle">Perry Software account login</h1>
+            <div id="portalEyebrow" class="eyebrow">Account Portal</div>
+            <h1 id="accountTitle">Perry Software account access</h1>
           </div>
           <button id="logoutButton" class="btn btn-secondary account-action hidden" type="button">Sign out</button>
         </div>
 
-        <div id="loginView" class="account-login-grid">
-          <div class="account-intro">
-            <h2>Manage client accounts, AI usage, subscriptions, and launch links.</h2>
+        <div id="loginView" class="portal-login">
+          <div class="portal-login-copy">
+            <div class="portal-kicker">Owner + client management</div>
+            <h2>One place to see every account, every AI key, every vendor cost.</h2>
             <p>
-              Owner access shows every Perry Software client. Client access shows only that practice's managed account, vendor spend, and connected product link.
+              Owner access opens the Perry Software command center. Client access opens a dedicated account cockpit for that practice.
             </p>
-            <div class="account-note">
-              This is the business account portal for Perry Software clients and admins. Patient and provider access stays inside each medical practice app.
+            <div class="portal-preview-grid" aria-label="Account portal preview">
+              <div>
+                <strong>Owner view</strong>
+                <span>New clients, retained accounts, provider footprint, spend, and launch links.</span>
+              </div>
+              <div>
+                <strong>Client view</strong>
+                <span>Implementation status, subscriptions, masked keys, and usage visibility.</span>
+              </div>
+              <div>
+                <strong>Spend controls</strong>
+                <span>OpenAI and Amazon Voice are separated so usage is easy to audit.</span>
+              </div>
             </div>
           </div>
 
-          <div class="account-card">
+          <div class="account-card portal-login-card">
             <h2>Sign in</h2>
-            <p class="muted">Use the account credentials assigned by Perry Software.</p>
+            <p class="muted">Use the credentials assigned by Perry Software.</p>
             <div id="loginError" class="alert alert-error hidden" role="alert"></div>
             <form id="loginForm" class="account-form">
               <label for="email">Email</label>
@@ -78,18 +90,17 @@
         </div>
 
         <div id="accountView" class="account-dashboard hidden">
-          <div class="account-header">
+          <div class="account-header portal-dashboard-header">
             <div>
-              <div class="eyebrow">Account Management</div>
-              <h2 id="dashboardTitle">Perry Software CRM</h2>
+              <div id="dashboardEyebrow" class="eyebrow">Account Management</div>
+              <h2 id="dashboardTitle">Command Center</h2>
               <p id="accountSubtitle" class="muted"></p>
             </div>
             <button id="refreshButton" class="btn btn-secondary account-action" type="button">Refresh</button>
           </div>
 
           <div id="accountError" class="alert alert-error hidden" role="alert"></div>
-          <div id="summaryGrid" class="metric-grid"></div>
-          <div id="clientList" class="account-list"></div>
+          <div id="dashboardContent"></div>
         </div>
       </section>
     </main>
@@ -107,6 +118,9 @@
 
       const navToggle = document.querySelector(".nav-toggle");
       const navLinks = document.querySelector(".nav-links");
+      const accountPanel = document.getElementById("accountPanel");
+      const portalEyebrow = document.getElementById("portalEyebrow");
+      const accountTitle = document.getElementById("accountTitle");
       const loginView = document.getElementById("loginView");
       const accountView = document.getElementById("accountView");
       const loginForm = document.getElementById("loginForm");
@@ -115,10 +129,10 @@
       const refreshButton = document.getElementById("refreshButton");
       const loginError = document.getElementById("loginError");
       const accountError = document.getElementById("accountError");
+      const dashboardEyebrow = document.getElementById("dashboardEyebrow");
       const dashboardTitle = document.getElementById("dashboardTitle");
       const accountSubtitle = document.getElementById("accountSubtitle");
-      const summaryGrid = document.getElementById("summaryGrid");
-      const clientList = document.getElementById("clientList");
+      const dashboardContent = document.getElementById("dashboardContent");
 
       navToggle.addEventListener("click", () => {
         navLinks.classList.toggle("active");
@@ -145,15 +159,35 @@
         loginButton.textContent = isLoading ? "Signing in..." : "Sign in";
       }
 
-      function formatMoney(cents) {
+      function formatMoney(cents, compact = false) {
+        const value = Number(cents) || 0;
+        const dollars = value / 100;
+        if (value > 0 && dollars < 0.01) return "<$0.01";
         return new Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "USD",
-        }).format((Number(cents) || 0) / 100);
+          maximumFractionDigits: compact ? 0 : 2,
+        }).format(dollars);
+      }
+
+      function formatNumber(value) {
+        return new Intl.NumberFormat("en-US").format(Number(value) || 0);
       }
 
       function labelize(value) {
         return String(value || "-").replace(/_/g, " ");
+      }
+
+      function providerLabel(count) {
+        const total = Number(count) || 0;
+        return `${formatNumber(total)} provider${total === 1 ? "" : "s"}`;
+      }
+
+      function formatDate(value) {
+        if (!value) return "-";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "-";
+        return date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
       }
 
       function el(tag, className, text) {
@@ -163,16 +197,39 @@
         return node;
       }
 
-      function metric(label, value, detail) {
-        const node = el("div", "metric");
+      function append(parent, children) {
+        children.forEach((child) => {
+          if (child) parent.append(child);
+        });
+        return parent;
+      }
+
+      function metric(label, value, detail, tone = "") {
+        const node = el("div", `metric portal-metric ${tone}`.trim());
         node.append(el("div", "metric-label", label));
         node.append(el("div", "metric-value", value));
         node.append(el("div", "metric-detail", detail));
         return node;
       }
 
-      function badge(text) {
-        return el("span", "status-badge", labelize(text));
+      function badge(text, tone = "") {
+        return el("span", `status-badge ${tone}`.trim(), labelize(text));
+      }
+
+      function miniFact(label, value) {
+        const node = el("div", "mini-fact");
+        node.append(el("span", "", label));
+        node.append(el("strong", "", value));
+        return node;
+      }
+
+      function actionLink(href, label, primary = false) {
+        if (!href) return null;
+        const link = el("a", primary ? "btn btn-primary portal-link" : "btn btn-secondary portal-link", label);
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        return link;
       }
 
       async function api(path, options = {}) {
@@ -228,7 +285,7 @@
       }
 
       function renderTable(title, headers, rows, emptyText) {
-        const section = el("section", "data-section");
+        const section = el("section", "data-section portal-data-section");
         section.append(el("h3", "", title));
         if (!rows.length) {
           section.append(el("p", "muted", emptyText));
@@ -263,43 +320,8 @@
         return section;
       }
 
-      function renderClient(client, compact = false) {
-        const card = el("article", "client-card");
-        const header = el("div", "client-card-header");
-        const titleWrap = el("div");
-        titleWrap.append(el("h2", "", client.accountName));
-        titleWrap.append(el("p", "muted", client.implementationStage || ""));
-        header.append(titleWrap);
-
-        const statuses = el("div", "status-row");
-        statuses.append(badge(client.status));
-        statuses.append(badge(client.subscriptionStatus));
-        header.append(statuses);
-        card.append(header);
-
-        if (client.productUrl) {
-          const link = el("a", "btn btn-secondary account-action client-app-link", "Open client app");
-          link.href = client.productUrl;
-          link.target = "_blank";
-          link.rel = "noreferrer";
-          card.append(link);
-        }
-
-        const metrics = el("div", "metric-grid");
-        metrics.append(metric("OpenAI", formatMoney(client.metrics.openAiSpendCents), "Month-to-date"));
-        metrics.append(metric("Amazon Voice", formatMoney(client.metrics.amazonVoiceSpendCents), "Month-to-date"));
-        metrics.append(metric("Plan", client.planName, `${formatMoney(client.monthlyFeeCents)} / month`));
-        metrics.append(metric("Active AI Keys", String(client.metrics.activeAiKeys), "Masked records only"));
-        card.append(metrics);
-
-        if (!compact) {
-          card.append(renderClientTables(client));
-        }
-        return card;
-      }
-
       function renderClientTables(client) {
-        const wrap = el("div", "tables-grid");
+        const wrap = el("div", "tables-grid portal-tables");
         wrap.append(renderTable(
           "Subscriptions",
           ["Vendor", "Description", "Paid By", "Amount", "Status"],
@@ -310,33 +332,196 @@
             formatMoney(item.amountCents),
             labelize(item.status),
           ]),
-          "No subscriptions."
+          "No subscriptions are tracked yet."
         ));
         wrap.append(renderTable(
           "AI Keys",
           ["Provider", "Label", "Environment", "Masked Key", "Status"],
           client.aiKeys.map((item) => [
-            item.provider,
+            item.provider === "aws_healthscribe" ? "Amazon Voice" : item.provider,
             item.label,
             item.environment,
             item.maskedKey || "-",
             labelize(item.status),
           ]),
-          "No AI key records."
+          "No AI key records are tracked yet."
         ));
         wrap.append(renderTable(
           "AI Usage",
           ["Provider", "Requests", "Audio", "Spend", "Last Used"],
           client.aiUsage.map((item) => [
             item.provider === "aws_healthscribe" ? "Amazon Voice" : item.provider,
-            String(item.requests),
+            formatNumber(item.requests),
             `${Math.round(item.estimatedAudioSeconds || 0)}s`,
             formatMoney(item.estimatedCostCents),
             item.lastUsedAt ? new Date(item.lastUsedAt).toLocaleString() : "-",
           ]),
-          "No AI usage this month."
+          "No AI usage has been logged this month."
         ));
         return wrap;
+      }
+
+      function renderPortfolioClient(client) {
+        const card = el("article", "portfolio-client-card");
+        const header = el("div", "portfolio-client-header");
+        const title = el("div");
+        title.append(el("h3", "", client.accountName));
+        title.append(el("p", "muted", client.implementationStage || "No implementation stage set"));
+        header.append(title);
+
+        const statuses = el("div", "status-row");
+        statuses.append(badge(client.status, client.status === "at_risk" ? "warning" : ""));
+        statuses.append(badge(client.subscriptionStatus));
+        header.append(statuses);
+        card.append(header);
+
+        const facts = el("div", "client-fact-grid");
+        facts.append(miniFact("Environment", client.environmentName || "-"));
+        facts.append(miniFact("With us", client.metrics.accountAgeLabel || "Unknown"));
+        facts.append(miniFact("Providers", providerLabel(client.metrics.providerCount)));
+        facts.append(miniFact("Plan", `${client.planName} · ${formatMoney(client.monthlyFeeCents, true)}/mo`));
+        card.append(facts);
+
+        const spend = el("div", "portfolio-spend-row");
+        spend.append(metric("OpenAI", formatMoney(client.metrics.openAiSpendCents), "Month-to-date", "compact"));
+        spend.append(metric("Amazon Voice", formatMoney(client.metrics.amazonVoiceSpendCents), "Voice expense", "compact"));
+        spend.append(metric("Vendor Tools", formatMoney(client.metrics.perryPaidSubscriptionCents), `${client.metrics.activeSubscriptions} active`, "compact"));
+        spend.append(metric("AI Keys", String(client.metrics.activeAiKeys), "Active masked records", "compact"));
+        card.append(spend);
+
+        const actions = el("div", "portal-action-row");
+        append(actions, [actionLink(client.productUrl, "Open client app", true)]);
+        card.append(actions);
+        card.append(renderClientTables(client));
+        return card;
+      }
+
+      function renderOwnerDashboard(account) {
+        const summary = account.summary || {};
+        portalEyebrow.textContent = "Owner Command Center";
+        accountTitle.textContent = "Perry Software owner dashboard";
+        dashboardEyebrow.textContent = "Portfolio Operations";
+        dashboardTitle.textContent = "Owner Command Center";
+        accountSubtitle.textContent = `${state.user.fullName} - owner access - ${new Date().toLocaleString()}`;
+        accountPanel.classList.add("owner-mode");
+        accountPanel.classList.remove("client-mode");
+
+        const root = el("div", "owner-dashboard");
+        const hero = el("section", "owner-hero");
+        const heroCopy = el("div", "owner-hero-copy");
+        heroCopy.append(el("span", "portal-kicker", "Perry Software portfolio"));
+        heroCopy.append(el("h2", "", "Know which accounts are growing, which need help, and what every vendor is costing."));
+        heroCopy.append(el("p", "", "This view separates owner metrics from client-facing account details so Perry Software can manage implementations, usage, and retention without digging through each app."));
+        hero.append(heroCopy);
+
+        const pulse = el("div", "owner-pulse");
+        pulse.append(metric("Managed Clients", formatNumber(summary.totalClients), `${formatNumber(summary.activeClients)} active, pilot, onboarding, or at-risk`, "dark"));
+        pulse.append(metric("MRR", formatMoney(summary.monthlyRecurringRevenueCents, true), `${formatMoney(summary.annualRunRateCents, true)} annual run rate`, "dark"));
+        pulse.append(metric("Providers", formatNumber(summary.totalProviders), `${formatNumber(summary.activeProviders)} active across linked accounts`, "dark"));
+        hero.append(pulse);
+        root.append(hero);
+
+        const metrics = el("div", "metric-grid owner-metric-grid");
+        metrics.append(metric("New Clients", formatNumber(summary.newClients30d), "Created in the last 30 days", "accent"));
+        metrics.append(metric("Retaining Clients", formatNumber(summary.retainingClients), "Active, pilot, onboarding, or at-risk", "accent"));
+        metrics.append(metric("Avg Time With Us", summary.averageClientAgeLabel || "Unknown", "Across tracked accounts", "accent"));
+        metrics.append(metric("Avg Providers / Client", String(summary.averageProvidersPerClient || 0), "Provider footprint per account", "accent"));
+        metrics.append(metric("OpenAI Spend", formatMoney(summary.openAiSpendCents), "Month-to-date", "accent"));
+        metrics.append(metric("Amazon Voice", formatMoney(summary.amazonVoiceSpendCents), "Month-to-date", "accent"));
+        root.append(metrics);
+
+        const operating = el("section", "portfolio-operating-grid");
+        const statusPanel = el("div", "portfolio-panel");
+        statusPanel.append(el("h3", "", "Client mix"));
+        const statusList = el("div", "status-breakdown");
+        Object.entries(summary.statusCounts || {}).forEach(([status, count]) => {
+          statusList.append(miniFact(labelize(status), formatNumber(count)));
+        });
+        statusPanel.append(statusList);
+
+        const agePanel = el("div", "portfolio-panel");
+        agePanel.append(el("h3", "", "Account age"));
+        const ageList = el("div", "age-list");
+        account.clients.forEach((client) => {
+          const row = el("div", "age-row");
+          row.append(el("span", "", client.accountName));
+          row.append(el("strong", "", client.metrics.accountAgeLabel || "Unknown"));
+          ageList.append(row);
+        });
+        agePanel.append(ageList);
+
+        const spendPanel = el("div", "portfolio-panel portfolio-panel-highlight");
+        spendPanel.append(el("h3", "", "Spend watch"));
+        spendPanel.append(miniFact("Perry-paid vendor tools", formatMoney(summary.perryPaidSubscriptionCents)));
+        spendPanel.append(miniFact("Active AI keys", formatNumber(summary.activeAiKeys)));
+        spendPanel.append(miniFact("Tracked AI spend", formatMoney(summary.aiSpendCents)));
+        append(operating, [statusPanel, agePanel, spendPanel]);
+        root.append(operating);
+
+        const sectionHeader = el("div", "portfolio-section-header");
+        sectionHeader.append(el("h3", "", "Client portfolio"));
+        sectionHeader.append(el("p", "muted", "Each account shows stage, age, providers, AI spend, vendor tools, and launch access."));
+        root.append(sectionHeader);
+
+        const cards = el("div", "portfolio-client-list");
+        account.clients.forEach((client) => cards.append(renderPortfolioClient(client)));
+        root.append(cards);
+        dashboardContent.replaceChildren(root);
+      }
+
+      function renderClientDashboard(client) {
+        portalEyebrow.textContent = "Client Command Center";
+        accountTitle.textContent = client.accountName;
+        dashboardEyebrow.textContent = "Client Account";
+        dashboardTitle.textContent = "Your Account Command Center";
+        accountSubtitle.textContent = `${state.user.fullName} - ${labelize(state.user.role)} - ${new Date().toLocaleString()}`;
+        accountPanel.classList.add("client-mode");
+        accountPanel.classList.remove("owner-mode");
+
+        const root = el("div", "client-dashboard");
+        const hero = el("section", "client-hero-card");
+        const copy = el("div", "client-hero-copy");
+        copy.append(el("span", "portal-kicker", client.environmentName || "Client environment"));
+        copy.append(el("h2", "", client.accountName));
+        copy.append(el("p", "", client.implementationStage || "Implementation status is being tracked by Perry Software."));
+        const actions = el("div", "portal-action-row");
+        append(actions, [actionLink(client.productUrl, "Open your app", true)]);
+        copy.append(actions);
+        hero.append(copy);
+
+        const accountFacts = el("div", "client-hero-facts");
+        accountFacts.append(miniFact("Status", labelize(client.status)));
+        accountFacts.append(miniFact("Plan", client.planName));
+        accountFacts.append(miniFact("With Perry Software", client.metrics.accountAgeLabel || "Unknown"));
+        accountFacts.append(miniFact("Providers", providerLabel(client.metrics.providerCount)));
+        hero.append(accountFacts);
+        root.append(hero);
+
+        const metrics = el("div", "metric-grid client-metric-grid");
+        metrics.append(metric("OpenAI", formatMoney(client.metrics.openAiSpendCents), "Month-to-date usage", "accent"));
+        metrics.append(metric("Amazon Voice", formatMoney(client.metrics.amazonVoiceSpendCents), "Voice/transcription", "accent"));
+        metrics.append(metric("Monthly Plan", formatMoney(client.monthlyFeeCents, true), client.subscriptionStatus, "accent"));
+        metrics.append(metric("Active AI Keys", String(client.metrics.activeAiKeys), "Masked records only", "accent"));
+        metrics.append(metric("Subscriptions", String(client.metrics.activeSubscriptions), "Active or trialing", "accent"));
+        metrics.append(metric("Perry-paid Tools", formatMoney(client.metrics.perryPaidSubscriptionCents), "Tracked vendors", "accent"));
+        root.append(metrics);
+
+        const support = el("section", "client-support-grid");
+        const implementation = el("div", "portfolio-panel");
+        implementation.append(el("h3", "", "Implementation"));
+        implementation.append(miniFact("Stage", client.implementationStage || "-"));
+        implementation.append(miniFact("Created", formatDate(client.createdAt)));
+        implementation.append(miniFact("Last Updated", formatDate(client.updatedAt)));
+
+        const vendor = el("div", "portfolio-panel portfolio-panel-highlight");
+        vendor.append(el("h3", "", "Managed systems"));
+        vendor.append(miniFact("AI providers", `${client.aiKeys.length} records`));
+        vendor.append(miniFact("Vendor subscriptions", `${client.subscriptions.length} records`));
+        vendor.append(miniFact("Usage events", `${client.aiUsage.reduce((sum, item) => sum + (Number(item.requests) || 0), 0)} this month`));
+        append(support, [implementation, vendor]);
+        root.append(support);
+        root.append(renderClientTables(client));
+        dashboardContent.replaceChildren(root);
       }
 
       function render() {
@@ -346,30 +531,20 @@
         logoutButton.classList.toggle("hidden", !signedIn);
         showError(loginError, "");
 
-        if (!signedIn) return;
-
-        summaryGrid.replaceChildren();
-        clientList.replaceChildren();
-        accountSubtitle.textContent = `${state.user.fullName} - ${labelize(state.user.role)}`;
-
-        if (state.account.mode === "owner") {
-          dashboardTitle.textContent = "Perry Software CRM";
-          const summary = state.account.summary;
-          summaryGrid.append(metric("Clients", String(summary.totalClients), `${summary.activeClients} active or pilot`));
-          summaryGrid.append(metric("OpenAI Spend", formatMoney(summary.openAiSpendCents), "Month-to-date"));
-          summaryGrid.append(metric("Amazon Voice", formatMoney(summary.amazonVoiceSpendCents), "Voice and transcription"));
-          summaryGrid.append(metric("Perry-paid Tools", formatMoney(summary.perryPaidSubscriptionCents), "Tracked vendor costs"));
-          state.account.clients.forEach((client) => {
-            clientList.append(renderClient(client, false));
-          });
+        if (!signedIn) {
+          portalEyebrow.textContent = "Account Portal";
+          accountTitle.textContent = "Perry Software account access";
+          dashboardContent.replaceChildren();
+          accountPanel.classList.remove("owner-mode", "client-mode");
           return;
         }
 
-        const client = state.account.client;
-        dashboardTitle.textContent = client.accountName;
-        summaryGrid.append(metric("OpenAI", formatMoney(client.metrics.openAiSpendCents), "Month-to-date"));
-        summaryGrid.append(metric("Amazon Voice", formatMoney(client.metrics.amazonVoiceSpendCents), "Month-to-date"));
-        clientList.append(renderClient(client, false));
+        if (state.account.mode === "owner") {
+          renderOwnerDashboard(state.account);
+          return;
+        }
+
+        renderClientDashboard(state.account.client);
       }
 
       loginForm.addEventListener("submit", async (event) => {
