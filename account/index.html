@@ -9,7 +9,7 @@
       content="Sign in to your Perry Software account to view client status, subscriptions, AI usage, providers, and managed vendor connections."
     />
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260622c" />
+    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260622d" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -117,6 +117,7 @@
         token: sessionStorage.getItem(TOKEN_KEY) || "",
         user: readStoredUser(),
         account: null,
+        notice: "",
       };
 
       const navToggle = document.querySelector(".nav-toggle");
@@ -243,6 +244,85 @@
         link.target = "_blank";
         link.rel = "noreferrer";
         return link;
+      }
+
+      function renderNotice() {
+        if (!state.notice) return null;
+        const notice = el("div", "alert alert-success portal-notice", state.notice);
+        return notice;
+      }
+
+      function emptyState(text) {
+        return el("p", "muted portal-empty", text);
+      }
+
+      function openRequests(requests = []) {
+        return requests.filter((request) => request.status !== "completed" && request.status !== "cancelled");
+      }
+
+      function openInvoices(invoices = []) {
+        return invoices.filter((invoice) => invoice.status === "open" || invoice.status === "overdue");
+      }
+
+      function clientHealth(client) {
+        let score = 100;
+        if (client.status === "at_risk") score -= 26;
+        if (client.status === "paused") score -= 38;
+        if (client.subscriptionStatus === "past_due") score -= 18;
+        score -= Math.min(24, (client.metrics?.openRequestCount || 0) * 8);
+        score -= Math.min(20, Math.floor((client.metrics?.overdueInvoiceCents || 0) / 5000) * 4);
+        score = Math.max(0, Math.min(100, score));
+        const tone = score >= 85 ? "good" : score >= 65 ? "watch" : "risk";
+        return { score, tone };
+      }
+
+      function statusPill(text, tone = "") {
+        return el("span", `status-badge ${tone}`.trim(), labelize(text));
+      }
+
+      function requestRow(request) {
+        const row = el("div", "crm-request-row");
+        const main = el("div");
+        main.append(el("strong", "", request.title));
+        main.append(el("span", "", `${request.clientName || "Client"} - ${labelize(request.category)}${request.providerSpecialty ? ` - ${request.providerSpecialty}` : ""}`));
+        const meta = el("div", "crm-row-meta");
+        meta.append(statusPill(request.priority, request.priority === "high" || request.priority === "urgent" ? "warning" : ""));
+        meta.append(statusPill(request.status));
+        row.append(main, meta);
+        return row;
+      }
+
+      function invoiceRow(invoice) {
+        const row = el("div", "crm-request-row invoice-row");
+        const main = el("div");
+        main.append(el("strong", "", invoice.invoiceNumber));
+        main.append(el("span", "", `${invoice.clientName || invoice.description} - due ${formatDate(invoice.dueDate)}`));
+        const meta = el("div", "crm-row-meta");
+        meta.append(statusPill(invoice.status, invoice.status === "overdue" ? "warning" : ""));
+        meta.append(el("strong", "invoice-amount", formatMoney(invoice.amountCents)));
+        row.append(main, meta);
+        return row;
+      }
+
+      function portalPanel(title, subtitle = "") {
+        const panel = el("section", "crm-panel");
+        const header = el("div", "crm-panel-header");
+        header.append(el("h3", "", title));
+        if (subtitle) header.append(el("p", "muted", subtitle));
+        panel.append(header);
+        return panel;
+      }
+
+      function field(label, name, type = "text", required = false, placeholder = "") {
+        const wrap = el("label", "provider-field");
+        wrap.append(el("span", "", label));
+        const input = document.createElement(type === "textarea" ? "textarea" : "input");
+        input.name = name;
+        if (type !== "textarea") input.type = type;
+        input.required = required;
+        input.placeholder = placeholder;
+        wrap.append(input);
+        return wrap;
       }
 
       async function api(path, options = {}) {
@@ -407,75 +487,101 @@
         return card;
       }
 
+      function renderOwnerClientCard(client) {
+        const health = clientHealth(client);
+        const card = el("article", "crm-client-card");
+        const header = el("div", "crm-client-card-header");
+        const title = el("div");
+        title.append(el("h3", "", client.accountName));
+        title.append(el("p", "muted", client.implementationStage || "No implementation stage set"));
+        header.append(title);
+
+        const healthNode = el("div", `health-score ${health.tone}`);
+        healthNode.append(el("span", "", "Health"));
+        healthNode.append(el("strong", "", `${health.score}`));
+        header.append(healthNode);
+        card.append(header);
+
+        const facts = el("div", "crm-client-facts");
+        facts.append(miniFact("Status", labelize(client.status)));
+        facts.append(miniFact("Providers", providerLabel(client.metrics.providerCount)));
+        facts.append(miniFact("Open requests", formatNumber(client.metrics.openRequestCount)));
+        facts.append(miniFact("Open bill", formatMoney(client.metrics.openInvoiceCents)));
+        facts.append(miniFact("OpenAI", formatMoney(client.metrics.openAiSpendCents)));
+        facts.append(miniFact("Amazon Voice", formatMoney(client.metrics.amazonVoiceSpendCents)));
+        card.append(facts);
+
+        const actions = el("div", "portal-action-row");
+        append(actions, [actionLink(client.productUrl, "Open client app", true)]);
+        card.append(actions);
+        return card;
+      }
+
       function renderOwnerDashboard(account) {
         const summary = account.summary || {};
+        const requests = account.requests || account.clients.flatMap((client) => (client.requests || []).map((request) => ({ ...request, clientName: client.accountName })));
+        const invoices = account.invoices || account.clients.flatMap((client) => (client.invoices || []).map((invoice) => ({ ...invoice, clientName: client.accountName })));
+        const activeRequests = openRequests(requests);
+        const dueInvoices = openInvoices(invoices);
         portalEyebrow.textContent = "Owner Command Center";
-        accountTitle.textContent = "Perry Software owner dashboard";
+        accountTitle.textContent = "Perry Software CRM";
         dashboardEyebrow.textContent = "Portfolio Operations";
-        dashboardTitle.textContent = "Owner Command Center";
+        dashboardTitle.textContent = "Owner CRM Dashboard";
         accountSubtitle.textContent = `${state.user.fullName} - owner access - ${new Date().toLocaleString()}`;
         accountPanel.classList.add("owner-mode");
         accountPanel.classList.remove("client-mode");
 
-        const root = el("div", "owner-dashboard");
-        const hero = el("section", "owner-hero");
+        const root = el("div", "owner-dashboard owner-crm-dashboard");
+        const hero = el("section", "owner-hero owner-crm-hero");
         const heroCopy = el("div", "owner-hero-copy");
-        heroCopy.append(el("span", "portal-kicker", "Perry Software portfolio"));
-        heroCopy.append(el("h2", "", "Know which accounts are growing, which need help, and what every vendor is costing."));
-        heroCopy.append(el("p", "", "This view separates owner metrics from client-facing account details so Perry Software can manage implementations, usage, and retention without digging through each app."));
+        heroCopy.append(el("span", "portal-kicker", "Perry Software operating system"));
+        heroCopy.append(el("h2", "", "Clients, billing, provider growth, AI spend, and support queues in one command center."));
+        heroCopy.append(el("p", "", "The owner side carries the detail: retained accounts, onboarding blockers, open invoices, vendor costs, provider adds, and the next action for every client."));
         hero.append(heroCopy);
 
         const pulse = el("div", "owner-pulse");
         pulse.append(metric("Managed Clients", formatNumber(summary.totalClients), `${formatNumber(summary.activeClients)} active, pilot, onboarding, or at-risk`, "dark"));
         pulse.append(metric("MRR", formatMoney(summary.monthlyRecurringRevenueCents, true), `${formatMoney(summary.annualRunRateCents, true)} annual run rate`, "dark"));
-        pulse.append(metric("Providers", formatNumber(summary.totalProviders), `${formatNumber(summary.activeProviders)} active across linked accounts`, "dark"));
+        pulse.append(metric("Open Requests", formatNumber(summary.openRequestCount || 0), `${formatNumber(summary.providerOnboardingRequests || 0)} provider onboarding`, "dark"));
         hero.append(pulse);
         root.append(hero);
 
         const metrics = el("div", "metric-grid owner-metric-grid");
         metrics.append(metric("New Clients", formatNumber(summary.newClients30d), "Created in the last 30 days", "accent"));
         metrics.append(metric("Retaining Clients", formatNumber(summary.retainingClients), "Active, pilot, onboarding, or at-risk", "accent"));
-        metrics.append(metric("Avg Time With Us", summary.averageClientAgeLabel || "Unknown", "Across tracked accounts", "accent"));
-        metrics.append(metric("Avg Providers / Client", String(summary.averageProvidersPerClient || 0), "Provider footprint per account", "accent"));
+        metrics.append(metric("Providers", formatNumber(summary.totalProviders), `${formatNumber(summary.activeProviders)} active`, "accent"));
+        metrics.append(metric("Open Invoices", formatMoney(summary.openInvoiceCents || 0), `${formatMoney(summary.overdueInvoiceCents || 0)} overdue`, "accent"));
         metrics.append(metric("OpenAI Spend", formatMoney(summary.openAiSpendCents), "Month-to-date", "accent"));
         metrics.append(metric("Amazon Voice", formatMoney(summary.amazonVoiceSpendCents), "Month-to-date", "accent"));
         root.append(metrics);
 
-        const operating = el("section", "portfolio-operating-grid");
-        const statusPanel = el("div", "portfolio-panel");
-        statusPanel.append(el("h3", "", "Client mix"));
+        const operating = el("section", "crm-workboard-grid");
+        const requestPanel = portalPanel("Action Queue", "Provider adds, billing issues, integrations, and support requests.");
+        const requestList = el("div", "crm-list");
+        activeRequests.slice(0, 8).forEach((request) => requestList.append(requestRow(request)));
+        requestPanel.append(activeRequests.length ? requestList : emptyState("No open client requests."));
+
+        const billingPanel = portalPanel("Billing Desk", "Open invoices and payment exposure across every account.");
+        const billingList = el("div", "crm-list");
+        dueInvoices.slice(0, 8).forEach((invoice) => billingList.append(invoiceRow(invoice)));
+        billingPanel.append(dueInvoices.length ? billingList : emptyState("No open invoices."));
+
+        const statusPanel = portalPanel("Client Pipeline", "Mix of leads, pilots, onboarding accounts, retained clients, and risks.");
         const statusList = el("div", "status-breakdown");
         Object.entries(summary.statusCounts || {}).forEach(([status, count]) => {
           statusList.append(miniFact(labelize(status), formatNumber(count)));
         });
         statusPanel.append(statusList);
-
-        const agePanel = el("div", "portfolio-panel");
-        agePanel.append(el("h3", "", "Account age"));
-        const ageList = el("div", "age-list");
-        account.clients.forEach((client) => {
-          const row = el("div", "age-row");
-          row.append(el("span", "", client.accountName));
-          row.append(el("strong", "", client.metrics.accountAgeLabel || "Unknown"));
-          ageList.append(row);
-        });
-        agePanel.append(ageList);
-
-        const spendPanel = el("div", "portfolio-panel portfolio-panel-highlight");
-        spendPanel.append(el("h3", "", "Spend watch"));
-        spendPanel.append(miniFact("Perry-paid vendor tools", formatMoney(summary.perryPaidSubscriptionCents)));
-        spendPanel.append(miniFact("Active AI keys", formatNumber(summary.activeAiKeys)));
-        spendPanel.append(miniFact("Tracked AI spend", formatMoney(summary.aiSpendCents)));
-        append(operating, [statusPanel, agePanel, spendPanel]);
+        append(operating, [requestPanel, billingPanel, statusPanel]);
         root.append(operating);
 
         const sectionHeader = el("div", "portfolio-section-header");
-        sectionHeader.append(el("h3", "", "Client portfolio"));
-        sectionHeader.append(el("p", "muted", "Each account shows stage, age, providers, AI spend, vendor tools, and launch access."));
+        sectionHeader.append(el("h3", "", "Client Accounts"));
+        sectionHeader.append(el("p", "muted", "Account health, provider footprint, billing status, usage, and launch access."));
         root.append(sectionHeader);
 
-        const cards = el("div", "portfolio-client-list");
-        account.clients.forEach((client) => cards.append(renderPortfolioClient(client)));
+        const cards = el("div", "crm-client-list");
+        account.clients.forEach((client) => cards.append(renderOwnerClientCard(client)));
         root.append(cards);
         dashboardContent.replaceChildren(root);
       }
@@ -484,17 +590,26 @@
         portalEyebrow.textContent = "Client Command Center";
         accountTitle.textContent = client.accountName;
         dashboardEyebrow.textContent = "Client Account";
-        dashboardTitle.textContent = "Your Account Command Center";
+        dashboardTitle.textContent = "Account Home";
         accountSubtitle.textContent = `${state.user.fullName} - ${labelize(state.user.role)} - ${new Date().toLocaleString()}`;
         accountPanel.classList.add("client-mode");
         accountPanel.classList.remove("owner-mode");
 
-        const root = el("div", "client-dashboard");
-        const hero = el("section", "client-hero-card");
+        const invoices = client.invoices || [];
+        const requests = client.requests || [];
+        const dueInvoices = openInvoices(invoices);
+        const amountDue = dueInvoices.reduce((sum, invoice) => sum + invoice.amountCents, 0);
+        const nextInvoice = dueInvoices[0] || invoices[0] || null;
+
+        const root = el("div", "client-dashboard client-simple-dashboard");
+        const notice = renderNotice();
+        if (notice) root.append(notice);
+
+        const hero = el("section", "client-hero-card client-account-home");
         const copy = el("div", "client-hero-copy");
         copy.append(el("span", "portal-kicker", client.environmentName || "Client environment"));
         copy.append(el("h2", "", client.accountName));
-        copy.append(el("p", "", client.implementationStage || "Implementation status is being tracked by Perry Software."));
+        copy.append(el("p", "", "Manage your bill and request new provider setup from one place. Perry Software tracks the work on the owner dashboard."));
         const actions = el("div", "portal-action-row");
         append(actions, [actionLink(client.productUrl, "Open your app", true)]);
         copy.append(actions);
@@ -503,35 +618,48 @@
         const accountFacts = el("div", "client-hero-facts");
         accountFacts.append(miniFact("Status", labelize(client.status)));
         accountFacts.append(miniFact("Plan", client.planName));
-        accountFacts.append(miniFact("With Perry Software", client.metrics.accountAgeLabel || "Unknown"));
-        accountFacts.append(miniFact("Providers", providerLabel(client.metrics.providerCount)));
+        accountFacts.append(miniFact("Current bill", formatMoney(amountDue)));
+        accountFacts.append(miniFact("Open requests", formatNumber(client.metrics.openRequestCount || 0)));
         hero.append(accountFacts);
         root.append(hero);
 
-        const metrics = el("div", "metric-grid client-metric-grid");
-        metrics.append(metric("OpenAI", formatMoney(client.metrics.openAiSpendCents), "Month-to-date usage", "accent"));
-        metrics.append(metric("Amazon Voice", formatMoney(client.metrics.amazonVoiceSpendCents), "Voice/transcription", "accent"));
-        metrics.append(metric("Monthly Plan", formatMoney(client.monthlyFeeCents, true), client.subscriptionStatus, "accent"));
-        metrics.append(metric("Active AI Keys", String(client.metrics.activeAiKeys), "Masked records only", "accent"));
-        metrics.append(metric("Subscriptions", String(client.metrics.activeSubscriptions), "Active or trialing", "accent"));
-        metrics.append(metric("Perry-paid Tools", formatMoney(client.metrics.perryPaidSubscriptionCents), "Tracked vendors", "accent"));
-        root.append(metrics);
+        const grid = el("section", "client-action-grid");
+        const bill = portalPanel("Your Bill", "Simple account billing status.");
+        const billBody = el("div", "bill-card");
+        billBody.append(el("span", "bill-label", "Amount due"));
+        billBody.append(el("strong", "bill-amount", formatMoney(amountDue)));
+        billBody.append(el("p", "muted", nextInvoice ? `${nextInvoice.invoiceNumber} - ${labelize(nextInvoice.status)} - due ${formatDate(nextInvoice.dueDate)}` : "No invoice has been issued yet."));
+        if (nextInvoice?.stripeInvoiceUrl) {
+          billBody.append(actionLink(nextInvoice.stripeInvoiceUrl, "Pay bill", true));
+        } else {
+          const pending = el("button", "btn btn-secondary portal-link", "Payment link pending");
+          pending.type = "button";
+          pending.disabled = true;
+          billBody.append(pending);
+        }
+        bill.append(billBody);
 
-        const support = el("section", "client-support-grid");
-        const implementation = el("div", "portfolio-panel");
-        implementation.append(el("h3", "", "Implementation"));
-        implementation.append(miniFact("Stage", client.implementationStage || "-"));
-        implementation.append(miniFact("Created", formatDate(client.createdAt)));
-        implementation.append(miniFact("Last Updated", formatDate(client.updatedAt)));
+        const provider = portalPanel("Add a Provider", "Request setup for a new provider. This creates an owner-dashboard work item.");
+        const form = el("form", "provider-request-form");
+        form.id = "providerRequestForm";
+        form.append(field("Provider full name", "providerFullName", "text", true, "Dr. Jane Smith"));
+        form.append(field("Specialty / role", "providerSpecialty", "text", true, "Dermatology, PA-C, billing specialist"));
+        form.append(field("Email", "providerEmail", "email", false, "provider@example.com"));
+        form.append(field("Phone", "providerPhone", "tel", false, "(555) 123-4567"));
+        form.append(field("Requested start date", "requestedStartDate", "date", false));
+        form.append(field("Notes", "notes", "textarea", false, "Access level, locations, schedule needs, billing setup, etc."));
+        const submit = el("button", "btn btn-primary account-submit provider-submit", "Submit provider request");
+        submit.type = "submit";
+        form.append(submit);
+        provider.append(form);
+        append(grid, [bill, provider]);
+        root.append(grid);
 
-        const vendor = el("div", "portfolio-panel portfolio-panel-highlight");
-        vendor.append(el("h3", "", "Managed systems"));
-        vendor.append(miniFact("AI providers", `${client.aiKeys.length} records`));
-        vendor.append(miniFact("Vendor subscriptions", `${client.subscriptions.length} records`));
-        vendor.append(miniFact("Usage events", `${client.aiUsage.reduce((sum, item) => sum + (Number(item.requests) || 0), 0)} this month`));
-        append(support, [implementation, vendor]);
-        root.append(support);
-        root.append(renderClientTables(client));
+        const history = portalPanel("Request History", "Provider setup and account requests submitted to Perry Software.");
+        const historyList = el("div", "crm-list");
+        requests.slice(0, 8).forEach((request) => historyList.append(requestRow({ ...request, clientName: client.accountName })));
+        history.append(requests.length ? historyList : emptyState("No requests yet."));
+        root.append(history);
         dashboardContent.replaceChildren(root);
       }
 
@@ -575,6 +703,35 @@
       logoutButton.addEventListener("click", () => logout(true));
       refreshButton.addEventListener("click", () => loadAccount());
       window.addEventListener("pagehide", clearStoredSession);
+      dashboardContent.addEventListener("submit", async (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement) || form.id !== "providerRequestForm") return;
+        event.preventDefault();
+        const submit = form.querySelector("button[type='submit']");
+        if (submit) submit.disabled = true;
+        showError(accountError, "");
+        try {
+          const data = new FormData(form);
+          await api("/api/crm/client/provider-requests", {
+            method: "POST",
+            body: JSON.stringify({
+              providerFullName: String(data.get("providerFullName") || ""),
+              providerSpecialty: String(data.get("providerSpecialty") || ""),
+              providerEmail: String(data.get("providerEmail") || "") || null,
+              providerPhone: String(data.get("providerPhone") || "") || null,
+              requestedStartDate: String(data.get("requestedStartDate") || "") || null,
+              notes: String(data.get("notes") || "") || null,
+            }),
+          });
+          state.notice = "Provider request submitted. Perry Software can now work it from the owner CRM queue.";
+          form.reset();
+          await loadAccount();
+        } catch (error) {
+          showError(accountError, error.message || "Unable to submit provider request.");
+        } finally {
+          if (submit) submit.disabled = false;
+        }
+      });
 
       if (state.token) {
         loadAccount();
