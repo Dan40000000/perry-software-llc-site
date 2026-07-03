@@ -3455,6 +3455,11 @@ h1,
   color: #9a3412;
 }
 
+.status-badge.good {
+  background: #ecfdf5;
+  color: #047857;
+}
+
 .client-hero-card {
   background:
     radial-gradient(circle at 90% 0%, rgba(0, 194, 255, 0.18), transparent 20rem),

@@ -9,7 +9,7 @@
       content="Sign in to your Perry Software account to view client status, subscriptions, AI usage, providers, and managed vendor connections."
     />
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260703a" />
+    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260703b" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -117,7 +117,7 @@
         token: sessionStorage.getItem(TOKEN_KEY) || "",
         user: readStoredUser(),
         account: null,
-        notice: "",
+        notice: initialNotice(),
         ownerRequestFilter: "all",
       };
 
@@ -151,6 +151,18 @@
         } catch {
           return null;
         }
+      }
+
+      function initialNotice() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("payment") === "success") {
+          const invoiceNumber = params.get("invoiceNumber");
+          return `Payment completed${invoiceNumber ? ` for ${invoiceNumber}` : ""}. Stripe may take a moment to post the final paid status.`;
+        }
+        if (params.get("payment") === "cancelled") {
+          return "Payment cancelled. No card was charged.";
+        }
+        return "";
       }
 
       function clearStoredSession() {
@@ -252,6 +264,26 @@
         link.target = "_blank";
         link.rel = "noreferrer";
         return link;
+      }
+
+      function canPayInvoice(invoice) {
+        return invoice && ["open", "overdue"].includes(invoice.status) && Number(invoice.amountCents || 0) > 0;
+      }
+
+      function paymentControl(invoice, label = "Pay with Stripe", primary = false) {
+        if (canPayInvoice(invoice)) {
+          const button = el("button", primary ? "btn btn-primary portal-link" : "btn btn-secondary portal-link", label);
+          button.type = "button";
+          button.dataset.invoiceCheckoutId = invoice.id;
+          return button;
+        }
+        if (invoice?.status === "paid") {
+          return el("span", "status-badge good", "Paid");
+        }
+        if (Number(invoice?.amountCents || 0) <= 0) {
+          return el("span", "muted", "No balance");
+        }
+        return el("span", "muted", "Pending");
       }
 
       function stripeSetupUrl(client) {
@@ -360,9 +392,7 @@
         const meta = el("div", "crm-row-meta");
         meta.append(statusPill(invoice.status, invoice.status === "overdue" ? "warning" : ""));
         meta.append(el("strong", "invoice-amount", formatMoney(invoice.amountCents)));
-        if (invoice.stripeInvoiceUrl) {
-          meta.append(actionLink(invoice.stripeInvoiceUrl, "Pay", false));
-        }
+        meta.append(paymentControl(invoice, "Pay", false));
         row.append(main, meta);
         return row;
       }
@@ -752,14 +782,7 @@
         billBreakdown.append(miniFact("Client-paid tools", formatMoney(clientPaidTools)));
         billBreakdown.append(miniFact("Tracked AI usage", formatMoney(client.metrics.aiSpendCents || 0)));
         billBody.append(billBreakdown);
-        if (nextInvoice?.stripeInvoiceUrl) {
-          billBody.append(actionLink(nextInvoice.stripeInvoiceUrl, "Pay securely with Stripe", true));
-        } else {
-          const pending = el("button", "btn btn-secondary portal-link", "Stripe payment link pending");
-          pending.type = "button";
-          pending.disabled = true;
-          billBody.append(pending);
-        }
+        billBody.append(paymentControl(nextInvoice, "Pay securely with Stripe", true));
         bill.append(billBody);
 
         const support = portalPanel("Submit Help / Account Request", "Send billing, access, setup, or integration requests straight to the owner CRM inbox.");
@@ -811,7 +834,7 @@
             formatDate(invoice.dueDate),
             labelize(invoice.status),
             formatMoney(invoice.amountCents),
-            invoice.stripeInvoiceUrl ? actionLink(invoice.stripeInvoiceUrl, "Pay with Stripe", false) : "Pending",
+            paymentControl(invoice, "Pay with Stripe", false),
           ]),
           "No invoices have been issued yet."
         ));
@@ -910,6 +933,34 @@
       dashboardContent.addEventListener("click", async (event) => {
         const target = event.target;
         if (!(target instanceof Element)) return;
+        const paymentButton = target.closest("[data-invoice-checkout-id]");
+        if (paymentButton instanceof HTMLButtonElement) {
+          const invoiceId = paymentButton.dataset.invoiceCheckoutId;
+          if (!invoiceId) return;
+          const originalLabel = paymentButton.textContent || "Pay with Stripe";
+          paymentButton.disabled = true;
+          paymentButton.textContent = "Opening Stripe...";
+          showError(accountError, "");
+          try {
+            const accountUrl = `${window.location.origin}${window.location.pathname}`;
+            const checkout = await api(`/api/crm/client/invoices/${encodeURIComponent(invoiceId)}/checkout`, {
+              method: "POST",
+              body: JSON.stringify({
+                successUrl: accountUrl,
+                cancelUrl: accountUrl,
+              }),
+            });
+            if (!checkout.url) {
+              throw new Error("Stripe did not return a checkout link.");
+            }
+            window.location.assign(checkout.url);
+          } catch (error) {
+            paymentButton.disabled = false;
+            paymentButton.textContent = originalLabel;
+            showError(accountError, error.message || "Unable to open Stripe checkout.");
+          }
+          return;
+        }
         const filterButton = target.closest("[data-request-filter]");
         if (filterButton instanceof HTMLButtonElement) {
           state.ownerRequestFilter = filterButton.dataset.requestFilter || "all";
