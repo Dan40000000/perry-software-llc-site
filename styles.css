@@ -3581,12 +3581,16 @@ h1,
 .crm-workboard-grid,
 .client-action-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
+.crm-workboard-grid > .crm-panel:first-child {
+  grid-column: span 2;
+}
+
 .client-action-grid {
-  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(270px, 0.85fr) minmax(300px, 1fr) minmax(340px, 1.15fr);
 }
 
 .crm-panel {
@@ -3626,6 +3630,33 @@ h1,
   gap: 0.65rem;
 }
 
+.crm-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: -0.25rem 0 0.85rem;
+}
+
+.crm-filter-btn {
+  border: 1px solid rgba(7, 26, 51, 0.1);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #3d4f66;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0.5rem 0.68rem;
+}
+
+.crm-filter-btn.active,
+.crm-filter-btn:hover {
+  border-color: rgba(11, 99, 246, 0.28);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
 .crm-request-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -3650,6 +3681,22 @@ h1,
   color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.35;
+}
+
+.crm-request-description {
+  margin: 0.45rem 0 0;
+  color: #334155;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.crm-request-byline {
+  display: block;
+  margin-top: 0.45rem;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .crm-row-meta {
@@ -3787,6 +3834,12 @@ h1,
   gap: 0.65rem;
 }
 
+.bill-breakdown {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.25rem 0;
+}
+
 .bill-label {
   color: var(--muted);
   font-size: 0.72rem;
@@ -3824,6 +3877,7 @@ h1,
 }
 
 .provider-field input,
+.provider-field select,
 .provider-field textarea {
   width: 100%;
   border: 1.5px solid rgba(7, 26, 51, 0.13);
@@ -3845,6 +3899,7 @@ h1,
 }
 
 .provider-field input:focus,
+.provider-field select:focus,
 .provider-field textarea:focus {
   outline: none;
   border-color: var(--primary);
@@ -3857,6 +3912,11 @@ h1,
   margin-top: 0.2rem;
 }
 
+.support-request-form .provider-field:nth-of-type(3),
+.support-request-form .provider-field:nth-of-type(4) {
+  grid-column: 1 / -1;
+}
+
 .portal-notice {
   margin: 0;
 }
@@ -3865,6 +3925,10 @@ h1,
   .crm-workboard-grid,
   .crm-client-list {
     grid-template-columns: 1fr;
+  }
+
+  .crm-workboard-grid > .crm-panel:first-child {
+    grid-column: auto;
   }
 
   .client-action-grid {

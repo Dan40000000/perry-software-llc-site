@@ -9,7 +9,7 @@
       content="Sign in to your Perry Software account to view client status, subscriptions, AI usage, providers, and managed vendor connections."
     />
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260622d" />
+    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260703a" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -118,6 +118,7 @@
         user: readStoredUser(),
         account: null,
         notice: "",
+        ownerRequestFilter: "all",
       };
 
       const navToggle = document.querySelector(".nav-toggle");
@@ -204,6 +205,13 @@
         return date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
       }
 
+      function formatDateTime(value) {
+        if (!value) return "-";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "-";
+        return date.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+      }
+
       function el(tag, className, text) {
         const node = document.createElement(tag);
         if (className) node.className = className;
@@ -246,6 +254,11 @@
         return link;
       }
 
+      function stripeSetupUrl(client) {
+        if (!client?.productUrl) return "";
+        return `${String(client.productUrl).replace(/\/$/, "")}/admin/integrations#stripe-payments`;
+      }
+
       function renderNotice() {
         if (!state.notice) return null;
         const notice = el("div", "alert alert-success portal-notice", state.notice);
@@ -262,6 +275,30 @@
 
       function openInvoices(invoices = []) {
         return invoices.filter((invoice) => invoice.status === "open" || invoice.status === "overdue");
+      }
+
+      function requestPriorityRank(priority) {
+        return { urgent: 0, high: 1, normal: 2, low: 3 }[priority] ?? 4;
+      }
+
+      function requestStatusRank(status) {
+        return { new: 0, in_review: 1, waiting_on_client: 2, scheduled: 3, completed: 4, cancelled: 5 }[status] ?? 6;
+      }
+
+      function sortRequests(requests = []) {
+        return [...requests].sort((a, b) => {
+          const status = requestStatusRank(a.status) - requestStatusRank(b.status);
+          if (status !== 0) return status;
+          const priority = requestPriorityRank(a.priority) - requestPriorityRank(b.priority);
+          if (priority !== 0) return priority;
+          return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
+        });
+      }
+
+      function filterRequests(requests = [], filter = "all") {
+        if (filter === "all") return requests;
+        if (filter === "urgent") return requests.filter((request) => request.priority === "urgent" || request.priority === "high");
+        return requests.filter((request) => request.category === filter);
       }
 
       function clientHealth(client) {
@@ -285,6 +322,13 @@
         const main = el("div");
         main.append(el("strong", "", request.title));
         main.append(el("span", "", `${request.clientName || "Client"} - ${labelize(request.category)}${request.providerSpecialty ? ` - ${request.providerSpecialty}` : ""}`));
+        if (request.description) {
+          main.append(el("p", "crm-request-description", request.description));
+        }
+        const requestedBy = request.requestedByName || request.requestedByEmail;
+        if (requestedBy || request.createdAt) {
+          main.append(el("small", "crm-request-byline", `${requestedBy ? `From ${requestedBy}` : "Submitted"} - ${formatDateTime(request.createdAt)}`));
+        }
         const meta = el("div", "crm-row-meta");
         meta.append(statusPill(request.priority, request.priority === "high" || request.priority === "urgent" ? "warning" : ""));
         meta.append(statusPill(request.status));
@@ -316,6 +360,9 @@
         const meta = el("div", "crm-row-meta");
         meta.append(statusPill(invoice.status, invoice.status === "overdue" ? "warning" : ""));
         meta.append(el("strong", "invoice-amount", formatMoney(invoice.amountCents)));
+        if (invoice.stripeInvoiceUrl) {
+          meta.append(actionLink(invoice.stripeInvoiceUrl, "Pay", false));
+        }
         row.append(main, meta);
         return row;
       }
@@ -338,6 +385,22 @@
         input.required = required;
         input.placeholder = placeholder;
         wrap.append(input);
+        return wrap;
+      }
+
+      function selectField(label, name, options, required = false) {
+        const wrap = el("label", "provider-field");
+        wrap.append(el("span", "", label));
+        const select = document.createElement("select");
+        select.name = name;
+        select.required = required;
+        options.forEach(([value, text]) => {
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = text;
+          select.append(option);
+        });
+        wrap.append(select);
         return wrap;
       }
 
@@ -528,7 +591,10 @@
         card.append(facts);
 
         const actions = el("div", "portal-action-row");
-        append(actions, [actionLink(client.productUrl, "Open client app", true)]);
+        append(actions, [
+          actionLink(client.productUrl, "Open client app", true),
+          actionLink(stripeSetupUrl(client), "Stripe setup"),
+        ]);
         card.append(actions);
         return card;
       }
@@ -537,7 +603,8 @@
         const summary = account.summary || {};
         const requests = account.requests || account.clients.flatMap((client) => (client.requests || []).map((request) => ({ ...request, clientName: client.accountName })));
         const invoices = account.invoices || account.clients.flatMap((client) => (client.invoices || []).map((invoice) => ({ ...invoice, clientName: client.accountName })));
-        const activeRequests = openRequests(requests);
+        const activeRequests = sortRequests(openRequests(requests));
+        const visibleRequests = filterRequests(activeRequests, state.ownerRequestFilter);
         const dueInvoices = openInvoices(invoices);
         portalEyebrow.textContent = "Owner Command Center";
         accountTitle.textContent = "Perry Software CRM";
@@ -574,15 +641,38 @@
         root.append(metrics);
 
         const operating = el("section", "crm-workboard-grid");
-        const requestPanel = portalPanel("Action Queue", "Provider adds, billing issues, integrations, and support requests.");
+        const requestPanel = portalPanel("Message Inbox", "Client support, billing questions, integrations, access issues, and provider adds.");
+        const requestFilters = el("div", "crm-filter-row");
+        [
+          ["all", `All (${activeRequests.length})`],
+          ["urgent", `Urgent (${filterRequests(activeRequests, "urgent").length})`],
+          ["support", `Support (${filterRequests(activeRequests, "support").length})`],
+          ["billing", `Billing (${filterRequests(activeRequests, "billing").length})`],
+          ["provider_onboarding", `Providers (${filterRequests(activeRequests, "provider_onboarding").length})`],
+          ["integration", `Integrations (${filterRequests(activeRequests, "integration").length})`],
+        ].forEach(([filter, label]) => {
+          const button = el("button", `crm-filter-btn ${state.ownerRequestFilter === filter ? "active" : ""}`.trim(), label);
+          button.type = "button";
+          button.dataset.requestFilter = filter;
+          requestFilters.append(button);
+        });
+        requestPanel.append(requestFilters);
         const requestList = el("div", "crm-list");
-        activeRequests.slice(0, 8).forEach((request) => requestList.append(requestRow(request, true)));
-        requestPanel.append(activeRequests.length ? requestList : emptyState("No open client requests."));
+        visibleRequests.slice(0, 10).forEach((request) => requestList.append(requestRow(request, true)));
+        requestPanel.append(visibleRequests.length ? requestList : emptyState("No open client requests match this filter."));
 
         const billingPanel = portalPanel("Billing Desk", "Open invoices and payment exposure across every account.");
         const billingList = el("div", "crm-list");
         dueInvoices.slice(0, 8).forEach((invoice) => billingList.append(invoiceRow(invoice)));
         billingPanel.append(dueInvoices.length ? billingList : emptyState("No open invoices."));
+
+        const expensePanel = portalPanel("Expense Control", "What Perry Software is carrying for clients this month.");
+        const expenseFacts = el("div", "status-breakdown");
+        expenseFacts.append(miniFact("Perry-paid vendor tools", formatMoney(summary.perryPaidSubscriptionCents || 0)));
+        expenseFacts.append(miniFact("OpenAI credits", formatMoney(summary.openAiSpendCents || 0)));
+        expenseFacts.append(miniFact("Amazon Voice", formatMoney(summary.amazonVoiceSpendCents || 0)));
+        expenseFacts.append(miniFact("AI key records", formatNumber(summary.activeAiKeys || 0)));
+        expensePanel.append(expenseFacts);
 
         const statusPanel = portalPanel("Client Pipeline", "Mix of leads, pilots, onboarding accounts, retained clients, and risks.");
         const statusList = el("div", "status-breakdown");
@@ -590,7 +680,7 @@
           statusList.append(miniFact(labelize(status), formatNumber(count)));
         });
         statusPanel.append(statusList);
-        append(operating, [requestPanel, billingPanel, statusPanel]);
+        append(operating, [requestPanel, billingPanel, expensePanel, statusPanel]);
         root.append(operating);
 
         const sectionHeader = el("div", "portfolio-section-header");
@@ -618,6 +708,12 @@
         const dueInvoices = openInvoices(invoices);
         const amountDue = dueInvoices.reduce((sum, invoice) => sum + invoice.amountCents, 0);
         const nextInvoice = dueInvoices[0] || invoices[0] || null;
+        const perryPaidTools = client.subscriptions
+          .filter((item) => item.paidBy === "perry_software" && item.status !== "cancelled")
+          .reduce((sum, item) => sum + item.amountCents, 0);
+        const clientPaidTools = client.subscriptions
+          .filter((item) => item.paidBy === "client" && item.status !== "cancelled")
+          .reduce((sum, item) => sum + item.amountCents, 0);
 
         const root = el("div", "client-dashboard client-simple-dashboard");
         const notice = renderNotice();
@@ -629,7 +725,10 @@
         copy.append(el("h2", "", client.accountName));
         copy.append(el("p", "", "Manage your bill and request new provider setup from one place. Perry Software tracks the work on the owner dashboard."));
         const actions = el("div", "portal-action-row");
-        append(actions, [actionLink(client.productUrl, "Open your app", true)]);
+        append(actions, [
+          actionLink(client.productUrl, "Open your app", true),
+          actionLink(stripeSetupUrl(client), "Set up practice Stripe"),
+        ]);
         copy.append(actions);
         hero.append(copy);
 
@@ -642,20 +741,49 @@
         root.append(hero);
 
         const grid = el("section", "client-action-grid");
-        const bill = portalPanel("Your Bill", "Simple account billing status.");
+        const bill = portalPanel("Your Bill", "Amount due, payment status, and the items that make up the bill.");
         const billBody = el("div", "bill-card");
         billBody.append(el("span", "bill-label", "Amount due"));
         billBody.append(el("strong", "bill-amount", formatMoney(amountDue)));
         billBody.append(el("p", "muted", nextInvoice ? `${nextInvoice.invoiceNumber} - ${labelize(nextInvoice.status)} - due ${formatDate(nextInvoice.dueDate)}` : "No invoice has been issued yet."));
+        const billBreakdown = el("div", "bill-breakdown");
+        billBreakdown.append(miniFact("Monthly plan", formatMoney(client.monthlyFeeCents)));
+        billBreakdown.append(miniFact("Perry-paid tools", formatMoney(perryPaidTools)));
+        billBreakdown.append(miniFact("Client-paid tools", formatMoney(clientPaidTools)));
+        billBreakdown.append(miniFact("Tracked AI usage", formatMoney(client.metrics.aiSpendCents || 0)));
+        billBody.append(billBreakdown);
         if (nextInvoice?.stripeInvoiceUrl) {
-          billBody.append(actionLink(nextInvoice.stripeInvoiceUrl, "Pay bill", true));
+          billBody.append(actionLink(nextInvoice.stripeInvoiceUrl, "Pay securely with Stripe", true));
         } else {
-          const pending = el("button", "btn btn-secondary portal-link", "Payment link pending");
+          const pending = el("button", "btn btn-secondary portal-link", "Stripe payment link pending");
           pending.type = "button";
           pending.disabled = true;
           billBody.append(pending);
         }
         bill.append(billBody);
+
+        const support = portalPanel("Submit Help / Account Request", "Send billing, access, setup, or integration requests straight to the owner CRM inbox.");
+        const supportForm = el("form", "provider-request-form support-request-form");
+        supportForm.id = "supportRequestForm";
+        supportForm.append(selectField("Request type", "category", [
+          ["support", "General support"],
+          ["billing", "Billing question"],
+          ["implementation", "Implementation / training"],
+          ["access", "Login or access"],
+          ["integration", "Integration / vendor"],
+        ], true));
+        supportForm.append(selectField("Priority", "priority", [
+          ["normal", "Normal"],
+          ["high", "High"],
+          ["urgent", "Urgent"],
+          ["low", "Low"],
+        ], true));
+        supportForm.append(field("Subject", "title", "text", true, "Need help with billing setup"));
+        supportForm.append(field("Message", "description", "textarea", true, "What should Perry Software know?"));
+        const supportSubmit = el("button", "btn btn-primary account-submit provider-submit", "Submit request");
+        supportSubmit.type = "submit";
+        supportForm.append(supportSubmit);
+        support.append(supportForm);
 
         const provider = portalPanel("Add a Provider", "Request setup for a new provider. This creates an owner-dashboard work item.");
         const form = el("form", "provider-request-form");
@@ -670,12 +798,28 @@
         submit.type = "submit";
         form.append(submit);
         provider.append(form);
-        append(grid, [bill, provider]);
+        append(grid, [bill, support, provider]);
         root.append(grid);
 
-        const history = portalPanel("Request History", "Provider setup and account requests submitted to Perry Software.");
+        const invoiceHistory = portalPanel("Invoice Breakdown", "Open and historical account invoices.");
+        invoiceHistory.append(renderTable(
+          "Invoices",
+          ["Invoice", "Description", "Due", "Status", "Amount", "Payment"],
+          invoices.map((invoice) => [
+            invoice.invoiceNumber,
+            invoice.description || "-",
+            formatDate(invoice.dueDate),
+            labelize(invoice.status),
+            formatMoney(invoice.amountCents),
+            invoice.stripeInvoiceUrl ? actionLink(invoice.stripeInvoiceUrl, "Pay with Stripe", false) : "Pending",
+          ]),
+          "No invoices have been issued yet."
+        ));
+        root.append(invoiceHistory);
+
+        const history = portalPanel("Request History", "Provider setup, help, billing, access, and integration requests submitted to Perry Software.");
         const historyList = el("div", "crm-list");
-        requests.slice(0, 8).forEach((request) => historyList.append(requestRow({ ...request, clientName: client.accountName })));
+        sortRequests(requests).slice(0, 10).forEach((request) => historyList.append(requestRow({ ...request, clientName: client.accountName })));
         history.append(requests.length ? historyList : emptyState("No requests yet."));
         root.append(history);
         dashboardContent.replaceChildren(root);
@@ -723,29 +867,42 @@
       window.addEventListener("pagehide", clearStoredSession);
       dashboardContent.addEventListener("submit", async (event) => {
         const form = event.target;
-        if (!(form instanceof HTMLFormElement) || form.id !== "providerRequestForm") return;
+        if (!(form instanceof HTMLFormElement) || !["providerRequestForm", "supportRequestForm"].includes(form.id)) return;
         event.preventDefault();
         const submit = form.querySelector("button[type='submit']");
         if (submit) submit.disabled = true;
         showError(accountError, "");
         try {
           const data = new FormData(form);
-          await api("/api/crm/client/provider-requests", {
-            method: "POST",
-            body: JSON.stringify({
-              providerFullName: String(data.get("providerFullName") || ""),
-              providerSpecialty: String(data.get("providerSpecialty") || ""),
-              providerEmail: String(data.get("providerEmail") || "") || null,
-              providerPhone: String(data.get("providerPhone") || "") || null,
-              requestedStartDate: String(data.get("requestedStartDate") || "") || null,
-              notes: String(data.get("notes") || "") || null,
-            }),
-          });
-          state.notice = "Provider request submitted. Perry Software can now work it from the owner CRM queue.";
+          if (form.id === "providerRequestForm") {
+            await api("/api/crm/client/provider-requests", {
+              method: "POST",
+              body: JSON.stringify({
+                providerFullName: String(data.get("providerFullName") || ""),
+                providerSpecialty: String(data.get("providerSpecialty") || ""),
+                providerEmail: String(data.get("providerEmail") || "") || null,
+                providerPhone: String(data.get("providerPhone") || "") || null,
+                requestedStartDate: String(data.get("requestedStartDate") || "") || null,
+                notes: String(data.get("notes") || "") || null,
+              }),
+            });
+            state.notice = "Provider request submitted. Perry Software can now work it from the owner CRM queue.";
+          } else {
+            await api("/api/crm/client/requests", {
+              method: "POST",
+              body: JSON.stringify({
+                category: String(data.get("category") || "support"),
+                priority: String(data.get("priority") || "normal"),
+                title: String(data.get("title") || ""),
+                description: String(data.get("description") || ""),
+              }),
+            });
+            state.notice = "Request submitted. It is now in the Perry Software owner inbox.";
+          }
           form.reset();
           await loadAccount();
         } catch (error) {
-          showError(accountError, error.message || "Unable to submit provider request.");
+          showError(accountError, error.message || "Unable to submit request.");
         } finally {
           if (submit) submit.disabled = false;
         }
@@ -753,6 +910,12 @@
       dashboardContent.addEventListener("click", async (event) => {
         const target = event.target;
         if (!(target instanceof Element)) return;
+        const filterButton = target.closest("[data-request-filter]");
+        if (filterButton instanceof HTMLButtonElement) {
+          state.ownerRequestFilter = filterButton.dataset.requestFilter || "all";
+          render();
+          return;
+        }
         const button = target.closest("[data-request-id][data-request-status]");
         if (!(button instanceof HTMLButtonElement)) return;
         const requestId = button.dataset.requestId;
