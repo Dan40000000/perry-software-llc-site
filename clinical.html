@@ -3,13 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clinical Tools | Nuvora Health</title>
-    <meta name="description" content="AI-powered clinical documentation built for dermatology. Ambient scribe, SOAP notes, interactive body diagram, e-prescribing, lab management, and clinical photography." />
+    <title>Dermatology Clinical Workflow Software | Nuvora Health</title>
+    <meta name="description" content="Dermatology clinical workflows with structured notes, body diagrams, biopsy tracking, clinical photography, medication documentation, and result follow-up." />
+    <link rel="canonical" href="https://perrysoftwarellc.com/clinical.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nuvora Health" />
+    <meta property="og:title" content="Dermatology Clinical Workflow Software | Nuvora Health" />
+    <meta property="og:description" content="Structured dermatology documentation, body diagrams, biopsy tracking, photography, and result follow-up in one workflow." />
+    <meta property="og:url" content="https://perrysoftwarellc.com/clinical.html" />
+    <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/patients-page.png" />
+    <meta property="og:image:alt" content="Illustrative Nuvora Health patient workflow screen" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dermatology Clinical Workflow Software | Nuvora Health" />
+    <meta name="twitter:description" content="Structured dermatology documentation, body diagrams, biopsy tracking, photography, and follow-up." />
+    <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/patients-page.png" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=nuvora-blue-20260515" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-trust-20260817" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="site.js" defer></script>
     <style>
       /* ── Page Shell ── */
       .clin-page { background: var(--bg); }
@@ -78,6 +91,9 @@
       .clin-section {
         padding: 5.5rem 2rem;
       }
+      .clin-section > .wrap,
+      .body-diagram-section > .wrap,
+      .clin-cta > .wrap { width: min(1200px, 100%); }
       .clin-section.alt { background: #fff; }
       .clin-section-header {
         text-align: center;
@@ -98,7 +114,7 @@
         line-height: 1.7;
       }
 
-      /* ── AI Scribe ── */
+      /* ── Structured documentation ── */
       .scribe-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -126,6 +142,7 @@
         flex-shrink: 0;
         box-shadow: var(--shadow-glow);
       }
+      .scribe-step-body h3,
       .scribe-step-body h4 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 0.25rem; }
       .scribe-step-body p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6; }
       .scribe-stats {
@@ -370,6 +387,7 @@
         justify-content: space-between;
         gap: 1rem;
       }
+      .lab-order-left h3,
       .lab-order-left h4 { font-size: 0.9rem; font-weight: 700; color: var(--text); margin: 0 0 0.15rem; }
       .lab-order-left p { font-size: 0.78rem; color: var(--muted); margin: 0; }
       .lab-order-badge {
@@ -473,12 +491,12 @@
           </svg>
           <span class="nav-wordmark">Nuvora Health</span>
         </a>
-        <button class="nav-toggle" aria-label="Toggle menu">
+        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <ul class="nav-links" style="gap:1.6rem">
+        <ul id="primary-navigation" class="nav-links" style="gap:1.6rem">
           <li><a href="index.html">Home</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="clinical.html" class="active">Clinical</a></li>
@@ -487,8 +505,9 @@
           <li><a href="about.html">About</a></li>
           <li><a href="account/">Account Login</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li class="mobile-nav-demo"><a href="contact.html">Request a Demo</a></li>
         </ul>
-        <a href="contact.html" class="nav-cta">Get a Demo</a>
+        <a href="contact.html" class="nav-cta">Request a Demo</a>
       </div>
     </nav>
 
@@ -497,10 +516,10 @@
       <div class="clin-hero-inner">
         <div class="clin-badge">
           <span class="clin-badge-dot"></span>
-          AI-Powered Clinical Tools
+          Dermatology Clinical Workflows
         </div>
-        <h1>Clinical Tools Built for<br><span class="gradient-text">Every Practice</span></h1>
-        <p>From AI-generated SOAP notes to interactive body diagrams and e-prescribing — every clinical workflow a modern practice needs, in one platform.</p>
+        <h1>Clinical Tools Built for<br><span class="gradient-text">Dermatology</span></h1>
+        <p>Structured documentation, interactive body diagrams, biopsy and pathology tracking, clinical photography, and coordinated follow-up in one platform.</p>
         <div class="cta-group">
           <a href="contact.html" class="btn btn-primary btn-lg">
             <span>See It In Action</span>
@@ -514,84 +533,84 @@
     <main>
 
       <!-- Specialty Expansion Banner -->
-      <section style="background:linear-gradient(90deg,#031022 0%,#062a63 60%,#0b63f6 100%);padding:2.25rem 2rem;border-bottom:1px solid rgba(255,255,255,0.08);">
+      <section style="background:linear-gradient(90deg,#031022 0%,#062a63 60%,#0b63f6 100%);padding:2.25rem 2rem;border-bottom:1px solid rgba(255,255,255,0.08);overflow:hidden;">
         <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
           <div style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;">
             <span style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,194,255,0.15);border:1px solid rgba(0,194,255,0.3);border-radius:100px;padding:0.35rem 1rem;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#00c2ff;">
               <span style="width:6px;height:6px;border-radius:50%;background:#00c2ff;display:inline-block;"></span>
-              Expanding Now
+              Dermatology Depth
             </span>
             <div>
-              <p style="color:#fff;font-weight:700;font-size:1.05rem;margin:0 0 0.2rem;">Not just for dermatology.</p>
-              <p style="color:rgba(255,255,255,0.6);font-size:0.88rem;margin:0;line-height:1.5;">Nuvora launched with derm, but we're rapidly expanding to serve <strong style="color:rgba(255,255,255,0.85);">all medical specialties</strong> — primary care, urgent care, internal medicine, and more. If your practice is frustrated with its current EHR, <strong style="color:rgba(255,255,255,0.85);">we want to hear from you</strong>.</p>
+              <p style="color:#fff;font-weight:700;font-size:1.05rem;margin:0 0 0.2rem;">Detailed specialty workflows.</p>
+              <p style="color:rgba(255,255,255,0.6);font-size:0.88rem;margin:0;line-height:1.5;">Nuvora is designed around dermatology's documentation, photography, lesion tracking, procedure, pathology, recall, and revenue workflows while remaining configurable for medical-office operations.</p>
             </div>
           </div>
           <div style="text-align:right;flex-shrink:0;">
-            <p style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin:0 0 0.35rem;text-transform:uppercase;letter-spacing:0.1em;">Custom pricing — guaranteed</p>
-            <p style="color:#00c2ff;font-weight:800;font-size:1.1rem;margin:0;">Less than you're paying now.</p>
+            <p style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin:0 0 0.35rem;text-transform:uppercase;letter-spacing:0.1em;">Clear planning</p>
+            <p style="color:#00c2ff;font-weight:800;font-size:1.1rem;margin:0;">Pricing tailored to your practice.</p>
           </div>
         </div>
       </section>
 
-      <!-- 1. AI Ambient Scribe -->
+      <!-- 1. Structured documentation -->
       <section class="clin-section">
         <div class="wrap">
           <div class="scribe-grid">
             <div>
-              <span class="section-badge">AI Ambient Scribe</span>
+              <span class="section-badge">Documentation Workflow</span>
               <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 1rem;">
-                Document Visits in<br><span class="gradient-text">90 Seconds</span>
+                Consistent Notes.<br><span class="gradient-text">Clear Review.</span>
               </h2>
-              <p style="color:var(--muted);line-height:1.7;margin-bottom:1.5rem;">Powered by OpenAI Whisper + Claude AI. Records your visit audio, transcribes every word, and generates a structured SOAP note draft — ready for your review before the patient even leaves the room.</p>
+              <p style="color:var(--muted);line-height:1.7;margin-bottom:1.5rem;">Templates, macros, body diagrams, photo references, and structured SOAP sections keep documentation organized while the clinician retains review and sign-off control.</p>
               <div class="scribe-steps">
                 <div class="scribe-step">
                   <div class="scribe-step-num">1</div>
                   <div class="scribe-step-body">
-                    <h4>Record</h4>
-                    <p>Tap to start — the scribe listens to the full visit conversation in the background.</p>
+                    <h3>Choose a Template</h3>
+                    <p>Start with the visit type, specialty template, and prior chart context.</p>
                   </div>
                 </div>
                 <div class="scribe-step">
                   <div class="scribe-step-num">2</div>
                   <div class="scribe-step-body">
-                    <h4>Transcribe</h4>
-                    <p>OpenAI Whisper converts audio to text with medical vocabulary support, in real time.</p>
+                    <h3>Document Findings</h3>
+                    <p>Capture HPI, exam findings, lesion details, procedures, and photos in structured sections.</p>
                   </div>
                 </div>
                 <div class="scribe-step">
                   <div class="scribe-step-num">3</div>
                   <div class="scribe-step-body">
-                    <h4>Generate</h4>
-                    <p>Claude AI structures the note: HPI, Subjective, Assessment, Plan — formatted for your template.</p>
+                    <h3>Connect the Plan</h3>
+                    <p>Keep assessment, plan, orders, recall, and follow-up details connected to the visit.</p>
                   </div>
                 </div>
                 <div class="scribe-step">
                   <div class="scribe-step-num">4</div>
                   <div class="scribe-step-body">
-                    <h4>Review &amp; Sign</h4>
-                    <p>Provider reviews the draft, makes any edits, and signs. Average review time: 90 seconds.</p>
+                    <h3>Review &amp; Sign</h3>
+                    <p>The clinician reviews the note, makes any edits, and signs when documentation is complete.</p>
                   </div>
                 </div>
               </div>
               <div class="scribe-stats">
                 <div class="scribe-stat">
-                  <strong>2 hrs</strong>
-                  <span>Saved per day</span>
+                  <strong>SOAP</strong>
+                  <span>Structured sections</span>
                 </div>
                 <div class="scribe-stat">
-                  <strong>90 sec</strong>
-                  <span>Review time</span>
+                  <strong>Review</strong>
+                  <span>Clinician controlled</span>
                 </div>
                 <div class="scribe-stat">
-                  <strong>96%</strong>
-                  <span>Accuracy</span>
+                  <strong>Sign</strong>
+                  <span>Clear completion</span>
                 </div>
               </div>
             </div>
             <div class="soap-preview">
               <div class="soap-preview-header">
                 <span>SOAP Note Draft</span>
-                <span class="soap-preview-badge">AI Generated</span>
+                <span class="soap-preview-badge">Illustrative Example</span>
               </div>
               <div class="soap-preview-body">
                 <div class="soap-block">
@@ -631,7 +650,7 @@
               <div class="clin-feat-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
               </div>
-              <div><h4>Body Diagram Integration</h4><p>Mark lesion locations directly on anatomical diagrams.</p></div>
+              <div><h3>Body Diagram</h3><p>Mark lesion locations directly on anatomical diagrams.</p></div>
             </div>
             <div class="clin-feat-card">
               <div class="clin-feat-icon">
@@ -673,7 +692,7 @@
               <div class="clin-feat-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
               </div>
-              <div><h4>ICD-10 Auto-Suggestions</h4><p>Context-aware diagnosis code suggestions as you type.</p></div>
+              <div><h3>ICD-10 Code Lookup</h3><p>Search diagnosis codes and attach the selected code to the visit.</p></div>
             </div>
             <div class="clin-feat-card">
               <div class="clin-feat-icon">
@@ -761,73 +780,70 @@
           <div class="body-features-list">
             <span class="body-feature-pill">Tap any body location to add lesion</span>
             <span class="body-feature-pill">Photo attachment per site</span>
-            <span class="body-feature-pill">Automatic pathology linking</span>
+            <span class="body-feature-pill">Pathology record linking</span>
             <span class="body-feature-pill">Side-by-side visit comparison</span>
             <span class="body-feature-pill">Full lesion history timeline</span>
           </div>
         </div>
       </section>
 
-      <!-- 4. E-Prescribing -->
+      <!-- 4. Medication workflow -->
       <section class="clin-section alt" id="prescriptions">
         <div class="wrap">
           <div class="detail-split">
             <div>
-              <span class="section-badge">E-Prescribing</span>
-              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Surescripts-Connected<br>E-Prescribing</h2>
-              <p style="color:var(--muted);line-height:1.7;">Full Surescripts network integration with real-time PDMP access, formulary lookup, and EPCS for controlled substances. Derm-specific workflows for biologics, Accutane REMS, and specialty topicals.</p>
+              <span class="section-badge">Medication Workflow</span>
+              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Medication Records &amp;<br>Refill Coordination</h2>
+              <p style="color:var(--muted);line-height:1.7;">Keep medication history, directions, refill activity, related documentation, and prior-authorization status connected to the patient chart.</p>
               <ul class="detail-list">
-                <li>Surescripts network integration</li>
-                <li>PDMP access at point of prescribing</li>
-                <li>Real-time drug interaction checks</li>
-                <li>Formulary and prior auth lookup</li>
-                <li>EPCS — controlled substance e-prescribing</li>
-                <li>Biologic Rx with PA workflow built in</li>
-                <li>iPLEDGE / Accutane REMS integration</li>
-                <li>Topical compounding directions</li>
-                <li>Medication history from pharmacy network</li>
+                <li>Medication list and history review</li>
+                <li>Refill request work queue</li>
+                <li>Directions and clinician notes</li>
+                <li>Prior-authorization status tracking</li>
+                <li>Specialty medication documentation</li>
+                <li>Chart-linked follow-up tasks</li>
               </ul>
             </div>
             <div>
               <div class="mock-card">
                 <div class="mock-card-header">
-                  <span>New Prescription</span>
+                  <span>Medication Review — Illustrative</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <div class="mock-card-body">
                   <div class="mock-rx-row">
                     <span class="mock-rx-label">Patient</span>
-                    <span class="mock-rx-value">Sarah K., DOB 03/14/1982</span>
+                    <span class="mock-rx-value">Demonstration Patient</span>
                   </div>
                   <div class="mock-rx-divider"></div>
                   <div>
-                    <div class="mock-rx-label" style="margin-bottom:0.3rem;">Drug</div>
-                    <div class="mock-rx-drug">Dupilumab 300mg/2mL</div>
-                    <div class="mock-rx-value" style="font-size:0.82rem;margin-top:0.2rem;">Dupixent injection, subcutaneous</div>
+                    <div class="mock-rx-label" style="margin-bottom:0.3rem;">Medication</div>
+                    <div class="mock-rx-drug">Specialty medication record</div>
+                    <div class="mock-rx-value" style="font-size:0.82rem;margin-top:0.2rem;">Directions recorded in chart</div>
                   </div>
                   <div class="mock-rx-divider"></div>
                   <div class="mock-rx-row">
                     <span class="mock-rx-label">Sig</span>
-                    <span class="mock-rx-value">300mg SQ q2 weeks after loading dose</span>
+                    <span class="mock-rx-value">Clinician-reviewed directions</span>
                   </div>
                   <div class="mock-rx-row">
-                    <span class="mock-rx-label">Qty / Refills</span>
-                    <span class="mock-rx-value">2 syringes / 5 refills</span>
+                    <span class="mock-rx-label">Refill Status</span>
+                    <span class="mock-rx-value">Ready for review</span>
                   </div>
                   <div class="mock-rx-row">
-                    <span class="mock-rx-label">Formulary Status</span>
-                    <span class="mock-rx-value" style="color:#eab308;font-weight:700;">PA Required</span>
+                    <span class="mock-rx-label">Documentation</span>
+                    <span class="mock-rx-value" style="color:#eab308;font-weight:700;">Supporting note requested</span>
                   </div>
                   <div class="mock-rx-row">
-                    <span class="mock-rx-label">Interactions</span>
-                    <span class="mock-status-pill">None Detected</span>
+                    <span class="mock-rx-label">Assigned To</span>
+                    <span class="mock-status-pill">Clinical Team</span>
                   </div>
                   <div class="mock-rx-row">
-                    <span class="mock-rx-label">PDMP Check</span>
-                    <span class="mock-status-pill">Cleared</span>
+                    <span class="mock-rx-label">Next Step</span>
+                    <span class="mock-status-pill">Provider Review</span>
                   </div>
                   <div style="margin-top:0.5rem;">
-                    <button style="width:100%;background:var(--gradient-1);color:#fff;border:none;border-radius:10px;padding:0.75rem;font-weight:700;font-size:0.9rem;cursor:pointer;">Send to Pharmacy via Surescripts</button>
+                    <button type="button" style="width:100%;background:var(--gradient-1);color:#fff;border:none;border-radius:10px;padding:0.75rem;font-weight:700;font-size:0.9rem;cursor:pointer;">Review Medication Record</button>
                   </div>
                 </div>
               </div>
@@ -836,56 +852,56 @@
         </div>
       </section>
 
-      <!-- 5. Lab Management -->
+      <!-- 5. Result management -->
       <section class="clin-section" id="labs">
         <div class="wrap">
           <div class="detail-split">
             <div>
-              <span class="section-badge">Lab Management</span>
-              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Integrated Lab Ordering &amp;<br>Result Management</h2>
-              <p style="color:var(--muted);line-height:1.7;">HL7 v2.x bidirectional integration with major reference labs. Derm-specific order sets built in — from skin biopsies to biologic monitoring panels. Results flow directly into the patient chart.</p>
+              <span class="section-badge">Results &amp; Follow-Up</span>
+              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Lab &amp; Pathology<br>Result Tracking</h2>
+              <p style="color:var(--muted);line-height:1.7;">Keep orders, received results, provider review, patient notification, and follow-up tasks connected to the chart. Connection requirements are scoped during implementation.</p>
               <ul class="detail-list">
-                <li>HL7 v2.x bidirectional lab integration</li>
-                <li>Quest, LabCorp, and regional lab support</li>
-                <li>One-tap derm order sets</li>
-                <li>Automatic result routing to provider</li>
-                <li>Critical value alerts</li>
-                <li>Trending graphs for serial labs</li>
+                <li>Dermatology-specific order lists</li>
+                <li>Result status and due-date tracking</li>
+                <li>Provider review queues</li>
+                <li>Patient notification documentation</li>
+                <li>Follow-up and recall tasks</li>
+                <li>Serial result views for clinician review</li>
               </ul>
             </div>
             <div class="lab-order-grid">
               <div class="lab-order-card">
                 <div class="lab-order-left">
-                  <h4>Skin Biopsy Panel</h4>
-                  <p>H&amp;E, special stains, immunohistochemistry (Melan-A, S100, CD117)</p>
+                  <h3>Pathology Order</h3>
+                  <p>Specimen, site, order status, result status, and clinician review.</p>
                 </div>
                 <span class="lab-order-badge lab-badge-derm">Derm Path</span>
               </div>
               <div class="lab-order-card">
                 <div class="lab-order-left">
-                  <h4>Biologic Monitoring</h4>
-                  <p>CBC with diff, CMP, LFTs — Dupixent, Skyrizi, Taltz monitoring</p>
+                  <h3>Treatment Monitoring</h3>
+                  <p>Recurring order schedule, results received, and next review date.</p>
                 </div>
                 <span class="lab-order-badge lab-badge-monitor">Monitoring</span>
               </div>
               <div class="lab-order-card">
                 <div class="lab-order-left">
-                  <h4>Accutane / iPLEDGE Panel</h4>
-                  <p>Pregnancy test (urine hCG), fasting lipids, LFTs — monthly</p>
+                  <h3>Recurring Lab Panel</h3>
+                  <p>Configurable test list, due date, completion status, and follow-up.</p>
                 </div>
-                <span class="lab-order-badge lab-badge-accutane">REMS Required</span>
+                <span class="lab-order-badge lab-badge-accutane">Scheduled</span>
               </div>
               <div class="lab-order-card">
                 <div class="lab-order-left">
-                  <h4>Autoimmune Panel</h4>
-                  <p>ANA, anti-dsDNA, C3/C4, CRP, ESR — lupus/connective tissue</p>
+                  <h3>Diagnostic Workup</h3>
+                  <p>Related orders grouped together with a shared review task.</p>
                 </div>
                 <span class="lab-order-badge lab-badge-auto">Autoimmune</span>
               </div>
               <div class="lab-order-card">
                 <div class="lab-order-left">
-                  <h4>Patch Test Panel</h4>
-                  <p>TRUE Test 35-allergen, extended series, or custom panels</p>
+                  <h3>Patch Testing</h3>
+                  <p>Panel selection, application dates, readings, and documented results.</p>
                 </div>
                 <span class="lab-order-badge lab-badge-patch">Allergy</span>
               </div>
@@ -899,8 +915,8 @@
         <div class="wrap">
           <div class="clin-section-header">
             <span class="section-badge">Clinical Photography</span>
-            <h2>Medical-Grade Clinical Photography</h2>
-            <p>Standardized photo protocols, dermoscopy integration, and AI-assisted comparison — all attached directly to the patient chart and lesion record.</p>
+            <h2>Clinical Photography</h2>
+            <p>Standardized photo protocols, dermoscopy images, and visit-to-visit comparison attached directly to the patient chart and lesion record.</p>
           </div>
           <div class="photo-grid">
             <div class="photo-card">
@@ -942,7 +958,7 @@
           </div>
           <div style="text-align:center;margin-top:2rem;padding:1.5rem;background:var(--primary-light);border-radius:14px;max-width:600px;margin-left:auto;margin-right:auto;">
             <p style="margin:0;color:var(--primary-dark);font-weight:600;font-size:0.92rem;">
-              <span style="font-size:1.1rem;">✦</span>&nbsp; AI-Assisted Photo Comparison — automatically highlights differences between visit photos and flags new or changed lesions for provider review.
+              <span style="font-size:1.1rem;">✦</span>&nbsp; Visit-to-Visit Comparison — review photographs side by side with dates, lesion references, and documented measurements.
             </p>
           </div>
         </div>
@@ -956,7 +972,7 @@
           <p>See how Nuvora Health's clinical tools transform the daily workflow in a dermatology practice. Book a 30-minute demo.</p>
           <div class="clin-cta-btns">
             <a href="contact.html" class="btn btn-primary btn-lg">
-              <span>Schedule a Demo</span>
+              <span>Request a Demo</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <a href="billing.html" class="btn btn-secondary">Explore Billing &amp; RCM &rarr;</a>
@@ -980,6 +996,10 @@
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="resources.html">Resources</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="security.html">Security</a>
           </div>
           <div class="footer-contact">
             <a href="tel:541-231-8693">541-231-8693</a>
@@ -988,21 +1008,10 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+          <p>&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
-    <script>
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      if (navToggle) {
-        navToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          navToggle.classList.toggle('active');
-        });
-      }
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>

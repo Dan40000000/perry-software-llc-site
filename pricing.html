@@ -3,26 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pricing | Nuvora Health</title>
-    <meta name="description" content="Transparent, affordable pricing for Nuvora Health practice management. Contact us for a custom quote tailored to your practice size and needs." />
+    <title>Practice Management Pricing | Nuvora Health</title>
+    <meta name="description" content="Review Nuvora Health planning rates for providers, staff users, and locations, then request a quote based on your practice and implementation scope." />
+    <link rel="canonical" href="https://perrysoftwarellc.com/pricing.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nuvora Health" />
+    <meta property="og:title" content="Practice Management Pricing | Nuvora Health" />
+    <meta property="og:description" content="Clear planning rates and a straightforward calculator for medical practices." />
+    <meta property="og:url" content="https://perrysoftwarellc.com/pricing.html" />
+    <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/financial-dashboard.png" />
+    <meta property="og:image:alt" content="Illustrative Nuvora Health revenue workflow dashboard" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Practice Management Pricing | Nuvora Health" />
+    <meta name="twitter:description" content="Clear planning rates and a calculator for medical practices." />
+    <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/financial-dashboard.png" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="styles.css?v=nuvora-blue-quote-20260515" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-trust-20260817" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="site.js" defer></script>
   </head>
   <body>
     <!-- Navigation -->
     <nav class="main-nav">
       <div class="nav-wrap">
-        <a href="index.html" class="nav-logo">Nuvora Health</a>
-        <button class="nav-toggle" aria-label="Toggle menu">
+        <a href="index.html" class="nav-logo"><img src="assets/logo.svg" alt="" width="46" height="46"><span class="nav-wordmark">Nuvora Health</span></a>
+        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <ul class="nav-links" style="gap:1.6rem">
+        <ul id="primary-navigation" class="nav-links" style="gap:1.6rem">
           <li><a href="index.html">Home</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="clinical.html">Clinical</a></li>
@@ -31,16 +44,17 @@
           <li><a href="about.html">About</a></li>
           <li><a href="account/">Account Login</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li class="mobile-nav-demo"><a href="contact.html">Request a Demo</a></li>
         </ul>
-        <a href="contact.html" class="nav-cta">Request Demo</a>
+        <a href="contact.html" class="nav-cta">Request a Demo</a>
       </div>
     </nav>
 
     <!-- Page Header -->
     <header class="page-header">
       <div class="wrap">
-        <h1>Simple, Transparent Pricing</h1>
-        <p>Enterprise features with straightforward pricing. No hidden fees, no surprises.</p>
+        <h1>Clear Planning Rates</h1>
+        <p>Build a non-binding planning scenario, then request a written quote for your selected scope.</p>
       </div>
     </header>
 
@@ -48,19 +62,19 @@
       <section class="pricing-section">
         <div class="wrap">
           <div class="pricing-card">
-            <h2>Custom Pricing for Your Practice</h2>
-            <p class="price">Tailored to your size and needs</p>
-            <p>We believe every practice is unique. That's why we create custom pricing based on your specific requirements — not a one-size-fits-all approach that leaves you paying for features you don't need.</p>
+            <h2>A Quote Built Around Your Practice</h2>
+            <p class="price">Users, locations, modules, and implementation scope</p>
+            <p>The calculator below uses published planning rates. Your final quote documents the selected modules, users, locations, migration and onboarding work, support, external connections, and contract terms.</p>
 
             <ul class="pricing-features">
-              <li>All features included — no tiered limitations</li>
-              <li>Unlimited users</li>
-              <li>Full-service data migration available</li>
-              <li>Comprehensive onboarding and training</li>
-              <li>Unlimited support (phone, email, chat)</li>
-              <li>No long-term contracts required</li>
-              <li>Transparent pricing — no hidden charges</li>
-              <li>HIPAA compliant infrastructure included</li>
+              <li>Core platform modules listed in your quote</li>
+              <li>Provider, staff-user, and location rates itemized</li>
+              <li>Migration and onboarding scope defined in writing</li>
+              <li>Training format and attendance plan documented</li>
+              <li>Support channels and service terms documented</li>
+              <li>External services and connection work identified</li>
+              <li>Contract terms reviewed before approval</li>
+              <li>Final total presented before work begins</li>
             </ul>
 
             <a href="contact.html" class="btn btn-primary" style="margin-top: 2rem;">Get Your Custom Quote</a>
@@ -68,14 +82,15 @@
 
           <section class="quote-calculator" aria-labelledby="quote-calculator-title">
             <div class="quote-copy">
-              <span class="section-badge">Quick Quote Calculator</span>
-              <h2 id="quote-calculator-title">See the savings in under 30 seconds.</h2>
+              <span class="section-badge">Planning Calculator</span>
+              <h2 id="quote-calculator-title">Build a monthly planning scenario.</h2>
               <p>
                 Enter a few practice details and compare your estimated current monthly software
-                spend against a planning estimate for Nuvora Health.
+                spend with a planning-rate scenario for Nuvora Health.
               </p>
               <p class="quote-disclaimer">
-                Planning estimate only. Final pricing depends on modules, migration scope, integrations,
+                Illustrative planning calculation only—not a quote, savings guarantee, or customer result.
+                Final pricing depends on selected modules, migration scope, external connections,
                 contract terms, and support requirements.
               </p>
             </div>
@@ -110,7 +125,7 @@
 
               <div class="quote-results" aria-live="polite">
                 <div class="quote-result-main">
-                  <span>Estimated annual savings</span>
+                  <span>Estimated annual difference</span>
                   <strong id="quote-annual-savings">$0</strong>
                 </div>
                 <div class="quote-result-grid">
@@ -123,11 +138,11 @@
                     <strong id="quote-nuvora-monthly">$0</strong>
                   </div>
                   <div>
-                    <span>Monthly savings</span>
+                    <span>Monthly difference</span>
                     <strong id="quote-monthly-savings">$0</strong>
                   </div>
                   <div>
-                    <span>Estimated lower</span>
+                    <span>Estimated difference</span>
                     <strong id="quote-percent-savings">0%</strong>
                   </div>
                 </div>
@@ -146,36 +161,36 @@
 
           <div class="pricing-compare">
             <div class="section-header" style="margin-top: 5rem;">
-              <h2>Why Our Pricing Works</h2>
+              <h2>What Makes a Useful Quote</h2>
             </div>
             <div class="benefits-grid">
               <div class="benefit-item">
                 <div class="benefit-icon">
                   <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
-                <h3>Predictable Pricing</h3>
-                <p>Know exactly what you're paying. No surprise charges or hidden fees down the road.</p>
+                <h3>Itemized Scope</h3>
+                <p>See the included modules, users, locations, services, and one-time work before approval.</p>
               </div>
               <div class="benefit-item">
                 <div class="benefit-icon">
                   <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
-                <h3>Everything Included</h3>
-                <p>Scheduling, documentation, billing, patient portal, telehealth, analytics — all in one price.</p>
+                <h3>Selected Modules</h3>
+                <p>Choose the workflows your practice needs and have each selected module listed in the quote.</p>
               </div>
               <div class="benefit-item">
                 <div class="benefit-icon">
                   <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
-                <h3>No Lock-In</h3>
-                <p>Month-to-month available. We earn your business every month, not through contracts.</p>
+                <h3>Documented Terms</h3>
+                <p>Review contract length, billing schedule, external costs, and service terms before signing.</p>
               </div>
               <div class="benefit-item">
                 <div class="benefit-icon">
                   <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
-                <h3>Seamless Migration</h3>
-                <p>We handle moving your data from your current system — no disruption to your practice.</p>
+                <h3>Defined Transition</h3>
+                <p>Source-system review, migration scope, responsibilities, timing, training, and validation are planned together.</p>
               </div>
             </div>
           </div>
@@ -186,7 +201,7 @@
       <section class="cta-section">
         <div class="wrap">
           <h2>Let's Talk Numbers</h2>
-          <p>Tell us about your practice and we'll put together a custom quote within 24 hours.</p>
+          <p>Tell us about your practice and we will prepare the questions needed for a complete written quote.</p>
           <div class="cta-group" style="justify-content: center;">
             <a href="contact.html" class="btn btn-primary">Get a Quote</a>
             <a href="tel:541-231-8693" class="btn btn-secondary">
@@ -214,6 +229,10 @@
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="resources.html">Resources</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="security.html">Security</a>
           </div>
           <div class="footer-contact">
             <a href="tel:541-231-8693">541-231-8693</a>
@@ -222,22 +241,12 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+          <p>&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
     <script>
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      if (navToggle) {
-        navToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          navToggle.classList.toggle('active');
-        });
-      }
-      document.getElementById('year').textContent = new Date().getFullYear();
-
       const quoteConfig = {
         nuvoraProvider: 399,
         nuvoraStaff: 49,
@@ -284,9 +293,9 @@
 
         const currentMonthly = (providers * currentProvider) + (staff * currentUser) + currentFees;
         const nuvoraMonthly = (providers * quoteConfig.nuvoraProvider) + (staff * quoteConfig.nuvoraStaff) + (locations * quoteConfig.nuvoraLocation);
-        const monthlySavings = Math.max(0, currentMonthly - nuvoraMonthly);
+        const monthlySavings = currentMonthly - nuvoraMonthly;
         const annualSavings = monthlySavings * 12;
-        const percentSavings = currentMonthly > 0 ? Math.max(0, Math.round((monthlySavings / currentMonthly) * 100)) : 0;
+        const percentSavings = currentMonthly > 0 ? Math.round((monthlySavings / currentMonthly) * 100) : 0;
 
         quoteOutputs.currentMonthly.textContent = money.format(currentMonthly);
         quoteOutputs.nuvoraMonthly.textContent = money.format(nuvoraMonthly);
@@ -300,9 +309,9 @@
           `Locations: ${locations}`,
           `Current estimated monthly spend: ${money.format(currentMonthly)}`,
           `Nuvora estimated monthly spend: ${money.format(nuvoraMonthly)}`,
-          `Estimated monthly savings: ${money.format(monthlySavings)}`,
-          `Estimated annual savings: ${money.format(annualSavings)}`,
-          `Estimator assumptions: $399/provider/mo, $49/staff user/mo, $149/location/mo.`
+          `Estimated monthly difference: ${money.format(monthlySavings)}`,
+          `Estimated annual difference: ${money.format(annualSavings)}`,
+          `Planning assumptions: $399/provider/mo, $49/staff user/mo, $149/location/mo. Final pricing requires a written quote.`
         ].join('\n');
 
         return summary;

@@ -3,17 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nuvora Health | Operating System for Modern Medical Offices</title>
+    <title>Dermatology EHR &amp; Practice Management | Nuvora Health</title>
     <meta
       name="description"
-      content="Nuvora Health is a modern operating platform for medical offices, connecting scheduling, documentation, patient communication, revenue workflow, and support."
+      content="Nuvora Health brings scheduling, dermatology documentation, patient communication, billing workflows, payments, and follow-up into one modern practice platform."
     />
+    <meta name="theme-color" content="#031022" />
+    <link rel="canonical" href="https://perrysoftwarellc.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nuvora Health" />
+    <meta property="og:title" content="Dermatology EHR &amp; Practice Management | Nuvora Health" />
+    <meta property="og:description" content="A connected practice platform for scheduling, dermatology documentation, patient communication, billing, payments, and follow-up." />
+    <meta property="og:url" content="https://perrysoftwarellc.com/" />
+    <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/schedule-page.png" />
+    <meta property="og:image:alt" content="Illustrative Nuvora Health scheduling workflow screen" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dermatology EHR &amp; Practice Management | Nuvora Health" />
+    <meta name="twitter:description" content="A connected practice platform for independent dermatology and medical practices." />
+    <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/schedule-page.png" />
+    <meta name="twitter:image:alt" content="Illustrative Nuvora Health scheduling workflow screen" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="styles.css?v=nuvora-blue-quote-20260515" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-trust-20260817" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="site.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://perrysoftwarellc.com/#organization",
+            "name": "Perry Software LLC",
+            "brand": { "@type": "Brand", "name": "Nuvora Health" },
+            "url": "https://perrysoftwarellc.com/",
+            "logo": "https://perrysoftwarellc.com/assets/logo.svg",
+            "email": "dan@perrysoftwarellc.com",
+            "telephone": "+1-541-231-8693",
+            "areaServed": "US"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://perrysoftwarellc.com/#website",
+            "url": "https://perrysoftwarellc.com/",
+            "name": "Nuvora Health",
+            "publisher": { "@id": "https://perrysoftwarellc.com/#organization" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Nuvora Health",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "description": "A connected EHR and practice management platform for dermatology and medical practices.",
+            "url": "https://perrysoftwarellc.com/",
+            "publisher": { "@id": "https://perrysoftwarellc.com/#organization" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <!-- Navigation -->
@@ -62,12 +111,12 @@
           </svg>
           <span class="nav-wordmark">Nuvora Health</span>
         </a>
-        <button class="nav-toggle" aria-label="Toggle menu">
+        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <ul class="nav-links" style="gap:1.6rem">
+        <ul id="primary-navigation" class="nav-links" style="gap:1.6rem">
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="clinical.html">Clinical</a></li>
@@ -76,8 +125,9 @@
           <li><a href="about.html">About</a></li>
           <li><a href="account/">Account Login</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li class="mobile-nav-demo"><a href="contact.html">Request a Demo</a></li>
         </ul>
-        <a href="contact.html" class="nav-cta">Get a Demo</a>
+        <a href="contact.html" class="nav-cta">Request a Demo</a>
       </div>
     </nav>
 
@@ -94,10 +144,8 @@
           <span class="pulse"></span>
           Medical office operating platform
         </div>
-        <div style="display:inline-flex;align-items:center;gap:0.75rem;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:0.45rem 1.2rem;margin-bottom:1.5rem;font-size:0.82rem;flex-wrap:wrap;justify-content:center;gap:0.5rem 0.9rem;">
-          <span style="color:#94a3b8;">Typical EHR:</span>
-          <s style="color:#94a3b8;text-decoration-color:rgba(239,68,68,0.8);">~$2,500&nbsp;/&nbsp;provider&nbsp;/&nbsp;month</s>
-          <span style="color:#38bdf8;font-weight:600;">Nuvora: less than half that ↓</span>
+        <div style="display:inline-flex;align-items:center;gap:0.75rem;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:0.45rem 1.2rem;margin-bottom:1.5rem;font-size:0.82rem;flex-wrap:wrap;justify-content:center;">
+          <span style="color:#d9efff;font-weight:600;">Scheduling · Clinical · Billing · Patient Engagement</span>
         </div>
         <h1>One system for the<br><span class="gradient-text">medical office day.</span></h1>
         <p class="lead">
@@ -135,8 +183,8 @@
             </div>
             <div class="console-card">
               <span>09:22</span>
-              <strong>AI note draft</strong>
-              <p>Summary, plan, orders, follow-up</p>
+              <strong>Visit note ready</strong>
+              <p>Documentation, plan, orders, follow-up</p>
             </div>
             <div class="console-card">
               <span>09:40</span>
@@ -149,21 +197,21 @@
           <div class="switch-banner-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <p>We know switching feels like a massive headache — <strong>so we handle every part of your migration for you.</strong> Your team just shows up on day one.</p>
+          <p>Switching systems is serious work. <strong>We coordinate the migration plan, configuration, training, and go-live with your team.</strong></p>
           <a href="migration.html" class="switch-banner-link">See how it works &rarr;</a>
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <span class="stat-number">2-4</span>
-            <span class="stat-label">Week Implementation</span>
+            <span class="stat-number">Guided</span>
+            <span class="stat-label">Implementation</span>
           </div>
           <div class="hero-stat">
-            <span class="stat-number">24hr</span>
-            <span class="stat-label">Response Time</span>
+            <span class="stat-number">Direct</span>
+            <span class="stat-label">Team Support</span>
           </div>
           <div class="hero-stat">
-            <span class="stat-number">100%</span>
-            <span class="stat-label">US-Based Support</span>
+            <span class="stat-number">Clear</span>
+            <span class="stat-label">Pricing Scope</span>
           </div>
         </div>
       </div>
@@ -175,9 +223,9 @@
       <section class="migration">
         <div class="wrap">
           <div class="section-header">
-            <span class="section-badge">Our Biggest Differentiator</span>
-            <h2>We Handle <span class="gradient-text">Your Entire Migration.</span></h2>
-            <p>Most EHR vendors hand you a manual and wish you luck. We take care of every single piece — your team doesn't lift a finger.</p>
+            <span class="section-badge">A Guided Transition</span>
+            <h2>A Migration Plan <span class="gradient-text">Built Around Your Practice.</span></h2>
+            <p>We review your source system, define the agreed data scope, configure workflows, train users, and plan go-live with clear checkpoints.</p>
           </div>
 
           <div class="migration-cards">
@@ -185,69 +233,69 @@
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
               </div>
-              <h3>Complete Data Extraction</h3>
-              <p>Every patient, note, record, and schedule pulled from your old system. Nothing left behind.</p>
+              <h3>Source Data Review</h3>
+              <p>We inventory the records and workflows in scope before migration work begins.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
               </div>
               <h3>Data Cleaning &amp; Import</h3>
-              <p>We verify, clean, and map every record into Nuvora Health. Zero manual data entry for your team.</p>
+              <p>Records are mapped to the agreed structure and reviewed through defined validation checkpoints.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               </div>
-              <h3>Full System Configuration</h3>
-              <p>Templates, workflows, and preferences — configured exactly how your practice works, before day one.</p>
+              <h3>Workflow Configuration</h3>
+              <p>Templates, roles, schedules, and preferences are configured around the workflow reviewed with your team.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               </div>
               <h3>Hands-On Staff Training</h3>
-              <p>On-site or remote. We train until every person on your team is genuinely confident.</p>
+              <p>Role-based training helps providers and staff prepare for the workflows they will use.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </div>
-              <h3>On-Call Go-Live Support</h3>
-              <p>Nights and weekends your entire first week. Real humans with immediate answers, not a ticket queue.</p>
+              <h3>Go-Live Support</h3>
+              <p>Support coverage and escalation paths are defined in your implementation plan.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
-              <h3>Integration Setup</h3>
-              <p>Labs, pharmacies, and clearinghouses — wired up and working from day one, not day sixty.</p>
+              <h3>Connection Planning</h3>
+              <p>Required workflow connections are reviewed, scoped, and documented before implementation.</p>
             </div>
           </div>
 
           <div class="migration-promise">
-            <p class="migration-promise-eyebrow">Your team's only job</p>
-            <h3 class="migration-promise-headline">Just show up and<br>see your patients.</h3>
-            <p class="migration-promise-sub">No IT work. No data entry. No learning a new system on your own.<br>We handle the entire transition so your practice never misses a beat.</p>
+            <p class="migration-promise-eyebrow">A clear path forward</p>
+            <h3 class="migration-promise-headline">Plan carefully.<br>Validate thoroughly.</h3>
+            <p class="migration-promise-sub">Scope, timing, responsibilities, validation, training, and support are documented with your team before cutover.</p>
             <div class="migration-promise-stats">
               <div class="migration-stat">
-                <strong>2–4</strong>
-                <span>Weeks to go live</span>
+                <strong>Scoped</strong>
+                <span>Migration plan</span>
               </div>
               <div class="migration-stat-divider"></div>
               <div class="migration-stat">
-                <strong>0</strong>
-                <span>IT hours for you</span>
+                <strong>Mapped</strong>
+                <span>Data workflow</span>
               </div>
               <div class="migration-stat-divider"></div>
               <div class="migration-stat">
-                <strong>100%</strong>
-                <span>Data migrated</span>
+                <strong>Reviewed</strong>
+                <span>Validation steps</span>
               </div>
               <div class="migration-stat-divider"></div>
               <div class="migration-stat">
-                <strong>24/7</strong>
-                <span>Go-live support</span>
+                <strong>Defined</strong>
+                <span>Support coverage</span>
               </div>
             </div>
             <a href="contact.html" class="btn btn-primary">Talk to Us About Your Migration</a>
@@ -261,16 +309,16 @@
         <div class="wrap">
           <div class="problem-grid">
             <div class="problem-content">
-              <span class="section-badge">Sound Familiar?</span>
-              <h2>We've Heard It All Before</h2>
+              <span class="section-badge">Common Practice Challenges</span>
+              <h2>Why Teams Revisit Their Workflow</h2>
               <div class="problem-list">
                 <div class="problem-item">
                   <div class="problem-icon problem-icon-bad">
                     <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
                   </div>
                   <div>
-                    <strong>"Support is insanely expensive"</strong>
-                    <p>Tacked-on fees for basic help, premium tiers just to get a human on the phone</p>
+                    <strong>Unclear support scope</strong>
+                    <p>Teams need to know who to contact, what is included, and how issues are escalated.</p>
                   </div>
                 </div>
                 <div class="problem-item">
@@ -278,8 +326,8 @@
                     <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
                   </div>
                   <div>
-                    <strong>"Responses take days — sometimes weeks"</strong>
-                    <p>Tickets go into a black hole. Meanwhile your practice is stuck waiting</p>
+                    <strong>Slow operational handoffs</strong>
+                    <p>Unclear ownership can leave scheduling, clinical, and billing work waiting for the next person.</p>
                   </div>
                 </div>
                 <div class="problem-item">
@@ -287,8 +335,8 @@
                     <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
                   </div>
                   <div>
-                    <strong>"The migration was an absolute nightmare"</strong>
-                    <p>Months of manual data entry, lost records, and a team left figuring it out alone</p>
+                    <strong>Migration demands careful planning</strong>
+                    <p>Data scope, validation, training, and cutover responsibilities need to be clear before go-live.</p>
                   </div>
                 </div>
                 <div class="problem-item">
@@ -296,8 +344,8 @@
                     <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
                   </div>
                   <div>
-                    <strong>"We're juggling four different systems"</strong>
-                    <p>One for scheduling, one for billing, one for docs, one for patients — none of them talk to each other</p>
+                    <strong>Too many disconnected tools</strong>
+                    <p>Scheduling, documentation, billing, and patient communication are harder when context is split.</p>
                   </div>
                 </div>
               </div>
@@ -311,8 +359,8 @@
                     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <div>
-                    <strong>Support included — no extra fees</strong>
-                    <p>Real US-based humans available by phone or chat. It's part of your plan, not an upsell</p>
+                    <strong>Support scope documented</strong>
+                    <p>Your quote explains included support channels, coverage, and escalation paths.</p>
                   </div>
                 </div>
                 <div class="problem-item">
@@ -320,8 +368,8 @@
                     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <div>
-                    <strong>Answers in hours, not days</strong>
-                    <p>24-hour response SLA. If it's urgent, we pick up the phone</p>
+                    <strong>Direct access to our team</strong>
+                    <p>Questions are routed to people who understand the platform and your implementation.</p>
                   </div>
                 </div>
                 <div class="problem-item">
@@ -329,8 +377,8 @@
                     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <div>
-                    <strong>We handle your entire migration</strong>
-                    <p>Data extraction, cleaning, import, training. Your team doesn't touch a thing</p>
+                    <strong>Guided migration</strong>
+                    <p>Source review, mapping, validation, training, and cutover planning are coordinated with your team.</p>
                   </div>
                 </div>
                 <div class="problem-item">
@@ -338,8 +386,8 @@
                     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <div>
-                    <strong>One platform. Everything included.</strong>
-                    <p>Scheduling, documentation, billing, patient portal, and analytics — all in one place, all talking to each other</p>
+                    <strong>Connected daily workflows</strong>
+                    <p>Scheduling, documentation, billing, patient engagement, and reporting share one consistent workspace.</p>
                   </div>
                 </div>
               </div>
@@ -354,7 +402,7 @@
           <div class="section-header">
             <span class="section-badge">Complete Platform</span>
             <h2>Everything You Need. Nothing You Don't.</h2>
-            <p>One platform for scheduling, documentation, billing, and patient engagement. No modules to buy, no add-ons to negotiate.</p>
+            <p>One platform for scheduling, documentation, billing, and patient engagement. Your quote clearly lists the included scope.</p>
           </div>
           <div class="features-grid">
             <div class="feature-card">
@@ -369,7 +417,7 @@
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               </div>
               <h3>Clinical Documentation</h3>
-              <p>Touch-friendly charting, customizable templates, voice dictation, and smart macros that save hours.</p>
+              <p>Touch-friendly charting, customizable templates, voice dictation, and reusable documentation macros.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
@@ -389,8 +437,8 @@
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
               </div>
-              <h3>Integrated Telehealth</h3>
-              <p>HIPAA-compliant video visits with virtual waiting room, screen sharing, and automatic documentation.</p>
+              <h3>Video Visit Workflow</h3>
+              <p>Video visits with a virtual waiting room and documentation linked to the patient workflow.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
@@ -410,23 +458,24 @@
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
-              <h3>HIPAA Compliant</h3>
-              <p>Enterprise-grade encryption, audit logging, role-based access, and regular security assessments.</p>
+              <h3>Security &amp; Access Controls</h3>
+              <p>Role-based access, audit logging, and encryption controls support responsible medical-office operations. <a href="security.html">Review our security approach.</a></p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- AI Features Strip -->
-      <section class="ai-strip-section">
+      <!-- Clinical workflow strip -->
+      <section class="workflow-strip-section">
         <style>
-          .ai-strip-section {
+          .workflow-strip-section {
             background: var(--primary-light);
             padding: 5rem 2rem;
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
+            overflow: hidden;
           }
-          .ai-strip-badge {
+          .workflow-strip-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -440,23 +489,23 @@
             border-radius: 100px;
             margin-bottom: 1rem;
           }
-          .ai-strip-badge-dot {
+          .workflow-strip-badge-dot {
             width: 7px; height: 7px;
             border-radius: 50%;
             background: #fff;
-            animation: ai-pulse 2s ease-in-out infinite;
+            animation: workflow-pulse 2s ease-in-out infinite;
           }
-          @keyframes ai-pulse {
+          @keyframes workflow-pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(0.7); }
           }
-          .ai-cards-grid {
+          .workflow-cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 1.75rem;
             margin-top: 3rem;
           }
-          .ai-card {
+          .workflow-card {
             background: #fff;
             border-radius: 18px;
             padding: 2.25rem;
@@ -465,14 +514,14 @@
             position: relative;
             overflow: hidden;
           }
-          .ai-card::before {
+          .workflow-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 3px;
             background: var(--gradient-1);
           }
-          .ai-card-icon {
+          .workflow-card-icon {
             width: 48px; height: 48px;
             border-radius: 12px;
             background: var(--primary-light);
@@ -481,42 +530,42 @@
             justify-content: center;
             margin-bottom: 1.25rem;
           }
-          .ai-card-icon svg { color: var(--primary); }
-          .ai-card h3 {
+          .workflow-card-icon svg { color: var(--primary); }
+          .workflow-card h3 {
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--text);
             margin: 0 0 0.4rem;
           }
-          .ai-card-powered {
+          .workflow-card-detail {
             font-size: 0.75rem;
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 0.85rem;
             letter-spacing: 0.02em;
           }
-          .ai-card p {
+          .workflow-card p {
             font-size: 0.92rem;
             color: var(--muted);
             line-height: 1.7;
             margin: 0 0 1.25rem;
           }
-          .ai-card-stats {
+          .workflow-card-stats {
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
           }
-          .ai-stat {
+          .workflow-stat {
             display: flex;
             flex-direction: column;
           }
-          .ai-stat strong {
+          .workflow-stat strong {
             font-size: 1.3rem;
             font-weight: 800;
             color: var(--primary);
             line-height: 1;
           }
-          .ai-stat span {
+          .workflow-stat span {
             font-size: 0.73rem;
             color: var(--muted);
             margin-top: 0.2rem;
@@ -524,61 +573,61 @@
         </style>
         <div class="wrap">
           <div class="section-header">
-            <span class="ai-strip-badge">
-              <span class="ai-strip-badge-dot"></span>
-              ✦ AI-Powered
+            <span class="workflow-strip-badge">
+              <span class="workflow-strip-badge-dot"></span>
+              Connected Workflows
             </span>
-            <h2>AI That Actually <span class="gradient-text">Saves You Time</span></h2>
-            <p>Not buzzwords — real automation built into your daily clinical workflow using OpenAI Whisper and Claude AI.</p>
+            <h2>Documentation and Follow-Up <span class="gradient-text">Stay Organized</span></h2>
+            <p>Structured tools keep visit documentation, authorization work, and next steps connected to the patient record.</p>
           </div>
-          <div class="ai-cards-grid">
-            <div class="ai-card">
-              <div class="ai-card-icon">
+          <div class="workflow-cards-grid">
+            <div class="workflow-card">
+              <div class="workflow-card-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
               </div>
-              <h3>AI Ambient Scribe</h3>
-              <p class="ai-card-powered">Powered by OpenAI Whisper + Claude AI</p>
-              <p>Records your visit audio, transcribes in real time, and automatically generates a structured SOAP note draft — HPI, Assessment, and Plan — ready for your review in under 90 seconds.</p>
-              <div class="ai-card-stats">
-                <div class="ai-stat">
-                  <strong>2 hrs</strong>
-                  <span>Saved per day</span>
+              <h3>Structured Visit Documentation</h3>
+              <p class="workflow-card-detail">Templates, Macros &amp; Review</p>
+              <p>Organize HPI, exam findings, assessment, plan, orders, and follow-up in a consistent note workflow that remains under clinician control.</p>
+              <div class="workflow-card-stats">
+                <div class="workflow-stat">
+                  <strong>SOAP</strong>
+                  <span>Structured sections</span>
                 </div>
-                <div class="ai-stat">
-                  <strong>90 sec</strong>
-                  <span>Review time</span>
+                <div class="workflow-stat">
+                  <strong>Review</strong>
+                  <span>Clinician controlled</span>
                 </div>
-                <div class="ai-stat">
-                  <strong>96%</strong>
-                  <span>Accuracy rate</span>
+                <div class="workflow-stat">
+                  <strong>Sign</strong>
+                  <span>Clear completion</span>
                 </div>
               </div>
             </div>
-            <div class="ai-card">
-              <div class="ai-card-icon">
+            <div class="workflow-card">
+              <div class="workflow-card-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
               </div>
-              <h3>Prior Auth AI Letters</h3>
-              <p class="ai-card-powered">Payer-Specific Medical Necessity, Automated</p>
-              <p>Automatically detects prior authorization requirements, assembles the clinical documentation, and generates a complete payer-specific medical necessity letter using AI. Turn weeks of back-and-forth into days.</p>
-              <div class="ai-card-stats">
-                <div class="ai-stat">
-                  <strong>Auto</strong>
-                  <span>PA detection</span>
+              <h3>Prior Authorization Workspace</h3>
+              <p class="workflow-card-detail">Evidence, Review &amp; Status</p>
+              <p>Collect supporting chart information, prepare the request for staff or provider review, and track submission status from one work queue.</p>
+              <div class="workflow-card-stats">
+                <div class="workflow-stat">
+                  <strong>Gather</strong>
+                  <span>Supporting records</span>
                 </div>
-                <div class="ai-stat">
-                  <strong>AI</strong>
-                  <span>Letter drafting</span>
+                <div class="workflow-stat">
+                  <strong>Review</strong>
+                  <span>Team checkpoints</span>
                 </div>
-                <div class="ai-stat">
-                  <strong>Days</strong>
-                  <span>Not weeks</span>
+                <div class="workflow-stat">
+                  <strong>Track</strong>
+                  <span>Request status</span>
                 </div>
               </div>
             </div>
           </div>
           <div style="text-align:center;margin-top:2.5rem;">
-            <a href="clinical.html" class="btn btn-primary">Explore Clinical AI Tools</a>
+            <a href="clinical.html" class="btn btn-primary">Explore Clinical Workflows</a>
             <a href="billing.html" class="btn btn-secondary" style="margin-left:1rem;">Billing &amp; RCM</a>
           </div>
         </div>
@@ -595,7 +644,7 @@
           <div class="showcase-grid">
             <div class="showcase-card">
               <div class="showcase-screen">
-                <img src="assets/screenshots/schedule-page.png" alt="Scheduling calendar" class="showcase-image">
+                <img src="assets/screenshots/schedule-page.webp" alt="Nuvora scheduling calendar interface" class="showcase-image" width="2400" height="1512" loading="lazy" decoding="async">
               </div>
               <div class="showcase-info">
                 <h3>Intuitive Scheduling</h3>
@@ -604,7 +653,7 @@
             </div>
             <div class="showcase-card">
               <div class="showcase-screen">
-                <img src="assets/screenshots/financial-dashboard.png" alt="Financial dashboard" class="showcase-image">
+                <img src="assets/screenshots/financial-dashboard.webp" alt="Nuvora financial dashboard interface with illustrative data" class="showcase-image" width="2376" height="1522" loading="lazy" decoding="async">
               </div>
               <div class="showcase-info">
                 <h3>Financial Intelligence</h3>
@@ -613,7 +662,7 @@
             </div>
             <div class="showcase-card">
               <div class="showcase-screen">
-                <img src="assets/screenshots/patients-page.png" alt="Patient records" class="showcase-image">
+                <img src="assets/screenshots/patients-page.webp" alt="Nuvora patient record interface with illustrative data" class="showcase-image" width="2400" height="1512" loading="lazy" decoding="async">
               </div>
               <div class="showcase-info">
                 <h3>Complete Patient Picture</h3>
@@ -621,50 +670,30 @@
               </div>
             </div>
           </div>
+          <p class="demo-disclaimer" style="text-align:center;margin-top:1.25rem;">Interface screenshots contain illustrative demonstration data and do not represent customer results.</p>
         </div>
       </section>
 
-      <!-- Testimonials Section -->
+      <!-- Practice workflow section -->
       <section class="testimonials">
         <div class="wrap">
           <div class="section-header">
-            <span class="section-badge">Real Results</span>
-            <h2>Practices Love Nuvora Health</h2>
-            <p>Don't take our word for it. Here's what our customers say.</p>
+            <span class="section-badge">Designed for the Workday</span>
+            <h2>Clarity Across the Practice</h2>
+            <p>Each role sees the information and next steps needed to keep the day moving.</p>
           </div>
-          <div class="testimonials-grid">
-            <div class="testimonial-card">
-              <div class="testimonial-stars">★★★★★</div>
-              <p class="testimonial-text">"The transition was seamless. We were up and running in just two weeks, and our staff actually enjoys using the system. That never happened with our old EHR."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">DR</div>
-                <div>
-                  <strong>Dr. Rebecca Martinez</strong>
-                  <span>Desert Medical Group, AZ</span>
-                </div>
-              </div>
+          <div class="proof-grid">
+            <div class="proof-card">
+              <h3>Front Desk Clarity</h3>
+              <p>Appointments, intake status, messages, balances, and checkout tasks stay visible in one workflow.</p>
             </div>
-            <div class="testimonial-card featured">
-              <div class="testimonial-stars">★★★★★</div>
-              <p class="testimonial-text">"Finally, an EHR that doesn't feel like it was built in 1999. The reporting tools have completely transformed how we run our practice."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">JK</div>
-                <div>
-                  <strong>Jennifer Kim, Practice Manager</strong>
-                  <span>Clearwater Specialty Clinic, FL</span>
-                </div>
-              </div>
+            <div class="proof-card">
+              <h3>Clinical Continuity</h3>
+              <p>Notes, photos, procedures, pathology follow-up, and recall activity remain connected to the patient record.</p>
             </div>
-            <div class="testimonial-card">
-              <div class="testimonial-stars">★★★★★</div>
-              <p class="testimonial-text">"The support team is incredible. When we have questions, we get real answers from real people — not ticket numbers and automated responses."</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">MS</div>
-                <div>
-                  <strong>Dr. Michael Stevens</strong>
-                  <span>Mountain View Medical Group, CO</span>
-                </div>
-              </div>
+            <div class="proof-card">
+              <h3>Revenue Visibility</h3>
+              <p>Claims, denials, payments, and A/R queues give billing teams a clear place to review work and status.</p>
             </div>
           </div>
         </div>
@@ -674,29 +703,29 @@
       <section class="implementation">
         <div class="wrap">
           <div class="section-header">
-            <h2>Go Live in Weeks, Not Months</h2>
-            <p>We handle the hard parts so you can focus on patients.</p>
+            <h2>A Defined Implementation Process</h2>
+            <p>Scope, responsibilities, validation, training, and support are agreed before go-live.</p>
           </div>
           <div class="implementation-steps">
             <div class="impl-step">
               <div class="impl-number">1</div>
               <h3>Discovery Call</h3>
-              <p>30-minute call to understand your practice, pain points, and goals. Zero pressure.</p>
+              <p>A focused conversation to understand your practice, priorities, and required workflows.</p>
             </div>
             <div class="impl-step">
               <div class="impl-number">2</div>
               <h3>Data Migration</h3>
-              <p>We extract and migrate your data from any system. Patients, schedules, billing history — all of it.</p>
+              <p>We review the source system, confirm the migration path, and define the data included in scope.</p>
             </div>
             <div class="impl-step">
               <div class="impl-number">3</div>
               <h3>Staff Training</h3>
-              <p>Hands-on training until everyone's comfortable. We don't leave until you're ready.</p>
+              <p>Role-based training prepares providers and staff for their day-to-day workflows.</p>
             </div>
             <div class="impl-step">
               <div class="impl-number">4</div>
               <h3>Go Live + Support</h3>
-              <p>We're on-call during your first week. Then unlimited support forever after.</p>
+              <p>The cutover plan includes validation checkpoints and documented support coverage.</p>
             </div>
           </div>
         </div>
@@ -712,28 +741,44 @@
           <div class="faq-grid">
             <div class="faq-item">
               <h3>What makes Nuvora Health different?</h3>
-              <p>We're a small team that actually uses the software we build. No bloated features, no corporate bureaucracy — just tools that work.</p>
+              <p>Nuvora connects the daily clinical, administrative, and revenue workflows that medical practices manage across the day.</p>
             </div>
             <div class="faq-item">
-              <h3>Can you really migrate our data?</h3>
-              <p>Yes. We've migrated from Epic, eClinicalWorks, athenahealth, Practice Fusion, and dozens of others. If it stores data, we can get it out.</p>
+              <h3>How do you evaluate a migration?</h3>
+              <p>We review your current system, data format, record volume, workflows, and timing before confirming the migration scope and plan.</p>
             </div>
             <div class="faq-item">
               <h3>What if we don't like it?</h3>
-              <p>Month-to-month means you can leave anytime. But with 95%+ retention, we're confident you'll stay.</p>
+              <p>Available contract terms and included services are documented in your quote before you approve the work.</p>
             </div>
             <div class="faq-item">
               <h3>Is my data secure?</h3>
-              <p>Enterprise-grade security with SOC 2 compliance, end-to-end encryption, and regular third-party audits. Your data is safer with us than on paper.</p>
+              <p>Nuvora uses layered access controls, encryption, and audit logging. <a href="security.html">Read our current security overview</a> and discuss requirements with our team.</p>
             </div>
             <div class="faq-item">
               <h3>What about training my staff?</h3>
-              <p>Training is included and unlimited. We train until your team is confident, and we're always available for refreshers.</p>
+              <p>Training scope, delivery format, and follow-up support are defined for your organization during implementation planning.</p>
             </div>
             <div class="faq-item">
-              <h3>Do you integrate with labs and pharmacies?</h3>
-              <p>Yes. We support all major lab interfaces, e-prescribing (including controlled substances), and connect via FHIR/HL7 with most health systems.</p>
+              <h3>Can you review our workflow requirements?</h3>
+              <p>Yes. Share your required workflows and connections, and we will document what is included in the proposed implementation.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resources Section -->
+      <section class="section">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-badge">Practice Resources</span>
+            <h2>Make a Better-Informed Software Decision</h2>
+            <p>Use these practical guides to evaluate workflow fit, pathology follow-up, and transition planning.</p>
+          </div>
+          <div class="resource-grid">
+            <a class="resource-card" href="dermatology-ehr.html"><h3>Dermatology EHR Evaluation Guide</h3><p>Compare clinical, administrative, billing, implementation, and security workflows.</p><span class="resource-link">Read the guide &rarr;</span></a>
+            <a class="resource-card" href="biopsy-pathology-tracking.html"><h3>Biopsy &amp; Pathology Tracking</h3><p>Map the handoffs from specimen documentation through results, notification, and follow-up.</p><span class="resource-link">Read the guide &rarr;</span></a>
+            <a class="resource-card" href="dermatology-ehr-migration-checklist.html"><h3>EHR Migration Checklist</h3><p>Plan source access, scope, mapping, validation, training, cutover, and support.</p><span class="resource-link">Use the checklist &rarr;</span></a>
           </div>
         </div>
       </section>
@@ -742,11 +787,11 @@
       <section class="final-cta">
         <div class="wrap">
           <div class="final-cta-content">
-            <h2>Ready for Software That Works?</h2>
-            <p>See why practices are switching to Nuvora Health. Get a personalized demo in 30 minutes.</p>
+            <h2>Review Nuvora Health With Your Workflows in Mind</h2>
+            <p>Request a personalized walkthrough for the clinical, administrative, and revenue work your team wants to evaluate.</p>
             <div class="cta-group">
               <a href="contact.html" class="btn btn-primary btn-lg">
-                <span>Schedule Your Demo</span>
+                <span>Request a Demo</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
               <a href="tel:541-231-8693" class="btn btn-secondary btn-lg">
@@ -755,7 +800,7 @@
                 </svg>
                 Call 541-231-8693
               </a>
-              <a href="pricing.html#quote-calculator-title" class="btn btn-secondary btn-lg">Calculate Savings</a>
+              <a href="pricing.html#quote-calculator-title" class="btn btn-secondary btn-lg">Build a Planning Scenario</a>
             </div>
             <p class="cta-note">No credit card required. No obligation. Just a conversation.</p>
           </div>
@@ -777,6 +822,10 @@
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="resources.html">Resources</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="security.html">Security</a>
           </div>
           <div class="footer-contact">
             <a href="tel:541-231-8693">541-231-8693</a>
@@ -785,23 +834,10 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+          <p>&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
-    <script>
-      // Mobile nav toggle
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      if (navToggle) {
-        navToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          navToggle.classList.toggle('active');
-        });
-      }
-
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>

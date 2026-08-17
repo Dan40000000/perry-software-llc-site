@@ -3,26 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Features | Nuvora Health</title>
-    <meta name="description" content="Explore Nuvora Health's comprehensive practice management features: scheduling, clinical documentation, billing, patient portal, telehealth, and more." />
+    <title>Dermatology Practice Management Features | Nuvora Health</title>
+    <meta name="description" content="Explore Nuvora Health features for scheduling, dermatology documentation, patient communication, billing workflows, reporting, and practice operations." />
+    <link rel="canonical" href="https://perrysoftwarellc.com/features.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nuvora Health" />
+    <meta property="og:title" content="Dermatology Practice Management Features | Nuvora Health" />
+    <meta property="og:description" content="Connected tools for the medical office day—from scheduling and clinical workflows to billing and follow-up." />
+    <meta property="og:url" content="https://perrysoftwarellc.com/features.html" />
+    <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/patients-page.png" />
+    <meta property="og:image:alt" content="Illustrative Nuvora Health patient workflow screen" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dermatology Practice Management Features | Nuvora Health" />
+    <meta name="twitter:description" content="Connected tools for scheduling, clinical workflows, billing, and follow-up." />
+    <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/patients-page.png" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="styles.css?v=nuvora-blue-quote-20260515" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-trust-20260817" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="site.js" defer></script>
   </head>
   <body>
     <!-- Navigation -->
     <nav class="main-nav">
       <div class="nav-wrap">
-        <a href="index.html" class="nav-logo">Nuvora Health</a>
-        <button class="nav-toggle" aria-label="Toggle menu">
+        <a href="index.html" class="nav-logo"><img src="assets/logo.svg" alt="" width="46" height="46"><span class="nav-wordmark">Nuvora Health</span></a>
+        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <ul class="nav-links" style="gap:1.6rem">
+        <ul id="primary-navigation" class="nav-links" style="gap:1.6rem">
           <li><a href="index.html">Home</a></li>
           <li><a href="features.html" class="active">Features</a></li>
           <li><a href="clinical.html">Clinical</a></li>
@@ -31,8 +44,9 @@
           <li><a href="about.html">About</a></li>
           <li><a href="account/">Account Login</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li class="mobile-nav-demo"><a href="contact.html">Request a Demo</a></li>
         </ul>
-        <a href="contact.html" class="nav-cta">Request Demo</a>
+        <a href="contact.html" class="nav-cta">Request a Demo</a>
       </div>
     </nav>
 
@@ -52,7 +66,7 @@
             <div class="feature-detail-content">
               <span class="feature-badge">Scheduling</span>
               <h2>Smart Scheduling That Works for You</h2>
-              <p>Manage your entire practice calendar with an intuitive drag-and-drop interface. Our intelligent scheduling system helps you maximize provider time while minimizing no-shows.</p>
+              <p>Manage appointments, provider availability, reminders, waitlists, and recurring visits from one flexible calendar.</p>
               <ul class="feature-list">
                 <li>Drag-and-drop appointment management</li>
                 <li>Multi-provider calendar views</li>
@@ -63,7 +77,7 @@
               </ul>
             </div>
             <div class="feature-detail-image">
-              <img src="assets/screenshots/schedule-page.png" alt="Scheduling interface" />
+              <img src="assets/screenshots/schedule-page.webp" alt="Nuvora scheduling interface" width="2400" height="1512" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -83,11 +97,10 @@
                 <li>Quick macros and text expansion</li>
                 <li>Voice dictation support</li>
                 <li>Integrated vitals and measurements</li>
-                <li>E-prescribing built in</li>
               </ul>
             </div>
             <div class="feature-detail-image">
-              <img src="assets/screenshots/patients-page.png" alt="Clinical documentation" />
+              <img src="assets/screenshots/patients-page.webp" alt="Nuvora clinical documentation interface with illustrative data" width="2400" height="1512" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -100,7 +113,7 @@
             <div class="feature-detail-content">
               <span class="feature-badge">Billing</span>
               <h2>Billing & Revenue Cycle Management</h2>
-              <p>Maximize collections and minimize claim denials with our comprehensive billing tools. Real-time dashboards give you complete visibility into your practice's financial health.</p>
+              <p>Keep charge capture, claim review, denial follow-up, payments, and financial reporting organized in one billing workflow.</p>
               <ul class="feature-list">
                 <li>One-click charge capture from notes</li>
                 <li>Automatic CPT/ICD code linking</li>
@@ -111,29 +124,27 @@
               </ul>
             </div>
             <div class="feature-detail-image">
-              <img src="assets/screenshots/financial-dashboard.png" alt="Financial dashboard" />
+              <img src="assets/screenshots/financial-dashboard.webp" alt="Nuvora financial dashboard interface with illustrative data" width="2376" height="1522" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
       </section>
 
-      <!-- AI Scribe -->
+      <!-- Structured documentation -->
       <section class="feature-detail alt">
         <div class="wrap">
           <div class="feature-detail-grid reverse">
             <div class="feature-detail-content">
-              <span class="feature-badge" style="background:linear-gradient(135deg,#0b63f6,#00c2ff);color:#fff;border:none;">✦ AI-Powered</span>
-              <h2>HIPAA-Compliant<br>AI Ambient Scribe</h2>
-              <p>Stop charting after hours. Nuvora's AI Scribe listens to your visit, transcribes in real time, and generates a complete SOAP note draft — ready for your review in under 90 seconds. All audio is processed on HIPAA-compliant infrastructure. No data ever leaves your BAA-covered environment.</p>
+              <span class="feature-badge" style="background:linear-gradient(135deg,#0b63f6,#00c2ff);color:#fff;border:none;">Clinical Workflow</span>
+              <h2>Structured Documentation<br>Built for Review</h2>
+              <p>Configurable templates, reusable macros, body diagrams, photo records, and review-and-sign workflows help teams document consistently.</p>
               <ul class="feature-list">
-                <li>Records visit audio — provider and patient</li>
-                <li>Transcribes with OpenAI Whisper (enterprise tier)</li>
-                <li>Generates structured SOAP note: HPI, Assessment, Plan</li>
-                <li>Derm-specific vocabulary — lesions, procedures, biologics</li>
-                <li>Provider reviews and signs in under 90 seconds</li>
-                <li>HIPAA-compliant end-to-end — BAA covered</li>
-                <li>No audio stored after note generation</li>
-                <li>Saves providers 1–2 hours of charting per day</li>
+                <li>Structured SOAP sections for HPI, exam, assessment, and plan</li>
+                <li>Dermatology templates for lesions, procedures, and follow-up</li>
+                <li>Reusable macros and quick-text tools</li>
+                <li>Body diagram and clinical photo references</li>
+                <li>Clinician review, edit, and sign-off controls</li>
+                <li>Clear note status and completion tracking</li>
               </ul>
               <a href="clinical.html" class="btn btn-primary" style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.5rem;">
                 Deep dive: Clinical Tools
@@ -144,8 +155,8 @@
               <div style="background:linear-gradient(135deg,#031022,#062a63);border-radius:16px;padding:2rem;border:1px solid rgba(0,132,255,0.2);">
                 <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08);">
                   <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
-                  <span style="font-family:'Space Grotesk',sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);">AI Scribe — Live</span>
-                  <span style="margin-left:auto;font-size:0.72rem;color:rgba(255,255,255,0.3);">HIPAA Compliant</span>
+                  <span style="font-family:'Space Grotesk',sans-serif;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Visit Note</span>
+                  <span style="margin-left:auto;font-size:0.72rem;color:rgba(255,255,255,0.3);">Illustrative Example</span>
                 </div>
                 <div style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-bottom:0.5rem;font-family:'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:0.08em;">Generated Note Draft</div>
                 <div style="font-size:0.85rem;color:rgba(255,255,255,0.85);line-height:1.7;">
@@ -164,23 +175,21 @@
         </div>
       </section>
 
-      <!-- Chat AI -->
+      <!-- Clinical coordination -->
       <section class="feature-detail">
         <div class="wrap">
           <div class="feature-detail-grid">
             <div class="feature-detail-content">
-              <span class="feature-badge" style="background:linear-gradient(135deg,#0b63f6,#00c2ff);color:#fff;border:none;">✦ AI-Powered</span>
-              <h2>Clinical Chat AI<br>Inside Your Workflow</h2>
-              <p>A HIPAA-compliant AI assistant built directly into Nuvora — not a separate tab, not a general-purpose chatbot. Ask clinical questions, draft patient messages, look up drug interactions, and get coding suggestions without ever leaving the chart.</p>
+              <span class="feature-badge" style="background:linear-gradient(135deg,#0b63f6,#00c2ff);color:#fff;border:none;">Team Coordination</span>
+              <h2>Clinical Context<br>Where the Team Works</h2>
+              <p>Keep patient messages, education materials, coding references, tasks, and follow-up activity connected to the chart instead of scattered across tabs.</p>
               <ul class="feature-list">
-                <li>Ask clinical questions in plain English — get cited answers</li>
-                <li>Draft patient education messages from the visit note</li>
-                <li>Drug interaction checks and derm formulary lookups</li>
-                <li>ICD-10 and CPT code suggestions from free-text descriptions</li>
-                <li>Prior auth letter drafting with one prompt</li>
-                <li>Summarize a patient's full visit history on demand</li>
-                <li>All queries logged per HIPAA audit requirements</li>
-                <li>No patient data used to train external models</li>
+                <li>Reusable patient message and education templates</li>
+                <li>Chart-linked tasks and follow-up ownership</li>
+                <li>ICD-10 and CPT reference tools</li>
+                <li>Prior authorization documentation workspace</li>
+                <li>Visit history and timeline review</li>
+                <li>Activity logging for team accountability</li>
               </ul>
             </div>
             <div class="feature-detail-image">
@@ -189,22 +198,22 @@
                   <div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#0b63f6,#00c2ff);display:flex;align-items:center;justify-content:center;">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                   </div>
-                  <span style="font-weight:700;font-size:0.9rem;color:var(--text);">Nuvora AI</span>
-                  <span style="margin-left:auto;font-size:0.7rem;background:var(--primary-light);color:var(--primary);padding:0.2rem 0.6rem;border-radius:100px;font-weight:600;">HIPAA Compliant</span>
+                  <span style="font-weight:700;font-size:0.9rem;color:var(--text);">Chart Task</span>
+                  <span style="margin-left:auto;font-size:0.7rem;background:var(--primary-light);color:var(--primary);padding:0.2rem 0.6rem;border-radius:100px;font-weight:600;">Illustrative</span>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:0.85rem;">
                   <div style="background:var(--primary-light);border-radius:12px 12px 12px 2px;padding:0.75rem 1rem;font-size:0.83rem;color:var(--primary-dark);max-width:85%;">
-                    What's first-line treatment for moderate atopic dermatitis in a patient who failed OTC hydrocortisone?
+                    Prepare the follow-up education message from the approved visit plan.
                   </div>
                   <div style="background:var(--bg);border-radius:12px 12px 2px 12px;padding:0.75rem 1rem;font-size:0.83rem;color:var(--text);line-height:1.6;align-self:flex-end;max-width:90%;">
-                    Mid-potency topical corticosteroids (e.g., triamcinolone 0.1%) BID are first-line. For maintenance, consider tacrolimus 0.1% ointment or pimecrolimus cream. If inadequate response at 4 weeks, dupilumab is FDA-approved for moderate-to-severe AD. <span style="color:var(--primary);font-size:0.75rem;">— AAD Guidelines 2024</span>
+                    Education template selected. Review the instructions, contact details, and follow-up date before sending.
                   </div>
                   <div style="background:var(--primary-light);border-radius:12px 12px 12px 2px;padding:0.75rem 1rem;font-size:0.83rem;color:var(--primary-dark);max-width:85%;">
-                    Draft a patient message explaining the new prescription.
+                    Assign the follow-up task to the clinical team.
                   </div>
                 </div>
                 <div style="margin-top:1rem;display:flex;align-items:center;gap:0.5rem;background:var(--bg);border:1px solid var(--line);border-radius:100px;padding:0.5rem 1rem;">
-                  <span style="font-size:0.82rem;color:var(--muted);flex:1;">Ask anything about this patient...</span>
+                  <span style="font-size:0.82rem;color:var(--muted);flex:1;">Add a chart-linked task...</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </div>
               </div>
@@ -220,7 +229,7 @@
             <div class="feature-detail-content">
               <span class="feature-badge">Analytics</span>
               <h2>Financial & Practice<br>Analytics</h2>
-              <p>Real-time visibility into every dollar and every patient flow metric — no waiting for end-of-month reports. Know your collection rate, denial trends, and provider productivity the moment the day ends.</p>
+              <p>Configurable reports bring revenue, A/R, denial, appointment, and productivity activity into one review workspace.</p>
               <ul class="feature-list">
                 <li>Live revenue dashboard: charges, collections, adjustments</li>
                 <li>A/R aging by payer, provider, and procedure</li>
@@ -237,7 +246,7 @@
             <div class="feature-detail-image">
               <div style="background:linear-gradient(135deg,#031022,#062a63);border-radius:16px;padding:2rem;border:1px solid rgba(0,132,255,0.2);">
                 <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08);">
-                  <span style="font-family:'Space Grotesk',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Practice Dashboard — Live</span>
+                  <span style="font-family:'Space Grotesk',sans-serif;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);">Practice Dashboard — Illustrative Data</span>
                   <span style="margin-left:auto;width:7px;height:7px;border-radius:50%;background:#22c55e;"></span>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;margin-bottom:1.25rem;">
@@ -305,7 +314,7 @@
                 <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
               </div>
               <h3>Telehealth</h3>
-              <p>HIPAA-compliant video visits with virtual waiting room and integrated documentation.</p>
+              <p>Video visits with a virtual waiting room and documentation linked to the patient workflow.</p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">
@@ -332,8 +341,8 @@
               <div class="feature-icon">
                 <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
               </div>
-              <h3>Integrations</h3>
-              <p>FHIR/HL7 ready, lab integrations, clearinghouse connections, and open API.</p>
+              <h3>Workflow Connections</h3>
+              <p>Required workflow connections are reviewed and documented for each practice during implementation planning.</p>
             </div>
           </div>
         </div>
@@ -343,7 +352,7 @@
       <section class="cta-section">
         <div class="wrap">
           <h2>Ready to See It in Action?</h2>
-          <p>Schedule a personalized demo and see how Nuvora Health can transform your practice.</p>
+          <p>Request a personalized demo focused on the workflows and roles your practice wants to evaluate.</p>
           <a href="contact.html" class="btn btn-primary">Request a Demo</a>
         </div>
       </section>
@@ -363,6 +372,10 @@
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="resources.html">Resources</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="security.html">Security</a>
           </div>
           <div class="footer-contact">
             <a href="tel:541-231-8693">541-231-8693</a>
@@ -371,21 +384,10 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+          <p>&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
-    <script>
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      if (navToggle) {
-        navToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          navToggle.classList.toggle('active');
-        });
-      }
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>

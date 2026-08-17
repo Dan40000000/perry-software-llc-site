@@ -6,13 +6,16 @@
     <title>Account Portal | Nuvora Health</title>
     <meta
       name="description"
-      content="Sign in to your Perry Software account to view client status, subscriptions, AI usage, providers, and managed vendor connections."
+      content="Sign in to your Perry Software account to view account services, subscriptions, providers, implementation status, and managed connections."
     />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <link rel="canonical" href="https://perrysoftwarellc.com/account/" />
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css?v=nuvora-account-20260703b" />
+    <link rel="stylesheet" href="../styles.css?v=nuvora-trust-20260817" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <script src="../site.js" defer></script>
   </head>
   <body class="account-page">
     <nav class="main-nav">
@@ -21,12 +24,12 @@
           <img src="../assets/logo.svg" alt="Nuvora Health" style="height:46px;width:46px;display:block;" />
           <span class="nav-wordmark">Nuvora Health</span>
         </a>
-        <button class="nav-toggle" aria-label="Toggle menu" type="button">
+        <button class="nav-toggle" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false" type="button">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <ul class="nav-links" style="gap:1.6rem">
+        <ul id="primary-navigation" class="nav-links" style="gap:1.6rem">
           <li><a href="../index.html">Home</a></li>
           <li><a href="../features.html">Features</a></li>
           <li><a href="../clinical.html">Clinical</a></li>
@@ -35,8 +38,9 @@
           <li><a href="../about.html">About</a></li>
           <li><a href="./" class="active">Account Login</a></li>
           <li><a href="../contact.html">Contact</a></li>
+          <li class="mobile-nav-demo"><a href="../contact.html">Request a Demo</a></li>
         </ul>
-        <a href="../contact.html" class="nav-cta">Get a Demo</a>
+        <a href="../contact.html" class="nav-cta">Request a Demo</a>
       </div>
     </nav>
 
@@ -53,7 +57,7 @@
         <div id="loginView" class="portal-login">
           <div class="portal-login-copy">
             <div class="portal-kicker">Owner + client management</div>
-            <h2>One place to see every account, every AI key, every vendor cost.</h2>
+            <h2>One place to see account status, services, costs, and next steps.</h2>
             <p>
               Owner access opens the Perry Software command center. Client access opens a dedicated account cockpit for that practice.
             </p>
@@ -64,11 +68,11 @@
               </div>
               <div>
                 <strong>Client view</strong>
-                <span>Implementation status, subscriptions, masked keys, and usage visibility.</span>
+                <span>Implementation status, subscriptions, managed services, and usage visibility.</span>
               </div>
               <div>
                 <strong>Spend controls</strong>
-                <span>OpenAI and Amazon Voice are separated so usage is easy to audit.</span>
+                <span>Managed service costs are separated so usage is easier to review.</span>
               </div>
             </div>
           </div>
@@ -121,8 +125,6 @@
         ownerRequestFilter: "all",
       };
 
-      const navToggle = document.querySelector(".nav-toggle");
-      const navLinks = document.querySelector(".nav-links");
       const accountPanel = document.getElementById("accountPanel");
       const portalEyebrow = document.getElementById("portalEyebrow");
       const accountTitle = document.getElementById("accountTitle");
@@ -138,11 +140,6 @@
       const dashboardTitle = document.getElementById("dashboardTitle");
       const accountSubtitle = document.getElementById("accountSubtitle");
       const dashboardContent = document.getElementById("dashboardContent");
-
-      navToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        navToggle.classList.toggle("active");
-      });
 
       function readStoredUser() {
         try {

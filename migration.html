@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Migration Process | Nuvora Health</title>
-  <meta name="description" content="Log out Friday evening. Log in Monday morning. Nuvora Health handles your entire EHR migration — every patient, every note, every record — while you rest."/>
+  <title>Dermatology EHR Migration Process | Nuvora Health</title>
+  <meta name="description" content="See how Nuvora Health plans, maps, validates, trains, and supports an EHR migration based on your source system, data scope, and practice workflow."/>
+  <link rel="canonical" href="https://perrysoftwarellc.com/migration.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nuvora Health" />
+  <meta property="og:title" content="Dermatology EHR Migration Process | Nuvora Health" />
+  <meta property="og:description" content="A guided migration process with discovery, mapping, validation, training, and go-live support." />
+  <meta property="og:url" content="https://perrysoftwarellc.com/migration.html" />
+  <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/patients-page.png" />
+  <meta property="og:image:alt" content="Illustrative Nuvora Health patient workflow screen" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dermatology EHR Migration Process | Nuvora Health" />
+  <meta name="twitter:description" content="A guided transition process with discovery, mapping, validation, training, and go-live support." />
+  <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/patients-page.png" />
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/>
-  <link rel="stylesheet" href="styles.css?v=nuvora-blue-quote-20260515"/>
+  <link rel="stylesheet" href="styles.css?v=nuvora-trust-20260817"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="site.js" defer></script>
   <style>
     /* ─── Page shell ─── */
     .mig-page { background: #060f1a; min-height: 100vh; }
@@ -693,6 +706,8 @@
       .mig-moment-side { padding: 2rem 1.5rem; }
       .mig-timeline::before { left: 22px; }
       .mig-week-num { width: 36px; height: 36px; font-size: 0.65rem; }
+      .mig-week { gap: 1rem; }
+      .mig-week-card { min-width: 0; padding: 1.5rem 1.25rem; }
     }
   </style>
 </head>
@@ -738,13 +753,13 @@
           <polygon points="138,109 130,134 146,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
           <polygon points="138,101 129,124 147,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
           <rect x="136" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
-          <text x="82" y="142" font-family="'Pinyon Script', cursive" font-size="116" fill="white" fill-opacity="0.95" text-anchor="middle" clip-path="url(#logo-circle)" filter="url(#logo-shadow)">P</text>
+          <text x="82" y="142" font-family="'Pinyon Script', cursive" font-size="116" fill="white" fill-opacity="0.95" text-anchor="middle" clip-path="url(#logo-circle)" filter="url(#logo-shadow)">N</text>
         </svg>
       </a>
-      <button class="nav-toggle" aria-label="Toggle menu">
+      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links" style="gap:1.6rem">
+      <ul id="primary-navigation" class="nav-links" style="gap:1.6rem">
         <li><a href="index.html">Home</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="clinical.html">Clinical</a></li>
@@ -753,8 +768,9 @@
         <li><a href="about.html">About</a></li>
         <li><a href="account/">Account Login</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li class="mobile-nav-demo"><a href="contact.html">Request a Demo</a></li>
       </ul>
-      <a href="contact.html" class="nav-cta">Get a Demo</a>
+      <a href="contact.html" class="nav-cta">Request a Demo</a>
     </div>
   </nav>
 
@@ -763,18 +779,18 @@
     <div class="mig-hero-inner">
       <div class="mig-badge">
         <span class="mig-badge-dot"></span>
-        The Nuvora Health Migration Promise
+        A Structured Transition Plan
       </div>
       <h1>
-        Log Out <span class="highlight">Friday Evening.</span><br>
-        Log In <span class="highlight">Monday Morning.</span><br>
-        Everything's Done.
+        Move With a <span class="highlight">Clear Plan.</span><br>
+        Review Every <span class="highlight">Critical Step.</span><br>
+        Go Live With Support.
       </h1>
       <p class="mig-hero-sub">
-        No weekend stress. No data loss. No IT headaches. Your entire practice — every patient, every note, every record — fully migrated while you were living your life.
+        We begin with your source system, data access, workflows, and priorities. Then we define what will move, how it will be reviewed, and what your team needs before go-live.
       </p>
       <a href="contact.html" class="mig-hero-cta">
-        Book Your Migration Call
+        Request a Transition Review
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -785,19 +801,19 @@
     <div class="mig-promise-strip-inner">
       <div class="mig-promise-item">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Included with every Nuvora Health plan
+        Scope documented before work begins
       </div>
       <div class="mig-promise-item">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Zero IT work from your team
+        Responsibilities clearly assigned
       </div>
       <div class="mig-promise-item">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        100% of your data, guaranteed
+        Mapping and validation checkpoints
       </div>
       <div class="mig-promise-item">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-        2–4 weeks start to finish
+        Timing based on your source and scope
       </div>
     </div>
   </div>
@@ -805,69 +821,69 @@
   <!-- ─── TIMELINE ─── -->
   <section class="mig-timeline-section">
     <div class="mig-timeline-header">
-      <span class="mig-label">The 4-Week Playbook</span>
-      <h2>Here's Exactly What Happens</h2>
-      <p>You get a dedicated migration specialist from day one. Here's the step-by-step — no surprises, no gaps, no "figure it out yourself."</p>
+      <span class="mig-label">The Transition Framework</span>
+      <h2>A Practical Path From Review to Go-Live</h2>
+      <p>Every transition is shaped by the source system, available exports, record volume, connected services, and practice workflow. These phases keep the work visible.</p>
     </div>
 
     <div class="mig-timeline mig-section">
 
       <!-- Week 1 -->
       <div class="mig-week">
-        <div class="mig-week-num">WK<span>1</span></div>
+        <div class="mig-week-num">PH<span>1</span></div>
         <div class="mig-week-card">
-          <p class="mig-week-eyebrow">Week One</p>
-          <h3>We Learn Everything About You</h3>
+          <p class="mig-week-eyebrow">Phase One</p>
+          <h3>Discovery and Source Review</h3>
           <ul class="mig-steps">
-            <li><strong>Discovery call</strong> — we map your current system, workflows, and every quirk your team relies on</li>
-            <li><strong>Data audit</strong> — we catalog every patient, note, billing record, and document in your old EHR</li>
-            <li><strong>Custom migration plan</strong> built and sent to you within 48 hours — you know exactly what's happening and when</li>
-            <li>Your team does exactly <strong>zero work</strong> during this phase</li>
+            <li><strong>Discovery session</strong> — review your current system, workflows, priorities, and operational constraints</li>
+            <li><strong>Source assessment</strong> — identify available exports, record types, file formats, and access requirements</li>
+            <li><strong>Written scope</strong> — document included data, exclusions, responsibilities, checkpoints, and proposed timing</li>
+            <li><strong>Practice participation</strong> — identify the people who will answer source-data and workflow questions</li>
           </ul>
         </div>
       </div>
 
       <!-- Week 2 -->
       <div class="mig-week">
-        <div class="mig-week-num">WK<span>2</span></div>
+        <div class="mig-week-num">PH<span>2</span></div>
         <div class="mig-week-card">
-          <p class="mig-week-eyebrow">Week Two</p>
-          <h3>We Extract and Rebuild Your World</h3>
+          <p class="mig-week-eyebrow">Phase Two</p>
+          <h3>Mapping and Configuration</h3>
           <ul class="mig-steps">
-            <li><strong>Full data extraction</strong> from your current EHR — every patient record, clinical note, billing history, and appointment pulled and verified</li>
-            <li><strong>Data cleaning and mapping</strong> — we normalize and import everything into Nuvora Health exactly as it should appear</li>
-            <li><strong>System configuration</strong> — your templates, macros, note types, and workflows built to match how your practice actually runs</li>
-            <li><strong>Integration wiring</strong> — labs, pharmacy, clearinghouse — all connected before go-live</li>
+            <li><strong>Field mapping</strong> — align agreed source fields with their destination in Nuvora Health</li>
+            <li><strong>Data preparation</strong> — normalize and prepare records according to the approved mapping</li>
+            <li><strong>Workflow configuration</strong> — configure templates, users, roles, locations, and selected workflows</li>
+            <li><strong>Connection planning</strong> — define required external connections, owners, dependencies, and testing steps</li>
           </ul>
         </div>
       </div>
 
       <!-- Week 3 -->
       <div class="mig-week">
-        <div class="mig-week-num">WK<span>3</span></div>
+        <div class="mig-week-num">PH<span>3</span></div>
         <div class="mig-week-card">
-          <p class="mig-week-eyebrow">Week Three</p>
-          <h3>We Train Your Team Until They're Confident</h3>
+          <p class="mig-week-eyebrow">Phase Three</p>
+          <h3>Validation and Team Readiness</h3>
           <ul class="mig-steps">
-            <li><strong>On-site or remote training</strong> — every person on your team, not just the admin. Providers, front desk, billers, everyone</li>
-            <li><strong>Parallel testing</strong> — your team uses Nuvora Health with real patient data while still running your old system as a safety net</li>
-            <li><strong>Live customizations</strong> — any changes, tweaks, or preferences identified during training get made on the spot</li>
-            <li><strong>Dry run go-live</strong> — we simulate Monday morning so there are zero surprises</li>
+            <li><strong>Validation samples</strong> — review representative records, counts, and critical fields with your designated team members</li>
+            <li><strong>Workflow testing</strong> — walk through scheduling, documentation, billing, and follow-up scenarios in scope</li>
+            <li><strong>Role-based training</strong> — prepare providers, front desk, clinical staff, billers, and administrators for their work</li>
+            <li><strong>Readiness review</strong> — document open items, owners, and the agreed go-live approach</li>
           </ul>
         </div>
       </div>
 
       <!-- Week 4 -->
       <div class="mig-week">
-        <div class="mig-week-num">WK<span>4</span></div>
+        <div class="mig-week-num">PH<span>4</span></div>
         <div class="mig-week-card">
-          <p class="mig-week-eyebrow">Week Four — The Final Push</p>
-          <h3>You Close Out. We Take It From Here.</h3>
+          <p class="mig-week-eyebrow">Phase Four</p>
+          <h3>Cutover and Supported Go-Live</h3>
           <ul class="mig-steps">
-            <li><strong>Monday–Thursday:</strong> Final data sync, verification checks, and approval sign-offs</li>
-            <li><strong>Friday:</strong> You see your last patient in your old system. You log out. That's your only job.</li>
-            <li><strong>Friday evening → Monday morning:</strong> We do the final migration, run verification, and prepare your Nuvora Health system for day one</li>
-            <li><strong>Monday 8:00 AM:</strong> You open Nuvora Health. Every patient is there. Every note. Every schedule. Your team walks in and gets to work.</li>
+            <li><strong>Final preparation:</strong> complete the agreed cutover steps, validation checks, and approval sign-offs</li>
+            <li><strong>Source cutoff:</strong> follow the written plan for final entries, exports, and read-only access</li>
+            <li><strong>Cutover:</strong> complete the final scoped import and confirm the agreed validation checklist</li>
+            <li><strong>Go-live support:</strong> route questions and issues directly to the implementation team during the defined support window</li>
           </ul>
         </div>
       </div>
@@ -880,9 +896,9 @@
     <div class="mig-moment mig-section" style="max-width:960px;margin:0 auto;">
 
       <div class="mig-moment-top">
-        <span class="mig-moment-eyebrow">✦ The Moment That Changes Everything</span>
-        <h2>You Rest. We Work.<br>Monday Morning Is Ready.</h2>
-        <p>48 hours. That's all it takes. Your team goes home Friday like any other evening. They come back Monday and everything has changed — for the better.</p>
+        <span class="mig-moment-eyebrow">✦ A Controlled Cutover</span>
+        <h2>Know the Final Steps<br>Before Go-Live.</h2>
+        <p>The cutover plan defines the source cutoff, final export, import sequence, validation owners, fallback considerations, and support contacts before the transition begins.</p>
       </div>
 
       <div class="mig-moment-split">
@@ -890,10 +906,10 @@
         <!-- Friday side -->
         <div class="mig-moment-side friday">
           <div class="mig-moment-day">
-            <span class="mig-moment-day-badge">Friday</span>
-            <span class="mig-moment-time">5:32 PM</span>
+            <span class="mig-moment-day-badge">Before Cutover</span>
+            <span class="mig-moment-time">Source Review</span>
           </div>
-          <h4>Your last day on the old system</h4>
+          <h4>Complete the agreed source checklist</h4>
           <div class="mig-screen">
             <div class="mig-screen-bar">
               <div class="mig-screen-dot" style="background:#ef4444;opacity:0.6;"></div>
@@ -909,27 +925,27 @@
           </div>
           <div class="mig-screen-logout">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-            Log out of old system
+            Confirm source cutoff and export
           </div>
-          <p class="mig-side-note">See your last patient. Close your tabs. Go home and enjoy your weekend — we've got it from here.</p>
+          <p class="mig-side-note">Your team follows the documented cutoff process and confirms the final export and approval contacts.</p>
         </div>
 
         <!-- Arrow -->
         <div class="mig-moment-arrow">
-          <span class="mig-arrow-label">48<br>HRS</span>
+          <span class="mig-arrow-label">CUT<br>OVER</span>
           <div class="mig-arrow-circle">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
-          <span class="mig-arrow-label">WE<br>WORK</span>
+          <span class="mig-arrow-label">REVIEW<br>TOGETHER</span>
         </div>
 
         <!-- Monday side -->
         <div class="mig-moment-side monday">
           <div class="mig-moment-day">
-            <span class="mig-moment-day-badge">Monday</span>
-            <span class="mig-moment-time">8:00 AM</span>
+            <span class="mig-moment-day-badge">Go-Live</span>
+            <span class="mig-moment-time">Support Active</span>
           </div>
-          <h4>Nuvora Health is live. Everything's there.</h4>
+          <h4>Validate the agreed records and workflows</h4>
           <div class="mig-screen">
             <div class="mig-screen-bar">
               <div class="mig-screen-dot" style="background:#ef4444;opacity:0.5;"></div>
@@ -945,29 +961,29 @@
           </div>
           <div class="mig-screen-ready">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Nuvora Health is live — you're ready to go
+            Complete the go-live checklist
           </div>
-          <p class="mig-side-note">Every patient. Every note. Every appointment. Exactly where you'd expect it. Your team walks in and starts seeing patients.</p>
+          <p class="mig-side-note">Designated users confirm the scoped data and workflows, then route questions through the defined support process.</p>
         </div>
 
       </div>
 
       <div class="mig-moment-bottom">
         <div class="mig-bottom-item">
-          <strong>100%</strong>
-          <span>Data transferred</span>
+          <strong>Scope</strong>
+          <span>Agreed in writing</span>
         </div>
         <div class="mig-bottom-item">
-          <strong>0</strong>
-          <span>Hours from your team</span>
+          <strong>Map</strong>
+          <span>Fields reviewed</span>
         </div>
         <div class="mig-bottom-item">
-          <strong>48hr</strong>
-          <span>Go-live window</span>
+          <strong>Test</strong>
+          <span>Samples validated</span>
         </div>
         <div class="mig-bottom-item">
-          <strong>24/7</strong>
-          <span>Support your first week</span>
+          <strong>Support</strong>
+          <span>Window defined</span>
         </div>
       </div>
 
@@ -977,52 +993,52 @@
   <!-- ─── WHAT'S INCLUDED ─── -->
   <section class="mig-included-section">
     <div class="mig-included-header">
-      <span class="mig-label">We've Got It Handled</span>
-      <h2>Everything We Handle For You</h2>
-      <p>From day one to go-live, we run the entire operation. Your team just has to show up.</p>
+      <span class="mig-label">Implementation Scope</span>
+      <h2>What the Transition Plan Can Include</h2>
+      <p>The final statement of work identifies the included data, configuration, training, connections, responsibilities, and support for your practice.</p>
     </div>
     <div class="mig-included-grid">
       <div class="mig-included-card">
         <div class="mig-included-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         </div>
-        <h4>Complete Data Extraction</h4>
-        <p>We pull everything from your old system — patients, notes, billing history, documents, and schedules. Nothing left behind.</p>
+        <h4>Source Data Review</h4>
+        <p>We inventory the record types and exports available from your current system and document the data selected for migration.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <h4>Data Cleaning &amp; Verification</h4>
-        <p>Every record verified, cleaned, and mapped correctly before import. No duplicate patients, no broken records.</p>
+        <h4>Mapping &amp; Validation</h4>
+        <p>We define field mappings, prepare the scoped data, and review representative samples with your designated team members.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
-        <h4>Full System Configuration</h4>
-        <p>Your templates, macros, workflows, and preferences built into Nuvora Health before day one. We match how you actually work.</p>
+        <h4>Workflow Configuration</h4>
+        <p>Selected templates, users, roles, locations, and workflows are configured according to the approved scope.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
         </div>
-        <h4>Staff Training — Everyone</h4>
-        <p>On-site or remote. Providers, front desk, billers — every single person trained until they're genuinely confident.</p>
+        <h4>Role-Based Training</h4>
+        <p>Training sessions are organized around the roles, workflows, format, and attendance plan listed in the implementation scope.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h4>Integration Setup</h4>
-        <p>Labs, pharmacy, clearinghouse — wired up and fully tested before go-live. Not on day sixty.</p>
+        <h4>Connection Planning</h4>
+        <p>Required external connections are identified with their dependencies, responsible parties, sequence, and testing steps.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </div>
-        <h4>24/7 Go-Live Support</h4>
-        <p>Nights and weekends your entire first week. Real humans with immediate answers — not a ticket queue.</p>
+        <h4>Go-Live Support</h4>
+        <p>The written plan defines the support period, contact method, issue-routing process, and responsible team members.</p>
       </div>
     </div>
   </section>
@@ -1031,11 +1047,11 @@
   <section class="mig-cta-section">
     <div class="mig-cta-inner">
       <span class="mig-label">Ready when you are</span>
-      <h2>The Switch Is Easier<br>Than You Think.</h2>
-      <p>Most practices tell us they wish they'd done it sooner. Book a 30-minute call — we'll walk you through the entire process and answer every question.</p>
+      <h2>Start With a Clear<br>Transition Review.</h2>
+      <p>Tell us which system you use, what data matters most, and how your practice works. We will outline the questions needed to build a responsible scope.</p>
       <div class="mig-cta-btns">
         <a href="contact.html" class="mig-btn-primary">
-          Book a Migration Call
+          Request a Transition Review
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="tel:541-231-8693" class="mig-btn-secondary">
@@ -1060,6 +1076,10 @@
           <a href="pricing.html" style="color:rgba(255,255,255,0.55);">Pricing</a>
           <a href="about.html" style="color:rgba(255,255,255,0.55);">About</a>
           <a href="contact.html" style="color:rgba(255,255,255,0.55);">Contact</a>
+          <a href="resources.html" style="color:rgba(255,255,255,0.55);">Resources</a>
+          <a href="privacy.html" style="color:rgba(255,255,255,0.55);">Privacy</a>
+          <a href="terms.html" style="color:rgba(255,255,255,0.55);">Terms</a>
+          <a href="security.html" style="color:rgba(255,255,255,0.55);">Security</a>
         </div>
         <div class="footer-contact">
           <a href="tel:541-231-8693" style="color:rgba(255,255,255,0.55);">541-231-8693</a>
@@ -1068,10 +1088,9 @@
         </div>
       </div>
       <div class="footer-bottom" style="border-top-color:rgba(255,255,255,0.07);">
-        <p style="color:rgba(255,255,255,0.3);">&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+        <p style="color:rgba(255,255,255,0.3);">&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
       </div>
     </div>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

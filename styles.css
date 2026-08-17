@@ -134,11 +134,16 @@ body {
 .nav-toggle {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 10px;
 }
 
 .nav-toggle span {
@@ -149,7 +154,7 @@ body {
   transition: all 0.3s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .nav-toggle {
     display: flex;
   }
@@ -166,6 +171,8 @@ body {
     box-shadow: var(--shadow-lg);
     display: none;
     border-radius: 0 0 20px 20px;
+    max-height: calc(100vh - 76px);
+    overflow-y: auto;
   }
 
   .nav-links.active {
@@ -174,6 +181,10 @@ body {
 
   .nav-cta {
     display: none;
+  }
+
+  .mobile-nav-demo {
+    display: block;
   }
 
   .nav-toggle.active span:nth-child(1) {
@@ -187,6 +198,46 @@ body {
   .nav-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
   }
+}
+
+.mobile-nav-demo {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .mobile-nav-demo {
+    display: block;
+  }
+
+  .mobile-nav-demo a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
+    background: var(--gradient-1);
+    color: #ffffff;
+    font-weight: 800;
+  }
+
+  .mobile-nav-demo a::after {
+    display: none;
+  }
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #00a8e8;
+  outline-offset: 3px;
 }
 
 .wrap {
@@ -1275,12 +1326,14 @@ section {
 .contact-form, .contact-info {
   background: white;
   padding: 3rem;
+  min-width: 0;
   border-radius: 24px;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--line);
 }
 
-.contact-form h3,
+.contact-form h2,
+.contact-info h2,
 .contact-info h3 {
   font-size: 1.5rem;
   color: var(--text);
@@ -1316,10 +1369,21 @@ section {
 
 .form-group input:focus,
 .form-group textarea:focus {
-  outline: none;
   border-color: var(--primary);
   background: white;
   box-shadow: 0 0 0 4px rgba(11, 99, 246, 0.1);
+}
+
+.form-privacy {
+  margin: -0.25rem 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.form-privacy a {
+  color: var(--primary-dark);
+  font-weight: 700;
 }
 
 .form-group input::placeholder,
@@ -1410,6 +1474,7 @@ section {
   text-decoration: none;
   font-weight: 600;
   font-size: 1.15rem;
+  overflow-wrap: anywhere;
 }
 
 .contact-info-item a:hover {
@@ -1425,6 +1490,22 @@ section {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .contact-form,
+  .contact-info {
+    padding: 1.5rem;
+  }
+
+  .contact-info-item {
+    gap: 0.85rem;
+  }
+
+  .contact-info-icon {
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -3977,4 +4058,191 @@ h1,
   .provider-request-form {
     grid-template-columns: 1fr;
   }
+}
+
+/* Shared trust, resource, and conversion components */
+.legal-page,
+.resource-page {
+  padding: 8.5rem 0 5rem;
+  min-height: 100vh;
+}
+
+.legal-card,
+.resource-article {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.legal-card h1,
+.resource-article h1 {
+  margin: 0 0 1rem;
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.legal-card h2,
+.resource-article h2 {
+  margin: 2.25rem 0 0.7rem;
+  font-size: 1.35rem;
+  color: var(--text);
+}
+
+.legal-card p,
+.legal-card li,
+.resource-article p,
+.resource-article li {
+  color: #334a68;
+  line-height: 1.8;
+}
+
+.legal-meta,
+.resource-meta,
+.demo-disclaimer {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.legal-callout,
+.trust-callout {
+  margin: 1.5rem 0;
+  padding: 1rem 1.2rem;
+  background: #eef6ff;
+  border: 1px solid #bdd8ff;
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+}
+
+.resource-grid,
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.resource-card,
+.proof-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.resource-card:hover,
+.proof-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(11, 99, 246, 0.45);
+  box-shadow: var(--shadow-lg);
+}
+
+.resource-card h3,
+.proof-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.15rem;
+}
+
+.resource-card p,
+.proof-card p {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.resource-card .resource-link {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.resource-lead {
+  font-size: clamp(1.08rem, 2vw, 1.3rem);
+  color: var(--text) !important;
+}
+
+.resource-article a,
+.legal-card a {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.demo-label {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mobile-demo-bar {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .resource-grid,
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  }
+
+  .mobile-demo-bar {
+    position: fixed;
+    z-index: 1200;
+    left: 1rem;
+    right: 1rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border-radius: 999px;
+    color: #ffffff;
+    background: var(--gradient-1);
+    box-shadow: 0 12px 30px rgba(3, 59, 148, 0.38);
+    text-decoration: none;
+    font-weight: 800;
+  }
+}
+
+/* Keep keyboard focus visible even where component focus styles remove outlines. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #00a8e8;
+  outline-offset: 3px;
+}
+
+.quote-field input:focus-visible,
+.account-form input:focus-visible,
+.provider-field input:focus-visible,
+.provider-field select:focus-visible,
+.provider-field textarea:focus-visible {
+  outline: 3px solid #00a8e8;
+  outline-offset: 3px;
 }

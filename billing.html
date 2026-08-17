@@ -3,13 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Billing &amp; Revenue Cycle | Nuvora Health</title>
-    <meta name="description" content="Full-cycle revenue cycle management for dermatology practices. Claim scrubbing, denial management, prior auth AI, eligibility verification, A/R aging, and patient payments." />
+    <title>Dermatology Billing &amp; Revenue Cycle | Nuvora Health</title>
+    <meta name="description" content="Dermatology billing workflows for charge capture, claim review, denial follow-up, prior authorization, eligibility, A/R, and patient payments." />
+    <link rel="canonical" href="https://perrysoftwarellc.com/billing.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nuvora Health" />
+    <meta property="og:title" content="Dermatology Billing &amp; Revenue Cycle | Nuvora Health" />
+    <meta property="og:description" content="Keep charge capture, claim review, denials, authorizations, A/R, and patient payments connected." />
+    <meta property="og:url" content="https://perrysoftwarellc.com/billing.html" />
+    <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/financial-dashboard.png" />
+    <meta property="og:image:alt" content="Illustrative Nuvora Health revenue workflow dashboard" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dermatology Billing &amp; Revenue Cycle | Nuvora Health" />
+    <meta name="twitter:description" content="Keep claim review, denials, authorizations, A/R, and patient payments connected." />
+    <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/financial-dashboard.png" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=nuvora-blue-20260515" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-trust-20260817" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="site.js" defer></script>
     <style>
       /* ── Hero ── */
       .bill-hero {
@@ -112,6 +125,9 @@
 
       /* ── Section Base ── */
       .bill-section { padding: 5.5rem 2rem; }
+      .bill-section > .wrap,
+      .analytics-section > .wrap,
+      .bill-cta > .wrap { width: min(1200px, 100%); }
       .bill-section.alt { background: #fff; }
       .bill-section-header {
         text-align: center;
@@ -254,10 +270,6 @@
         border-radius: 14px;
         padding: 1.25rem 1.5rem;
       }
-      .pa-step-row.ai-step {
-        border-color: rgba(11,99,246,0.3);
-        background: var(--primary-light);
-      }
       .pa-step-num {
         width: 36px; height: 36px;
         border-radius: 50%;
@@ -272,19 +284,6 @@
       }
       .pa-step-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 0 0 0.2rem; }
       .pa-step-body p { font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.6; }
-      .ai-badge-inline {
-        display: inline-block;
-        background: var(--gradient-1);
-        color: #fff;
-        font-size: 0.62rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        padding: 0.18rem 0.5rem;
-        border-radius: 100px;
-        margin-left: 0.5rem;
-        vertical-align: middle;
-      }
 
       /* Eligibility Card */
       .eligibility-card {
@@ -462,12 +461,12 @@
           </svg>
           <span class="nav-wordmark">Nuvora Health</span>
         </a>
-        <button class="nav-toggle" aria-label="Toggle menu">
+        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <ul class="nav-links" style="gap:1.6rem">
+        <ul id="primary-navigation" class="nav-links" style="gap:1.6rem">
           <li><a href="index.html">Home</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="clinical.html">Clinical</a></li>
@@ -476,8 +475,9 @@
           <li><a href="about.html">About</a></li>
           <li><a href="account/">Account Login</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li class="mobile-nav-demo"><a href="contact.html">Request a Demo</a></li>
         </ul>
-        <a href="contact.html" class="nav-cta">Get a Demo</a>
+        <a href="contact.html" class="nav-cta">Request a Demo</a>
       </div>
     </nav>
 
@@ -488,8 +488,8 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           Full-Cycle Revenue Management
         </div>
-        <h1>Billing &amp; Revenue Cycle<br><span class="gradient-text">Built to Maximize Collections</span></h1>
-        <p>From eligibility verification to ERA posting, denial management, and patient payments — every step of the revenue cycle in one integrated platform.</p>
+        <h1>Billing &amp; Revenue Cycle<br><span class="gradient-text">Organized in One Workflow</span></h1>
+        <p>Bring charge review, claim status, denial follow-up, prior authorization, accounts receivable, and patient payment activity into one connected workspace.</p>
         <div class="cta-group">
           <a href="contact.html" class="btn btn-primary btn-lg">
             <span>See It In Action</span>
@@ -499,25 +499,25 @@
         </div>
         <div class="kpi-dashboard">
           <div class="kpi-dashboard-header">
-            <span>Practice Performance Dashboard</span>
-            <span class="kpi-live-dot">Live</span>
+            <span>Revenue Workflow Dashboard</span>
+            <span class="kpi-live-dot">Illustrative</span>
           </div>
           <div class="kpi-grid">
             <div class="kpi-metric">
-              <div class="kpi-value">98.2%</div>
-              <div class="kpi-label">Clean Claim Rate</div>
+              <div class="kpi-value">Review</div>
+              <div class="kpi-label">Claim Readiness</div>
             </div>
             <div class="kpi-metric">
-              <div class="kpi-value">14d</div>
-              <div class="kpi-label">Days in A/R</div>
+              <div class="kpi-value">Track</div>
+              <div class="kpi-label">A/R Aging</div>
             </div>
             <div class="kpi-metric">
-              <div class="kpi-value">2.8%</div>
-              <div class="kpi-label">Denial Rate</div>
+              <div class="kpi-value">Route</div>
+              <div class="kpi-label">Denial Work</div>
             </div>
             <div class="kpi-metric">
-              <div class="kpi-value">96.4%</div>
-              <div class="kpi-label">Collection Rate</div>
+              <div class="kpi-value">Post</div>
+              <div class="kpi-label">Payment Activity</div>
             </div>
           </div>
         </div>
@@ -531,8 +531,8 @@
         <div class="wrap">
           <div class="bill-section-header">
             <span class="section-badge">Claim Lifecycle</span>
-            <h2>From Visit to Payment — Every Step Automated</h2>
-            <p>Claims flow automatically from documentation through submission, posting, and follow-up. No manual steps, no dropped claims.</p>
+            <h2>From Visit to Payment — One Visible Process</h2>
+            <p>Move claims from documentation and review through submission, posting, and follow-up with clear ownership at each step.</p>
           </div>
           <div class="claim-flow">
             <div class="claim-step">
@@ -540,7 +540,7 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b63f6" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
               <span class="claim-step-label">Draft</span>
-              <span class="claim-step-sub">Auto-generated from note</span>
+              <span class="claim-step-sub">Built from signed charges</span>
             </div>
             <div class="claim-step">
               <div class="claim-step-dot" style="background:rgba(234,179,8,0.15);border:2px solid #eab308;">
@@ -568,14 +568,14 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b63f6" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
               <span class="claim-step-label">ERA Posted</span>
-              <span class="claim-step-sub">Auto-posted, patient balance set</span>
+              <span class="claim-step-sub">Posting and balance review</span>
             </div>
             <div class="claim-step denied">
               <div class="claim-step-dot">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
               </div>
               <span class="claim-step-label">Denied → Appeal</span>
-              <span class="claim-step-sub">Auto-routed with AI appeal letter</span>
+              <span class="claim-step-sub">Assigned with follow-up task</span>
             </div>
           </div>
         </div>
@@ -587,55 +587,55 @@
           <div class="detail-split">
             <div>
               <span class="section-badge">Claim Scrubbing</span>
-              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">98%+ Clean Claim Rate<br>Out the Door</h2>
-              <p style="color:var(--muted);line-height:1.7;">Every claim runs through multi-layered validation before submission. CPT/ICD-10 compatibility, modifier logic, payer-specific rules, and NPI validation — caught before they reach the payer and get denied.</p>
+              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Review Claims Before<br>They Leave the Practice</h2>
+              <p style="color:var(--muted);line-height:1.7;">Use a structured review queue for coding, modifiers, payer edits, provider information, and submission readiness. Your team keeps final control over corrections and release.</p>
               <ul class="detail-list">
                 <li>CPT and ICD-10 compatibility validation</li>
                 <li>Modifier logic and unbundling checks</li>
                 <li>Payer-specific editing rules</li>
                 <li>EDI 837P submission via clearinghouse</li>
-                <li>ERA 835 auto-posting to patient accounts</li>
-                <li>Secondary claim generation after primary EOB</li>
+                <li>ERA posting and reconciliation workflow</li>
+                <li>Secondary claim preparation after primary response</li>
                 <li>NPI and taxonomy validation</li>
-                <li>Real-time eligibility at scrub time</li>
+                <li>Eligibility details available during review</li>
               </ul>
             </div>
             <div>
-              <div style="margin-bottom:0.5rem;font-size:0.75rem;font-weight:700;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Claims Queue — Today</div>
+              <div style="margin-bottom:0.5rem;font-size:0.75rem;font-weight:700;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;">Illustrative Claims Queue</div>
               <div class="claims-queue">
                 <div class="claim-row valid">
                   <div class="claim-row-left">
-                    <h4>Nguyen, T. — Aetna PPO</h4>
-                    <p>17000 (Destruction actinic keratosis) × 3, 99213</p>
+                    <h4>Demonstration Claim A</h4>
+                    <p>Coding and payer edits reviewed</p>
                   </div>
                   <div class="claim-row-right">
-                    <span class="claim-amount">$387.00</span>
+                    <span class="claim-amount">Ready</span>
                     <span class="claim-status-valid">✓ Ready to Submit</span>
                   </div>
                 </div>
                 <div class="claim-row valid">
                   <div class="claim-row-left">
-                    <h4>Patel, M. — UnitedHealth</h4>
-                    <p>11102 (Shave biopsy), 99214-25</p>
+                    <h4>Demonstration Claim B</h4>
+                    <p>Charge detail and modifier reviewed</p>
                   </div>
                   <div class="claim-row-right">
-                    <span class="claim-amount">$512.00</span>
+                    <span class="claim-amount">Ready</span>
                     <span class="claim-status-valid">✓ Ready to Submit</span>
                   </div>
                 </div>
                 <div class="claim-row error">
                   <div class="claim-row-left">
-                    <h4>Martinez, L. — BCBS</h4>
-                    <p>17110 — missing modifier for bilateral procedure</p>
+                    <h4>Demonstration Claim C</h4>
+                    <p>Modifier requires team review</p>
                   </div>
                   <div class="claim-row-right">
-                    <span class="claim-amount">$295.00</span>
+                    <span class="claim-amount">Hold</span>
                     <span class="claim-status-error">⚠ Needs Review</span>
                   </div>
                 </div>
               </div>
               <div style="margin-top:1rem;padding:0.85rem 1.25rem;background:var(--primary-light);border-radius:10px;border:1px solid var(--line);font-size:0.82rem;color:var(--primary-dark);font-weight:500;">
-                Claim scrubber caught modifier error before submission — preventing likely denial and 3-week delay.
+                Illustrative example: an edit is held for staff review before submission.
               </div>
             </div>
           </div>
@@ -647,21 +647,21 @@
         <div class="wrap">
           <div class="bill-section-header">
             <span class="section-badge">Denial Management</span>
-            <h2>Work Denials Faster with CARC/RARC Decoding</h2>
-            <p>Automated denial reason decoding, appeal template generation, root cause trending, and rework tracking — so nothing slips through.</p>
+            <h2>Organize Denial Review and Follow-Up</h2>
+            <p>Keep CARC/RARC details, supporting documents, appeal templates, owners, due dates, and rework status together.</p>
           </div>
           <div class="denial-stats-grid">
             <div class="denial-stat-card">
-              <div class="denial-stat-value">&lt;3%</div>
-              <div class="denial-stat-label">Denial Rate</div>
+              <div class="denial-stat-value">CARC</div>
+              <div class="denial-stat-label">Reason Detail</div>
             </div>
             <div class="denial-stat-card">
-              <div class="denial-stat-value">94%</div>
-              <div class="denial-stat-label">Appeal Success Rate</div>
+              <div class="denial-stat-value">Queue</div>
+              <div class="denial-stat-label">Assigned Follow-Up</div>
             </div>
             <div class="denial-stat-card">
-              <div class="denial-stat-value">4.2d</div>
-              <div class="denial-stat-label">Avg. Days to Rework</div>
+              <div class="denial-stat-value">Status</div>
+              <div class="denial-stat-label">Rework Tracking</div>
             </div>
           </div>
           <div style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:0.85rem;">
@@ -688,43 +688,43 @@
         <div class="wrap">
           <div class="bill-section-header">
             <span class="section-badge">Prior Authorization</span>
-            <h2>AI-Powered Prior Auth Approvals</h2>
-            <p>Automatic PA requirement detection, clinical documentation assembly, and AI-generated payer-specific medical necessity letters. Approvals in days, not weeks.</p>
+            <h2>Prior Authorization Workspace</h2>
+            <p>Organize requirements, supporting documentation, submission details, due dates, and payer responses in one reviewable workflow.</p>
           </div>
           <div class="pa-steps-grid">
             <div class="pa-step-row">
               <div class="pa-step-num">1</div>
               <div class="pa-step-body">
-                <h4>PA Requirement Detection</h4>
-                <p>System automatically detects when a procedure or medication requires prior authorization based on payer and policy ID.</p>
+                <h4>Requirement Review</h4>
+                <p>Record the service, payer, policy details, and authorization requirements identified by the team.</p>
               </div>
             </div>
             <div class="pa-step-row">
               <div class="pa-step-num">2</div>
               <div class="pa-step-body">
                 <h4>Clinical Documentation Assembly</h4>
-                <p>Pulls relevant notes, diagnosis history, prior treatments, labs, and photos from the chart — exactly what the payer needs.</p>
+                <p>Collect relevant notes, diagnosis history, prior treatments, results, and photos for staff and provider review.</p>
               </div>
             </div>
-            <div class="pa-step-row ai-step">
+            <div class="pa-step-row">
               <div class="pa-step-num">3</div>
               <div class="pa-step-body">
-                <h4>AI Medical Necessity Letter <span class="ai-badge-inline">AI</span></h4>
-                <p>Claude AI generates a complete, payer-specific medical necessity letter using the assembled clinical evidence. Provider reviews and approves in minutes.</p>
+                <h4>Supporting Letter</h4>
+                <p>Use an editable template to prepare the supporting rationale. The provider reviews and approves the final document.</p>
               </div>
             </div>
             <div class="pa-step-row">
               <div class="pa-step-num">4</div>
               <div class="pa-step-body">
                 <h4>Payer Submission</h4>
-                <p>Submitted electronically via the payer portal or fax. Status tracked automatically with follow-up reminders.</p>
+                <p>Document the submission channel, confirmation, owner, and next follow-up date.</p>
               </div>
             </div>
             <div class="pa-step-row">
               <div class="pa-step-num">5</div>
               <div class="pa-step-body">
                 <h4>Approval &amp; Expiration Tracking</h4>
-                <p>Approval stored in patient chart with auth number. Alerts fire 30 days before expiration so renewals are never missed.</p>
+                <p>Store the decision, reference number, effective dates, and renewal task in the patient record.</p>
               </div>
             </div>
           </div>
@@ -737,37 +737,37 @@
           <div class="detail-split">
             <div>
               <span class="section-badge">Eligibility Verification</span>
-              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Real-Time 270/271<br>Eligibility Checks</h2>
-              <p style="color:var(--muted);line-height:1.7;">Automated eligibility checks via HIPAA 270/271 transactions. Deductible, copay, coinsurance, and out-of-pocket balances displayed at check-in — so there are no payment surprises.</p>
+              <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);letter-spacing:-0.03em;margin:0.5rem 0 0.75rem;">Eligibility Details<br>at Check-In</h2>
+              <p style="color:var(--muted);line-height:1.7;">Give staff one place to review coverage details, deductible, copay, coinsurance, effective dates, and network information before the visit.</p>
               <ul class="detail-list">
-                <li>Real-time 270/271 eligibility transactions</li>
+                <li>Coverage response and verification details</li>
                 <li>Deductible, copay, and coinsurance display</li>
                 <li>Out-of-pocket maximum tracking</li>
-                <li>Auto-check 72 hours before appointment</li>
+                <li>Pre-visit verification work queue</li>
                 <li>Secondary insurance coordination</li>
                 <li>Coverage effective date validation</li>
                 <li>Network status (in/out of network)</li>
-                <li>Medicare &amp; Medicaid benefits lookup</li>
+                <li>Primary and secondary coverage review</li>
               </ul>
             </div>
             <div>
               <div class="eligibility-card">
                 <div class="eligibility-card-header">
-                  <span>Insurance Eligibility</span>
+                  <span>Insurance Eligibility · Illustrative</span>
                   <span class="elig-active">Active</span>
                 </div>
                 <div class="eligibility-card-body">
                   <div class="elig-row">
                     <span class="elig-label">Patient</span>
-                    <span class="elig-value">Johnson, Karen M.</span>
+                    <span class="elig-value">Demonstration Patient</span>
                   </div>
                   <div class="elig-row">
                     <span class="elig-label">Payer</span>
-                    <span class="elig-value">Blue Cross Blue Shield PPO</span>
+                    <span class="elig-value">Example Health Plan</span>
                   </div>
                   <div class="elig-row">
                     <span class="elig-label">Member ID</span>
-                    <span class="elig-value">XYZ8847291</span>
+                    <span class="elig-value">Example Member ID</span>
                   </div>
                   <div class="elig-divider"></div>
                   <div class="elig-row">
@@ -797,7 +797,7 @@
                   </div>
                   <div class="elig-row">
                     <span class="elig-label">Verified</span>
-                    <span class="elig-value" style="color:var(--muted);">Today 7:45 AM (auto)</span>
+                    <span class="elig-value" style="color:var(--muted);">Sample response</span>
                   </div>
                 </div>
               </div>
@@ -812,7 +812,7 @@
           <div class="bill-section-header">
             <span class="section-badge">A/R Aging</span>
             <h2>Accounts Receivable Aging Dashboard</h2>
-            <p>Color-coded aging buckets so your billing team always knows where to focus attention. Industry benchmark: under 15 days in A/R.</p>
+            <p>Color-coded aging buckets help the billing team prioritize follow-up. The example below is illustrative, not a customer result.</p>
           </div>
           <div style="overflow-x:auto;">
             <table class="ar-aging-table">
@@ -867,15 +867,15 @@
           <div style="display:flex;gap:2rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">
             <div style="text-align:center;">
               <div style="font-size:1.8rem;font-weight:900;color:var(--primary);font-family:'Fraunces',serif;">$89,000</div>
-              <div style="font-size:0.78rem;color:var(--muted);">Total Outstanding</div>
+              <div style="font-size:0.78rem;color:var(--muted);">Illustrative Outstanding</div>
             </div>
             <div style="text-align:center;">
               <div style="font-size:1.8rem;font-weight:900;color:#22c55e;font-family:'Fraunces',serif;">14d</div>
-              <div style="font-size:0.78rem;color:var(--muted);">Days in A/R (benchmark: &lt;30)</div>
+              <div style="font-size:0.78rem;color:var(--muted);">Illustrative Days in A/R</div>
             </div>
             <div style="text-align:center;">
               <div style="font-size:1.8rem;font-weight:900;color:var(--primary);font-family:'Fraunces',serif;">75%</div>
-              <div style="font-size:0.78rem;color:var(--muted);">Collected within 30 days</div>
+              <div style="font-size:0.78rem;color:var(--muted);">Illustrative 30-Day Share</div>
             </div>
           </div>
         </div>
@@ -887,7 +887,7 @@
           <div class="bill-section-header">
             <span class="section-badge">Patient Payments</span>
             <h2>Modern Patient Payment Experience</h2>
-            <p>Card on file, text-to-pay, payment plans, and automated statements. Reduce collection friction and get paid faster.</p>
+            <p>Support card-on-file, payment links, payment-plan tracking, statements, and portal balances in a consistent patient-facing process.</p>
           </div>
           <div class="payment-grid">
             <div class="payment-card">
@@ -900,7 +900,7 @@
               <div class="payment-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
-              <div><h4>Text-to-Pay</h4><p>Send SMS payment link — patients pay from any device in seconds.</p></div>
+              <div><h4>Payment Links</h4><p>Send a payment link for patients to open on a supported device.</p></div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">
@@ -918,7 +918,7 @@
               <div class="payment-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
               </div>
-              <div><h4>Cost Estimator</h4><p>Show patients an accurate cost estimate before their visit — no surprises.</p></div>
+              <div><h4>Planning Estimate</h4><p>Share an estimate based on available coverage and service information.</p></div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">
@@ -934,9 +934,9 @@
       <section class="analytics-section" id="analytics">
         <div class="wrap">
           <div class="bill-section-header">
-            <span class="section-badge">Revenue Analytics</span>
+            <span class="section-badge">Illustrative Revenue View</span>
             <h2 style="color:#fff;">Revenue Analytics by Provider,<br>Payer &amp; Procedure</h2>
-            <p>Slice and dice your revenue data by any dimension. See exactly where your money comes from and where it's slipping away.</p>
+            <p>Review revenue activity by provider, payer, procedure, and date range. The figures shown below demonstrate the layout only.</p>
           </div>
           <div class="analytics-filter">
             <button class="analytics-filter-btn active">By Procedure</button>
@@ -997,11 +997,11 @@
       <section class="bill-cta">
         <div class="wrap">
           <span class="section-badge" style="background:rgba(255,255,255,0.08);color:#60c5ff;border-color:rgba(96,197,255,0.25);margin-bottom:1.25rem;display:inline-block;">Ready to Optimize Your Revenue</span>
-          <h2>Stop Leaving Money on the Table</h2>
-          <p>See how Nuvora Health's billing tools can increase collections, reduce denials, and save your team hours every week.</p>
+          <h2>Bring Revenue Work Into Focus</h2>
+          <p>See how Nuvora Health can organize billing tasks, surface status, and give your team a clearer follow-up process.</p>
           <div class="bill-cta-btns">
             <a href="contact.html" class="btn btn-primary btn-lg">
-              <span>Schedule a Demo</span>
+              <span>Request a Demo</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <a href="clinical.html" class="btn btn-secondary">Explore Clinical Tools &rarr;</a>
@@ -1025,6 +1025,10 @@
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="resources.html">Resources</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="security.html">Security</a>
           </div>
           <div class="footer-contact">
             <a href="tel:541-231-8693">541-231-8693</a>
@@ -1033,21 +1037,10 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+          <p>&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
-    <script>
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      if (navToggle) {
-        navToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          navToggle.classList.toggle('active');
-        });
-      }
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>

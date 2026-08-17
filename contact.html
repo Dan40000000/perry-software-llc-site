@@ -3,26 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact | Nuvora Health</title>
-    <meta name="description" content="Contact Nuvora Health for a demo, quote, or questions about our practice management platform. We typically respond within 24 hours." />
+    <title>Request a Nuvora Health Demo | Contact</title>
+    <meta name="description" content="Request a personalized Nuvora Health demonstration, discuss your practice workflows, and receive a quote tailored to your organization." />
+    <link rel="canonical" href="https://perrysoftwarellc.com/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nuvora Health" />
+    <meta property="og:title" content="Request a Nuvora Health Demo" />
+    <meta property="og:description" content="See Nuvora Health in a personalized walkthrough and discuss your practice requirements." />
+    <meta property="og:url" content="https://perrysoftwarellc.com/contact.html" />
+    <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/schedule-page.png" />
+    <meta property="og:image:alt" content="Illustrative Nuvora Health scheduling workflow screen" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Request a Nuvora Health Demo" />
+    <meta name="twitter:description" content="Request a personalized walkthrough and discuss your practice requirements." />
+    <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/schedule-page.png" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="styles.css?v=nuvora-blue-quote-20260515" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-trust-20260817" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="site.js" defer></script>
   </head>
   <body>
     <!-- Navigation -->
     <nav class="main-nav">
       <div class="nav-wrap">
-        <a href="index.html" class="nav-logo">Nuvora Health</a>
-        <button class="nav-toggle" aria-label="Toggle menu">
+        <a href="index.html" class="nav-logo"><img src="assets/logo.svg" alt="" width="46" height="46"><span class="nav-wordmark">Nuvora Health</span></a>
+        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <ul class="nav-links" style="gap:1.6rem">
+        <ul id="primary-navigation" class="nav-links" style="gap:1.6rem">
           <li><a href="index.html">Home</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="clinical.html">Clinical</a></li>
@@ -31,8 +44,9 @@
           <li><a href="about.html">About</a></li>
           <li><a href="account/">Account Login</a></li>
           <li><a href="contact.html" class="active">Contact</a></li>
+          <li class="mobile-nav-demo"><a href="contact.html">Request a Demo</a></li>
         </ul>
-        <a href="contact.html" class="nav-cta">Request Demo</a>
+        <a href="contact.html" class="nav-cta">Request a Demo</a>
       </div>
     </nav>
 
@@ -49,50 +63,52 @@
         <div class="wrap">
           <div class="contact-grid">
             <div class="contact-form">
-              <h3>Request a Demo</h3>
+              <h2>Request a Demo</h2>
               <form
                 id="demo-form"
                 action="https://formspree.io/f/xreadryd"
                 method="POST"
                 data-formspree-endpoint="https://formspree.io/f/xreadryd"
+                aria-describedby="contact-privacy"
               >
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" id="name" name="name" required placeholder="Your name">
+                  <input type="text" id="name" name="name" autocomplete="name" required placeholder="Your name">
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" id="email" name="email" required placeholder="you@practice.com">
+                  <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@practice.com">
                 </div>
                 <div class="form-group">
                   <label for="practice">Practice Name</label>
-                  <input type="text" id="practice" name="practice" required placeholder="Your practice name">
+                  <input type="text" id="practice" name="practice" autocomplete="organization" required placeholder="Your practice name">
                 </div>
                 <div class="form-group">
                   <label for="phone">Phone (optional)</label>
-                  <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 123-4567">
                 </div>
                 <div class="form-group">
                   <label for="providers">Number of Providers (optional)</label>
-                  <input type="number" id="providers" name="providers" placeholder="e.g., 3">
+                  <input type="number" id="providers" name="providers" min="1" max="500" inputmode="numeric" placeholder="e.g., 3">
                 </div>
                 <div class="form-group">
                   <label for="current-ehr">Current EHR System (optional)</label>
-                  <input type="text" id="current-ehr" name="current_ehr" placeholder="e.g., Epic, eClinicalWorks, etc.">
+                  <input type="text" id="current-ehr" name="current_ehr" autocomplete="off" placeholder="Name of your current system">
                 </div>
                 <div class="form-group">
                   <label for="message">Message (optional)</label>
-                  <textarea id="message" name="message" rows="4" placeholder="Tell us about your practice and what you're looking for"></textarea>
+                  <textarea id="message" name="message" rows="4" placeholder="Tell us which workflows you want to review. Do not include patient information."></textarea>
                 </div>
+                <p id="contact-privacy" class="form-privacy">Please do not submit patient information or other sensitive medical details. Form responses are processed by Formspree. See our <a href="privacy.html">Privacy Notice</a>.</p>
                 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
                 <input type="hidden" name="_subject" value="Demo Request - Nuvora Health">
-                <button type="submit" class="btn btn-primary btn-submit">Request Demo</button>
+                <button type="submit" class="btn btn-primary btn-submit">Request a Demo</button>
                 <p id="demo-form-status" class="form-status" aria-live="polite"></p>
               </form>
             </div>
             <div class="contact-info">
-              <h3>Get in Touch Directly</h3>
-              <p style="color: var(--muted); margin-bottom: 2rem;">Prefer to talk? We're here for you.</p>
+              <h2>Get in Touch Directly</h2>
+              <p style="color: var(--muted); margin-bottom: 2rem;">Prefer a direct conversation? Call, text, or email us.</p>
 
               <div class="contact-info-item">
                 <div class="contact-info-icon">
@@ -100,7 +116,7 @@
                 </div>
                 <div>
                   <a href="tel:541-231-8693">541-231-8693</a><br>
-                  <span>Call or text anytime</span>
+                  <span>Call or text with general business questions</span>
                 </div>
               </div>
               <div class="contact-info-item">
@@ -109,7 +125,7 @@
                 </div>
                 <div>
                   <a href="mailto:dan@perrysoftwarellc.com?subject=Demo%20Request%20-%20Nuvora%20Health">dan@perrysoftwarellc.com</a><br>
-                  <span>We typically reply within 24 hours</span>
+                  <span>Demo requests and business inquiries</span>
                 </div>
               </div>
               <div class="contact-info-item">
@@ -123,12 +139,12 @@
               </div>
 
               <div style="margin-top: 3rem; padding: 1.5rem; background: var(--primary-light); border-radius: 12px;">
-                <h4 style="margin: 0 0 0.5rem; color: var(--primary-dark);">What happens next?</h4>
+                <h3 style="margin: 0 0 0.5rem; color: var(--primary-dark);">What happens next?</h3>
                 <ol style="margin: 0; padding-left: 1.25rem; color: var(--text); font-size: 0.9rem; line-height: 1.8;">
-                  <li>We'll reach out within 24 hours</li>
-                  <li>Quick discovery call to understand your needs</li>
-                  <li>Personalized demo of the platform</li>
-                  <li>Custom quote based on your practice</li>
+                  <li>We review the practice details you submit</li>
+                  <li>We schedule a discovery conversation</li>
+                  <li>We tailor the platform walkthrough to your priorities</li>
+                  <li>We document the scope needed for a written quote</li>
                 </ol>
               </div>
             </div>
@@ -151,6 +167,10 @@
             <a href="pricing.html">Pricing</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="resources.html">Resources</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="security.html">Security</a>
           </div>
           <div class="footer-contact">
             <a href="tel:541-231-8693">541-231-8693</a>
@@ -159,22 +179,12 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; <span id="year"></span> Perry Software LLC. All rights reserved.</p>
+          <p>&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
     <script>
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      if (navToggle) {
-        navToggle.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-          navToggle.classList.toggle('active');
-        });
-      }
-      document.getElementById('year').textContent = new Date().getFullYear();
-
       const demoForm = document.getElementById('demo-form');
       const statusEl = document.getElementById('demo-form-status');
 
@@ -216,7 +226,7 @@
 
             if (response.ok) {
               demoForm.reset();
-              setFormStatus('success', 'Thanks! We\'ll be in touch within 24 hours.');
+              setFormStatus('success', 'Thanks! Your demo request was sent.');
             } else {
               const body = await response.json().catch(() => ({}));
               const apiMessage = Array.isArray(body?.errors) && body.errors[0]?.message
@@ -229,7 +239,7 @@
           } finally {
             if (submitButton) {
               submitButton.disabled = false;
-              submitButton.textContent = 'Request Demo';
+              submitButton.textContent = 'Request a Demo';
             }
           }
         });
