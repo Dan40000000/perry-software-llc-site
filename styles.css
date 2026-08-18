@@ -25,6 +25,26 @@
   box-sizing: border-box;
 }
 
+.skip-link {
+  position: fixed;
+  z-index: 2000;
+  top: 0.75rem;
+  left: 0.75rem;
+  transform: translateY(-180%);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--primary-dark);
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 /* ============================================
    TYPOGRAPHY
    ============================================ */
@@ -1332,6 +1352,10 @@ section {
   border: 1px solid var(--line);
 }
 
+.contact-form {
+  scroll-margin-top: 7rem;
+}
+
 .contact-form h2,
 .contact-info h2,
 .contact-info h3 {
@@ -1355,6 +1379,7 @@ section {
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
   width: 100%;
   padding: 1rem 1.25rem;
@@ -1368,6 +1393,7 @@ section {
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--primary);
   background: white;
@@ -1405,6 +1431,20 @@ section {
 .form-group textarea {
   resize: vertical;
   min-height: 120px;
+}
+
+.form-help {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.contact-choice-intro {
+  margin: -1rem 0 1.5rem;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 .btn-submit {
@@ -4177,6 +4217,110 @@ h1,
 .legal-card a {
   color: var(--primary-dark);
   font-weight: 700;
+}
+
+.resource-checklist {
+  padding-left: 0;
+  list-style: none;
+}
+
+.resource-checklist li {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.resource-checklist li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 900;
+}
+
+.hero-contact-shortcut {
+  margin: -1.2rem 0 2.2rem;
+  color: rgba(233, 247, 255, 0.72);
+  font-size: 0.92rem;
+}
+
+.hero-contact-shortcut a {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.thank-you-page {
+  min-height: 100vh;
+  padding: 10rem 0 6rem;
+}
+
+.thank-you-card {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 5vw, 4rem);
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: var(--shadow-xl);
+}
+
+.thank-you-mark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  color: #ffffff;
+  background: var(--gradient-1);
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.thank-you-card h1 {
+  color: var(--text);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+}
+
+.thank-you-card p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.thank-you-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.thank-you-actions .btn-primary {
+  color: #ffffff;
+  background: var(--gradient-1);
+}
+
+.thank-you-actions .btn-secondary {
+  color: var(--primary-dark);
+  border: 1px solid var(--line);
+  background: var(--primary-light);
+}
+
+.submission-reference {
+  margin-top: 1.5rem;
+  font-size: 0.78rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .demo-label {
