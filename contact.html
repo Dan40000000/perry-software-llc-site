@@ -3,27 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Request a Nuvora Health Demo | Contact</title>
-    <meta name="description" content="Request a personalized Nuvora Health demonstration, discuss your practice workflows, and receive a quote tailored to your organization." />
+    <title>Request a Demo or More Information | Nuvora Health</title>
+    <meta name="description" content="Request a personalized Nuvora Health demonstration, ask for more information, discuss practice workflows, or receive a tailored quote." />
     <link rel="canonical" href="https://perrysoftwarellc.com/contact.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Nuvora Health" />
-    <meta property="og:title" content="Request a Nuvora Health Demo" />
-    <meta property="og:description" content="See Nuvora Health in a personalized walkthrough and discuss your practice requirements." />
+    <meta property="og:title" content="Request a Demo or More Information | Nuvora Health" />
+    <meta property="og:description" content="See Nuvora Health in a personalized walkthrough or request the information your practice needs." />
     <meta property="og:url" content="https://perrysoftwarellc.com/contact.html" />
     <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/schedule-page.png" />
     <meta property="og:image:alt" content="Illustrative Nuvora Health scheduling workflow screen" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Request a Nuvora Health Demo" />
-    <meta name="twitter:description" content="Request a personalized walkthrough and discuss your practice requirements." />
+    <meta name="twitter:title" content="Request a Demo or More Information | Nuvora Health" />
+    <meta name="twitter:description" content="Request a personalized walkthrough or ask for the information your practice needs." />
     <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/schedule-page.png" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="styles.css?v=nuvora-trust-20260817" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-growth-20260818-2" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <script src="site.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="site.js?v=nuvora-growth-20260818-2" defer></script>
   </head>
   <body>
     <!-- Navigation -->
@@ -53,8 +53,8 @@
     <!-- Page Header -->
     <header class="page-header">
       <div class="wrap">
-        <h1>Let's Talk</h1>
-        <p>Ready to see Nuvora Health in action? Have questions? We'd love to hear from you.</p>
+        <h1>Let&rsquo;s Talk</h1>
+        <p>Request a personalized demonstration or start with the information your practice needs.</p>
       </div>
     </header>
 
@@ -62,8 +62,9 @@
       <section class="contact" style="padding-top: 4rem;">
         <div class="wrap">
           <div class="contact-grid">
-            <div class="contact-form">
-              <h2>Request a Demo</h2>
+            <div class="contact-form" id="request-form">
+              <h2>Request a Demo or More Information</h2>
+              <p class="contact-choice-intro">Choose what would be most useful. You can ask a question without committing to a demonstration.</p>
               <form
                 id="demo-form"
                 action="https://formspree.io/f/xreadryd"
@@ -71,6 +72,17 @@
                 data-formspree-endpoint="https://formspree.io/f/xreadryd"
                 aria-describedby="contact-privacy"
               >
+                <div class="form-group">
+                  <label for="inquiry-type">How can we help?</label>
+                  <select id="inquiry-type" name="inquiry_type" required>
+                    <option value="" disabled>Select one</option>
+                    <option value="More information" selected>Send me more information</option>
+                    <option value="Personalized demo">Schedule a personalized demo</option>
+                    <option value="Pricing discussion">Discuss pricing</option>
+                    <option value="Migration discussion">Discuss migration</option>
+                    <option value="General question">Ask a general question</option>
+                  </select>
+                </div>
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" autocomplete="name" required placeholder="Your name">
@@ -101,8 +113,13 @@
                 </div>
                 <p id="contact-privacy" class="form-privacy">Please do not submit patient information or other sensitive medical details. Form responses are processed by Formspree. See our <a href="privacy.html">Privacy Notice</a>.</p>
                 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
-                <input type="hidden" name="_subject" value="Demo Request - Nuvora Health">
-                <button type="submit" class="btn btn-primary btn-submit">Request a Demo</button>
+                <input type="hidden" name="_subject" value="Website Inquiry - Nuvora Health">
+                <input type="hidden" name="reference_id" id="reference-id" value="">
+                <input type="hidden" name="landing_page" id="landing-page" value="">
+                <input type="hidden" name="utm_source" id="utm-source" value="">
+                <input type="hidden" name="utm_medium" id="utm-medium" value="">
+                <input type="hidden" name="utm_campaign" id="utm-campaign" value="">
+                <button type="submit" class="btn btn-primary btn-submit">Send My Request</button>
                 <p id="demo-form-status" class="form-status" aria-live="polite"></p>
               </form>
             </div>
@@ -124,8 +141,8 @@
                   <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
                 <div>
-                  <a href="mailto:dan@perrysoftwarellc.com?subject=Demo%20Request%20-%20Nuvora%20Health">dan@perrysoftwarellc.com</a><br>
-                  <span>Demo requests and business inquiries</span>
+                  <a href="mailto:dan@perrysoftwarellc.com?subject=Website%20Inquiry%20-%20Nuvora%20Health">dan@perrysoftwarellc.com</a><br>
+                  <span>Information requests, demonstrations, and business inquiries</span>
                 </div>
               </div>
               <div class="contact-info-item">
@@ -141,9 +158,9 @@
               <div style="margin-top: 3rem; padding: 1.5rem; background: var(--primary-light); border-radius: 12px;">
                 <h3 style="margin: 0 0 0.5rem; color: var(--primary-dark);">What happens next?</h3>
                 <ol style="margin: 0; padding-left: 1.25rem; color: var(--text); font-size: 0.9rem; line-height: 1.8;">
-                  <li>We review the practice details you submit</li>
-                  <li>We schedule a discovery conversation</li>
-                  <li>We tailor the platform walkthrough to your priorities</li>
+                  <li>We review your request and practice details</li>
+                  <li>We reply with information or any needed questions</li>
+                  <li>If useful, we schedule a focused conversation or demonstration</li>
                   <li>We document the scope needed for a written quote</li>
                 </ol>
               </div>
@@ -187,6 +204,35 @@
     <script>
       const demoForm = document.getElementById('demo-form');
       const statusEl = document.getElementById('demo-form-status');
+      const inquiryType = document.getElementById('inquiry-type');
+      const pageParams = new URLSearchParams(window.location.search);
+
+      const inquiryMap = {
+        demo: 'Personalized demo',
+        information: 'More information',
+        pricing: 'Pricing discussion',
+        migration: 'Migration discussion',
+      };
+
+      if (inquiryType && inquiryMap[pageParams.get('interest')]) {
+        inquiryType.value = inquiryMap[pageParams.get('interest')];
+      }
+
+      const makeReference = () => {
+        if (window.crypto?.randomUUID) return `NH-${window.crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+        return `NH-${Date.now().toString(36).toUpperCase()}`;
+      };
+
+      const referenceInput = document.getElementById('reference-id');
+      const submissionReference = makeReference();
+      if (referenceInput) referenceInput.value = submissionReference;
+      const landingPageInput = document.getElementById('landing-page');
+      if (landingPageInput) landingPageInput.value = window.location.pathname;
+      [['utm-source', 'utm_source'], ['utm-medium', 'utm_medium'], ['utm-campaign', 'utm_campaign']]
+        .forEach(([elementId, parameterName]) => {
+          const input = document.getElementById(elementId);
+          if (input) input.value = (pageParams.get(parameterName) || '').slice(0, 120);
+        });
 
       function setFormStatus(type, message) {
         if (!statusEl) return;
@@ -225,8 +271,8 @@
             });
 
             if (response.ok) {
-              demoForm.reset();
-              setFormStatus('success', 'Thanks! Your demo request was sent.');
+              const requestType = inquiryType?.value === 'Personalized demo' ? 'demo' : 'information';
+              window.location.assign(`thank-you.html?request=${requestType}&ref=${encodeURIComponent(submissionReference)}`);
             } else {
               const body = await response.json().catch(() => ({}));
               const apiMessage = Array.isArray(body?.errors) && body.errors[0]?.message
@@ -239,7 +285,7 @@
           } finally {
             if (submitButton) {
               submitButton.disabled = false;
-              submitButton.textContent = 'Request a Demo';
+              submitButton.textContent = 'Send My Request';
             }
           }
         });

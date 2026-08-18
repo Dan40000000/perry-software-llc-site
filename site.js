@@ -1,4 +1,16 @@
 (() => {
+  const mainContent = document.querySelector('main');
+  if (mainContent) {
+    if (!mainContent.id) mainContent.id = 'main-content';
+    if (!document.querySelector('.skip-link')) {
+      const skipLink = document.createElement('a');
+      skipLink.className = 'skip-link';
+      skipLink.href = `#${mainContent.id}`;
+      skipLink.textContent = 'Skip to main content';
+      document.body.prepend(skipLink);
+    }
+  }
+
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
   const mobileNav = window.matchMedia('(max-width: 1100px)');
@@ -68,10 +80,19 @@
     '/dermatology-ehr.html',
     '/biopsy-pathology-tracking.html',
     '/dermatology-ehr-migration-checklist.html',
+    '/dermatology-ehr-cost-comparison.html',
+    '/dermatology-implementation-timeline.html',
+    '/dermatology-front-desk-workflow.html',
+    '/dermatology-revenue-cycle-kpis.html',
+    '/ehr-security-questionnaire.html',
     '/resources.html',
   ]);
 
-  if (marketingPages.has(window.location.pathname) && !document.querySelector('.mobile-demo-bar')) {
+  if (
+    marketingPages.has(window.location.pathname) &&
+    window.location.pathname !== '/contact.html' &&
+    !document.querySelector('.mobile-demo-bar')
+  ) {
     const mobileDemoBar = document.createElement('a');
     mobileDemoBar.className = 'mobile-demo-bar';
     mobileDemoBar.href = window.location.pathname.includes('/account/') ? '../contact.html' : 'contact.html';
