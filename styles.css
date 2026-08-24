@@ -3023,7 +3023,7 @@ section {
   flex-shrink: 0;
 }
 
-.feature-detail-image img {
+.feature-detail-image .feature-screenshot {
   display: block;
   width: 100%;
   height: auto;
