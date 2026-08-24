@@ -22,7 +22,7 @@ CANONICAL_EXEMPT = {
     "sms-terms.html",
 }
 FORBIDDEN_PUBLIC_COPY = re.compile(
-    r"\b(?:AI|startup|beta|pilot|pharmacy)\b|OpenAI|Claude", re.IGNORECASE
+    r"\b(?:startup|beta|pilot|pharmacy)\b|OpenAI|Claude", re.IGNORECASE
 )
 
 

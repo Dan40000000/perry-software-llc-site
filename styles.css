@@ -260,6 +260,823 @@ summary:focus-visible {
   outline-offset: 3px;
 }
 
+/* ============================================
+   NATURE HERO + AMBIENT AI SCRIBE
+   ============================================ */
+.home-hero {
+  min-height: 760px;
+  padding: 9.2rem 0 5.25rem;
+  isolation: isolate;
+  background-image: url('assets/nuvora-mountain-hero.webp');
+  background-position: center center;
+  background-size: cover;
+}
+
+.home-hero::before {
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(3, 16, 34, 0.98) 0%, rgba(3, 22, 43, 0.94) 36%, rgba(3, 24, 46, 0.6) 65%, rgba(3, 21, 40, 0.18) 100%),
+    linear-gradient(180deg, rgba(1, 12, 29, 0.08) 48%, rgba(1, 13, 30, 0.82) 100%);
+}
+
+.home-hero::after {
+  z-index: -1;
+  opacity: 0.58;
+  background: linear-gradient(180deg, rgba(3, 16, 34, 0.05), rgba(3, 16, 34, 0.5));
+  animation: none;
+}
+
+.home-hero .home-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(340px, 0.78fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+  max-width: 1260px;
+}
+
+.home-hero-copy {
+  min-width: 0;
+}
+
+.home-hero .hero-badge {
+  margin-bottom: 1rem;
+  color: #e4f7ff;
+  background: rgba(1, 43, 70, 0.58);
+  border-color: rgba(150, 225, 255, 0.3);
+  backdrop-filter: blur(16px);
+}
+
+.hero-capabilities {
+  margin: 0 0 1.75rem;
+  color: rgba(228, 247, 255, 0.74);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-hero h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(3.45rem, 6vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.07em;
+  text-wrap: balance;
+}
+
+.home-hero h1 > span {
+  display: block;
+  padding-block: 0.04em 0.12em;
+}
+
+.home-hero h1 .gradient-text {
+  background: linear-gradient(100deg, #d9f7ff 0%, #8de2ef 38%, #74d4bb 68%, #e8f7ed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.home-hero .lead {
+  max-width: 680px;
+  margin: 1.35rem 0 2rem;
+  color: rgba(238, 249, 252, 0.84);
+  font-size: clamp(1.03rem, 1.45vw, 1.22rem);
+  line-height: 1.72;
+}
+
+.home-hero .hero-contact-shortcut {
+  margin: 1.4rem 0 0;
+}
+
+.hero-scribe-card {
+  align-self: end;
+  margin-bottom: -1.75rem;
+  padding: 1.4rem;
+  color: #effcff;
+  border: 1px solid rgba(202, 241, 249, 0.26);
+  border-radius: 26px;
+  background: linear-gradient(155deg, rgba(3, 31, 50, 0.82), rgba(4, 43, 61, 0.58));
+  box-shadow: 0 30px 90px rgba(0, 8, 22, 0.44);
+  backdrop-filter: blur(20px) saturate(1.15);
+}
+
+.hero-scribe-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.hero-scribe-heading > div {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.hero-scribe-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: 15px;
+  color: #072937;
+  background: linear-gradient(135deg, #a9f0e1, #6fd5ff);
+}
+
+.hero-scribe-icon svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-scribe-label {
+  color: #9fe9db;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-scribe-heading strong {
+  font-size: 1rem;
+}
+
+.hero-wave,
+.scribe-hero-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.36rem;
+  height: 56px;
+  margin: 1.15rem 0;
+  border-top: 1px solid rgba(220, 248, 255, 0.1);
+  border-bottom: 1px solid rgba(220, 248, 255, 0.1);
+}
+
+.hero-wave span,
+.scribe-hero-wave span {
+  width: 4px;
+  height: var(--wave-height, 20px);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #9fe9db, #58c9f2);
+}
+
+.hero-wave span:nth-child(2), .hero-wave span:nth-child(8),
+.scribe-hero-wave span:nth-child(2), .scribe-hero-wave span:nth-child(8) { --wave-height: 32px; }
+.hero-wave span:nth-child(3), .hero-wave span:nth-child(7),
+.scribe-hero-wave span:nth-child(3), .scribe-hero-wave span:nth-child(7) { --wave-height: 42px; }
+.hero-wave span:nth-child(4), .hero-wave span:nth-child(6),
+.scribe-hero-wave span:nth-child(4), .scribe-hero-wave span:nth-child(6) { --wave-height: 26px; }
+.hero-wave span:nth-child(5),
+.scribe-hero-wave span:nth-child(5) { --wave-height: 48px; }
+
+.hero-scribe-steps {
+  display: grid;
+  gap: 0.72rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-scribe-steps li {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 0.65rem;
+  align-items: start;
+  padding: 0.72rem;
+  border-radius: 14px;
+  background: rgba(223, 250, 255, 0.07);
+}
+
+.hero-scribe-steps li > span {
+  color: #88dfd0;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.hero-scribe-steps strong,
+.hero-scribe-steps small {
+  display: block;
+}
+
+.hero-scribe-steps strong {
+  font-size: 0.84rem;
+}
+
+.hero-scribe-steps small {
+  margin-top: 0.2rem;
+  color: rgba(230, 249, 252, 0.65);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.hero-scribe-disclaimer {
+  margin: 1rem 0 0;
+  color: rgba(230, 249, 252, 0.62);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.ambient-spotlight {
+  padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(87, 190, 158, 0.12), transparent 26rem),
+    linear-gradient(180deg, #f8fcfa 0%, #eef7f4 100%);
+}
+
+.ambient-spotlight-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+  gap: clamp(3rem, 7vw, 6rem);
+  align-items: center;
+}
+
+.ambient-spotlight-copy h2 {
+  margin: 0.8rem 0 1.2rem;
+  color: var(--text);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.35rem, 4.5vw, 4.4rem);
+  line-height: 1.03;
+  letter-spacing: -0.055em;
+}
+
+.ambient-spotlight-copy .gradient-text {
+  background: linear-gradient(100deg, #066285, #168b73);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.ambient-lead {
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.8;
+}
+
+.ambient-proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1.6rem 0 2rem;
+}
+
+.ambient-proof-row span {
+  padding: 0.48rem 0.74rem;
+  border: 1px solid rgba(22, 139, 115, 0.2);
+  border-radius: 999px;
+  color: #125d51;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.ambient-spotlight .btn-primary,
+.scribe-page .btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, #075f7b, #167f6c);
+}
+
+.ambient-outline-btn {
+  color: #075f7b;
+  border: 1px solid rgba(7, 95, 123, 0.25);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.ambient-workflow {
+  padding: clamp(1.35rem, 3vw, 2.3rem);
+  border: 1px solid rgba(7, 95, 123, 0.12);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 28px 80px rgba(7, 49, 60, 0.12);
+}
+
+.ambient-workflow-step {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.ambient-step-number {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  color: #eafffa;
+  background: linear-gradient(135deg, #075f7b, #168b73);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.ambient-workflow-step strong {
+  color: var(--text);
+  font-size: 1.02rem;
+}
+
+.ambient-workflow-step p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+
+.ambient-workflow-connector {
+  width: 1px;
+  height: 30px;
+  margin: 0.4rem 0 0.4rem 23px;
+  background: linear-gradient(#168b73, rgba(22, 139, 115, 0.1));
+}
+
+.ambient-review-note {
+  margin: 1.5rem 0 0;
+  padding: 1rem;
+  border-radius: 14px;
+  color: #244b4a;
+  background: #eef8f5;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.ambient-review-note strong { color: #125d51; }
+
+/* Dedicated ambient scribe page */
+.scribe-page { background: #f7fbfa; }
+
+.scribe-page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 10rem 0 6.5rem;
+  color: #fff;
+  background-image:
+    linear-gradient(90deg, rgba(3, 16, 34, 0.98) 0%, rgba(3, 25, 45, 0.88) 47%, rgba(3, 24, 42, 0.45) 100%),
+    url('assets/nuvora-mountain-hero.webp');
+  background-position: center;
+  background-size: cover;
+}
+
+.scribe-page-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.scribe-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #b9f1e4;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.scribe-eyebrow span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #7ee2cd;
+  box-shadow: 0 0 0 7px rgba(126, 226, 205, 0.12);
+}
+
+.scribe-page-hero h1 {
+  margin: 1.2rem 0 1.4rem;
+  font-size: clamp(3.4rem, 6.5vw, 6.6rem);
+  line-height: 0.93;
+  letter-spacing: -0.072em;
+}
+
+.scribe-page-hero h1 em {
+  color: #a7ebdd;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.scribe-page-hero > .wrap > div:first-child > p {
+  max-width: 680px;
+  color: rgba(237, 250, 252, 0.8);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.75;
+}
+
+.scribe-hero-summary {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid rgba(217, 249, 253, 0.24);
+  border-radius: 28px;
+  background: rgba(2, 33, 47, 0.68);
+  box-shadow: 0 30px 90px rgba(0, 8, 24, 0.42);
+  backdrop-filter: blur(18px);
+}
+
+.scribe-hero-status {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #c8f5ec;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scribe-hero-status i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7ee2cd;
+}
+
+.scribe-hero-output {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  color: rgba(235, 249, 252, 0.74);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.scribe-hero-output b { color: #7ee2cd; }
+
+.scribe-hero-summary ul {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scribe-hero-summary li {
+  position: relative;
+  padding-left: 1.3rem;
+  color: rgba(240, 251, 253, 0.82);
+  font-size: 0.84rem;
+}
+
+.scribe-hero-summary li::before {
+  content: '';
+  position: absolute;
+  top: 0.45em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7ee2cd;
+}
+
+.scribe-hero-summary small {
+  color: rgba(231, 248, 251, 0.56);
+  line-height: 1.5;
+}
+
+.scribe-process,
+.scribe-billing-section,
+.scribe-safeguards,
+.scribe-faq {
+  padding: clamp(4.75rem, 8vw, 7.5rem) 0;
+}
+
+.scribe-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.scribe-process-card {
+  min-height: 270px;
+  padding: 1.65rem;
+  border: 1px solid rgba(7, 95, 123, 0.11);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 18px 52px rgba(6, 45, 58, 0.08);
+}
+
+.scribe-process-number {
+  color: #168b73;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.scribe-process-card h3 {
+  margin: 2.5rem 0 0.8rem;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.scribe-process-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.scribe-control-section {
+  padding: clamp(4.75rem, 8vw, 7.5rem) 0;
+  color: #fff;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(49, 182, 157, 0.22), transparent 24rem),
+    #041d2b;
+}
+
+.scribe-control-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(460px, 1.15fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.scribe-control-intro h2 {
+  margin: 1rem 0 1.25rem;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.3rem, 4.4vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.scribe-control-intro p {
+  color: rgba(230, 247, 249, 0.7);
+  line-height: 1.8;
+}
+
+.scribe-control-intro .gradient-text {
+  background: linear-gradient(100deg, #c2f4e9, #79dbc6);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.scribe-control-intro .text-link { color: #9ee8d8; }
+
+.scribe-control-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.scribe-control-card {
+  padding: 1.6rem;
+  border: 1px solid rgba(224, 248, 251, 0.13);
+  border-radius: 24px;
+  background: rgba(230, 249, 251, 0.06);
+}
+
+.scribe-control-card > span {
+  display: inline-flex;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  color: #b9f2e6;
+  background: rgba(126, 226, 205, 0.1);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scribe-control-card ul {
+  display: grid;
+  gap: 0.95rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scribe-control-card li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: rgba(235, 249, 251, 0.76);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.scribe-control-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #7ee2cd;
+  font-weight: 900;
+}
+
+.scribe-control-card.human { background: rgba(126, 226, 205, 0.11); }
+
+.scribe-billing-section { background: #eef7f4; }
+
+.scribe-billing-grid {
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) minmax(0, 1fr);
+  gap: clamp(3rem, 7vw, 6rem);
+  align-items: center;
+}
+
+.scribe-billing-grid h2 {
+  margin: 0.8rem 0 1.15rem;
+  color: var(--text);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.25rem, 4vw, 3.7rem);
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+}
+
+.scribe-billing-grid > div:last-child > p {
+  color: var(--muted);
+  line-height: 1.78;
+}
+
+.scribe-billing-visual {
+  padding: 1.35rem;
+  border: 1px solid rgba(7, 95, 123, 0.12);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(6, 45, 58, 0.11);
+}
+
+.billing-visual-head,
+.billing-code-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.billing-visual-head {
+  padding: 0.55rem 0.4rem 1.2rem;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.billing-visual-head b {
+  color: #167f6c;
+  font-size: 0.72rem;
+}
+
+.billing-code-row {
+  margin-top: 0.6rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: #f3f8f7;
+  color: #415d64;
+  font-size: 0.82rem;
+}
+
+.billing-code-row strong {
+  color: #075f7b;
+  font-size: 0.74rem;
+}
+
+.scribe-safeguards { background: #fff; }
+
+.scribe-safeguard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.scribe-safeguard-grid article {
+  padding: 1.4rem;
+  border-top: 3px solid #168b73;
+  border-radius: 0 0 18px 18px;
+  background: #f3f8f7;
+}
+
+.scribe-safeguard-grid strong { color: var(--text); }
+.scribe-safeguard-grid p { color: var(--muted); font-size: 0.84rem; line-height: 1.65; }
+.scribe-security-link { margin: 2rem 0 0; text-align: center; color: var(--muted); font-size: 0.82rem; }
+.scribe-security-link a { color: #075f7b; font-weight: 800; }
+
+.scribe-faq { background: #f1f7f5; }
+
+.scribe-faq-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.65fr) minmax(0, 1.35fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.scribe-faq h2 {
+  margin: 0.8rem 0 0;
+  color: var(--text);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.3rem, 4.5vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.scribe-faq details {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(7, 95, 123, 0.15);
+}
+
+.scribe-faq summary {
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.scribe-faq details p {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.scribe-page .final-cta .cta-group { justify-content: center; }
+
+@media (max-width: 1050px) {
+  .home-hero .home-hero-grid,
+  .scribe-page-hero-grid,
+  .ambient-spotlight-grid,
+  .scribe-control-grid,
+  .scribe-billing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero {
+    background-position: 62% center;
+  }
+
+  .home-hero::before {
+    background: linear-gradient(90deg, rgba(3, 16, 34, 0.98) 0%, rgba(3, 22, 43, 0.88) 64%, rgba(3, 22, 43, 0.55) 100%);
+  }
+
+  .hero-scribe-card,
+  .scribe-hero-summary {
+    max-width: 680px;
+    margin: 0;
+  }
+
+  .scribe-process-grid,
+  .scribe-safeguard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .home-hero {
+    min-height: auto;
+    padding: 7.5rem 0 4.5rem;
+    background-position: 69% center;
+    text-align: left;
+  }
+
+  .home-hero::before {
+    background: linear-gradient(180deg, rgba(3, 16, 34, 0.9) 0%, rgba(3, 20, 38, 0.97) 78%, rgba(3, 16, 34, 1) 100%);
+  }
+
+  .home-hero h1 {
+    font-size: clamp(3rem, 14vw, 4.3rem);
+    line-height: 1;
+    letter-spacing: -0.065em;
+  }
+
+  .home-hero .hero-badge {
+    align-items: flex-start;
+    padding-inline: 1rem;
+    font-size: 0.74rem;
+    line-height: 1.45;
+  }
+
+  .home-hero .cta-group,
+  .ambient-spotlight .cta-group {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .home-hero .cta-group .btn,
+  .ambient-spotlight .cta-group .btn {
+    width: 100%;
+  }
+
+  .hero-scribe-card { padding: 1rem; }
+  .ambient-spotlight-grid { display: flex; flex-direction: column; }
+  .ambient-workflow { width: 100%; }
+
+  .scribe-page-hero {
+    padding: 8rem 0 4.75rem;
+    background-position: 68% center;
+  }
+
+  .scribe-page-hero h1 {
+    font-size: clamp(3.15rem, 14vw, 4.6rem);
+    letter-spacing: -0.065em;
+  }
+
+  .scribe-page-hero .cta-group { justify-content: flex-start; }
+
+  .scribe-control-panels,
+  .scribe-process-grid,
+  .scribe-safeguard-grid,
+  .scribe-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scribe-process-card { min-height: auto; }
+  .scribe-process-card h3 { margin-top: 1.5rem; }
+  .scribe-hero-output { flex-wrap: wrap; justify-content: flex-start; }
+  .billing-code-row { align-items: flex-start; flex-direction: column; }
+}
+
 .wrap {
   width: min(1200px, 92vw);
   margin: 0 auto;
@@ -4389,4 +5206,71 @@ summary:focus-visible {
 .provider-field textarea:focus-visible {
   outline: 3px solid #00a8e8;
   outline-offset: 3px;
+}
+
+/* Keep the homepage nature treatment above the legacy shared hero layer. */
+.hero.home-hero {
+  min-height: 760px;
+  padding: 9.2rem 0 5.25rem;
+  text-align: left;
+  isolation: isolate;
+  background: url('assets/nuvora-mountain-hero.webp') center center / cover no-repeat;
+}
+
+.hero.home-hero::before {
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(3, 16, 34, 0.98) 0%, rgba(3, 22, 43, 0.94) 36%, rgba(3, 24, 46, 0.6) 65%, rgba(3, 21, 40, 0.18) 100%),
+    linear-gradient(180deg, rgba(1, 12, 29, 0.08) 48%, rgba(1, 13, 30, 0.82) 100%);
+}
+
+.hero.home-hero::after {
+  z-index: -1;
+  opacity: 0.58;
+  background: linear-gradient(180deg, rgba(3, 16, 34, 0.05), rgba(3, 16, 34, 0.5));
+  animation: none;
+}
+
+.hero.home-hero .home-hero-grid {
+  max-width: 1260px;
+}
+
+.hero.home-hero h1 {
+  max-width: 760px;
+  font-size: clamp(3.45rem, 6vw, 5.45rem);
+  line-height: 0.98;
+  letter-spacing: -0.07em;
+  word-spacing: normal;
+}
+
+@media (max-width: 1050px) {
+  .hero.home-hero {
+    background-position: 62% center;
+  }
+
+  .hero.home-hero::before {
+    background: linear-gradient(90deg, rgba(3, 16, 34, 0.98) 0%, rgba(3, 22, 43, 0.88) 64%, rgba(3, 22, 43, 0.55) 100%);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero.home-hero {
+    min-height: auto;
+    padding: 7.5rem 0 4.5rem;
+    background-position: 69% center;
+  }
+
+  .hero.home-hero::before {
+    background: linear-gradient(180deg, rgba(3, 16, 34, 0.9) 0%, rgba(3, 20, 38, 0.97) 78%, rgba(3, 16, 34, 1) 100%);
+  }
+
+  .hero.home-hero h1 {
+    font-size: clamp(3rem, 14vw, 4.3rem);
+    line-height: 1;
+    letter-spacing: -0.065em;
+  }
+
+  .home-page .mobile-demo-bar {
+    display: none;
+  }
 }
