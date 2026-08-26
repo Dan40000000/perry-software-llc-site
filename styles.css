@@ -350,6 +350,7 @@ summary:focus-visible {
 .hero-scribe-card {
   align-self: end;
   margin-bottom: -1.75rem;
+  transform: translateY(-4.5rem);
   padding: 1.4rem;
   color: #effcff;
   border: 1px solid rgba(202, 241, 249, 0.26);
@@ -1004,6 +1005,10 @@ summary:focus-visible {
   .scribe-hero-summary {
     max-width: 680px;
     margin: 0;
+  }
+
+  .hero-scribe-card {
+    transform: none;
   }
 
   .scribe-process-grid,
