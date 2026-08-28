@@ -5653,10 +5653,10 @@ summary:focus-visible {
   text-align: left;
   isolation: isolate;
   /* Keep a plain 1x URL fallback before the density-aware image-set(). */
-  background-image: url('assets/oak-emr-mountain-hero.webp');
+  background-image: url('assets/oak-emr-mountain-hero.webp?v=hero-crisp-20260828');
   background-image: image-set(
-    url('assets/oak-emr-mountain-hero.webp') 1x,
-    url('assets/oak-emr-mountain-hero-retina.webp') 2x
+    url('assets/oak-emr-mountain-hero.webp?v=hero-crisp-20260828') 1x,
+    url('assets/oak-emr-mountain-hero-retina.webp?v=hero-crisp-20260828') 2x
   );
   background-position: center 20%;
   background-size: cover;
@@ -5687,6 +5687,22 @@ summary:focus-visible {
   line-height: 0.98;
   letter-spacing: -0.07em;
   word-spacing: normal;
+}
+
+/* Keep the summit just below the hero edge through the width-driven desktop range. */
+@media (min-width: 1051px) and (max-width: 1674px) {
+  .hero.home-hero {
+    background-position: center bottom;
+    background-size: auto 124%;
+  }
+}
+
+/* At ultra-wide widths, cover the hero and anchor the summit to a 48px breathing room. */
+@media (min-width: 1675px) {
+  .hero.home-hero {
+    background-position: center calc(48px - 13.58vw);
+    background-size: cover;
+  }
 }
 
 @media (max-width: 1050px) {
