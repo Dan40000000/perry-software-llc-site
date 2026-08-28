@@ -25,6 +25,11 @@ FORBIDDEN_PUBLIC_COPY = re.compile(
     r"\b(?:startup|beta|pilot|pharmacy)\b|OpenAI|Claude", re.IGNORECASE
 )
 LEGACY_BRAND = re.compile(r"\bnu" r"vora\b", re.IGNORECASE)
+LEGACY_PUBLIC_TERM = re.compile(r"\bEHR\b", re.IGNORECASE)
+HOMEPAGE_REQUIRED_COPY = (
+    "Connected EMR & practice management for medical offices",
+    "A better EMR.",
+)
 PUBLIC_TEXT_SUFFIXES = {".html", ".css", ".js", ".svg", ".xml", ".txt"}
 
 
@@ -134,11 +139,33 @@ def main() -> int:
         parser = PageParser()
         parser.feed(path.read_text(encoding="utf-8"))
         noindex = "noindex" in meta_content(parser, name="robots").lower()
+        visible_copy = " ".join(parser.visible_text)
 
         if parser.lang.lower() != "en":
             errors.append(f"{relative}: missing html lang=en")
         if not parser.title.strip():
             errors.append(f"{relative}: missing title")
+        elif LEGACY_PUBLIC_TERM.search(parser.title):
+            errors.append(f"{relative}: title uses customer-facing EHR terminology")
+        for item in parser.meta:
+            content = item.get("content", "").strip()
+            split = urlsplit(content)
+            label = item.get("name") or item.get("property") or "unnamed"
+            is_url_content = (
+                bool(split.scheme and split.netloc)
+                or label.lower().endswith("url")
+                or label.lower() == "canonical"
+            )
+            if content and not is_url_content and LEGACY_PUBLIC_TERM.search(content):
+                errors.append(
+                    f"{relative}: {label} meta content uses customer-facing EHR terminology"
+                )
+        if LEGACY_PUBLIC_TERM.search(visible_copy):
+            errors.append(f"{relative}: visible copy uses customer-facing EHR terminology")
+        if relative == "index.html":
+            for required_copy in HOMEPAGE_REQUIRED_COPY:
+                if required_copy not in visible_copy:
+                    errors.append(f"{relative}: missing required homepage copy {required_copy!r}")
         if not meta_content(parser, name="viewport"):
             errors.append(f"{relative}: missing viewport meta")
         if parser.h1_count != 1:
@@ -172,7 +199,6 @@ def main() -> int:
                 errors.append(f"{relative}: broken internal reference {href}")
 
         if not noindex and relative not in CANONICAL_EXEMPT:
-            visible_copy = " ".join(parser.visible_text)
             match = FORBIDDEN_PUBLIC_COPY.search(visible_copy)
             if match:
                 errors.append(f"{relative}: prohibited public wording {match.group(0)!r}")
