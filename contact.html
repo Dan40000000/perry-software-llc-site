@@ -3,23 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Request a Demo or More Information | Nuvora Health</title>
-    <meta name="description" content="Request a personalized Nuvora Health demonstration, ask for more information, discuss practice workflows, or receive a tailored quote." />
+    <title>Get a Savings, Migration or Demo Plan | Nuvora Health</title>
+    <meta name="description" content="Request a matched-scope EHR savings comparison, migration plan, personalized Nuvora Health demonstration, or tailored written quote." />
     <link rel="canonical" href="https://perrysoftwarellc.com/contact.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Nuvora Health" />
-    <meta property="og:title" content="Request a Demo or More Information | Nuvora Health" />
-    <meta property="og:description" content="See Nuvora Health in a personalized walkthrough or request the information your practice needs." />
+    <meta property="og:title" content="Get a Savings, Migration or Demo Plan | Nuvora Health" />
+    <meta property="og:description" content="Start with a matched-scope EHR cost comparison, migration plan, or personalized workflow demonstration." />
     <meta property="og:url" content="https://perrysoftwarellc.com/contact.html" />
     <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/schedule-page.png" />
     <meta property="og:image:alt" content="Illustrative Nuvora Health scheduling workflow screen" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Request a Demo or More Information | Nuvora Health" />
-    <meta name="twitter:description" content="Request a personalized walkthrough or ask for the information your practice needs." />
+    <meta name="twitter:title" content="Get a Savings, Migration or Demo Plan | Nuvora Health" />
+    <meta name="twitter:description" content="Request a matched-scope comparison, migration plan, or personalized walkthrough." />
     <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/schedule-page.png" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="styles.css?v=nuvora-growth-20260818-2" />
+    <link rel="stylesheet" href="styles.css?v=nuvora-outreach-20260822" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -53,8 +53,8 @@
     <!-- Page Header -->
     <header class="page-header">
       <div class="wrap">
-        <h1>Let&rsquo;s Talk</h1>
-        <p>Request a personalized demonstration or start with the information your practice needs.</p>
+        <h1>Get a Savings + Migration Plan</h1>
+        <p>Start with a matched-scope cost comparison, a personalized demonstration, or the implementation questions your practice needs answered.</p>
       </div>
     </header>
 
@@ -63,8 +63,8 @@
         <div class="wrap">
           <div class="contact-grid">
             <div class="contact-form" id="request-form">
-              <h2>Request a Demo or More Information</h2>
-              <p class="contact-choice-intro">Choose what would be most useful. You can ask a question without committing to a demonstration.</p>
+              <h2>Tell Us What Would Be Useful</h2>
+              <p class="contact-choice-intro">A cost comparison does not require patient information or a commitment to a demonstration.</p>
               <form
                 id="demo-form"
                 action="https://formspree.io/f/xreadryd"
@@ -76,6 +76,7 @@
                   <label for="inquiry-type">How can we help?</label>
                   <select id="inquiry-type" name="inquiry_type" required>
                     <option value="" disabled>Select one</option>
+                    <option value="Savings and migration plan">Build my savings and migration plan</option>
                     <option value="More information" selected>Send me more information</option>
                     <option value="Personalized demo">Schedule a personalized demo</option>
                     <option value="Pricing discussion">Discuss pricing</option>
@@ -106,6 +107,14 @@
                 <div class="form-group">
                   <label for="current-ehr">Current EHR System (optional)</label>
                   <input type="text" id="current-ehr" name="current_ehr" autocomplete="off" placeholder="Name of your current system">
+                </div>
+                <div class="form-group">
+                  <label for="current-monthly">Current Recurring Software Cost / Month (optional)</label>
+                  <input type="number" id="current-monthly" name="current_monthly_software_cost" min="0" max="250000" inputmode="decimal" placeholder="e.g., 18000">
+                </div>
+                <div class="form-group">
+                  <label for="renewal-month">Contract Renewal Month (optional)</label>
+                  <input type="month" id="renewal-month" name="contract_renewal_month">
                 </div>
                 <div class="form-group">
                   <label for="message">Message (optional)</label>
@@ -208,6 +217,7 @@
       const pageParams = new URLSearchParams(window.location.search);
 
       const inquiryMap = {
+        savings: 'Savings and migration plan',
         demo: 'Personalized demo',
         information: 'More information',
         pricing: 'Pricing discussion',

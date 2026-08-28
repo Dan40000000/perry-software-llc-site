@@ -93,10 +93,14 @@
     window.location.pathname !== '/contact.html' &&
     !document.querySelector('.mobile-demo-bar')
   ) {
+    const savingsPages = new Set(['/', '/index.html', '/pricing.html', '/migration.html']);
+    const isSavingsPage = savingsPages.has(window.location.pathname);
     const mobileDemoBar = document.createElement('a');
     mobileDemoBar.className = 'mobile-demo-bar';
-    mobileDemoBar.href = window.location.pathname.includes('/account/') ? '../contact.html' : 'contact.html';
-    mobileDemoBar.textContent = 'Request a Demo';
+    mobileDemoBar.href = isSavingsPage
+      ? 'contact.html?interest=savings#request-form'
+      : 'contact.html?interest=demo#request-form';
+    mobileDemoBar.textContent = isSavingsPage ? 'Get Savings + Migration Plan' : 'Request a Demo';
     document.body.append(mobileDemoBar);
   }
 })();
