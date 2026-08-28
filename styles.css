@@ -5690,15 +5690,15 @@ summary:focus-visible {
 }
 
 /* Keep the summit just below the hero edge through the width-driven desktop range. */
-@media (min-width: 1051px) and (max-width: 1674px) {
+@media (min-width: 1051px) and (max-width: 2229px) {
   .hero.home-hero {
     background-position: center bottom;
-    background-size: auto 124%;
+    background-size: auto 125.6%;
   }
 }
 
 /* At ultra-wide widths, cover the hero and anchor the summit to a 48px breathing room. */
-@media (min-width: 1675px) {
+@media (min-width: 2230px) {
   .hero.home-hero {
     background-position: center calc(48px - 13.58vw);
     background-size: cover;
