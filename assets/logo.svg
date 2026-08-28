@@ -45,6 +45,6 @@
   <polygon points="138,109 130,134 146,134" fill="rgba(4,94,58,0.87)" clip-path="url(#circle)"/>
   <polygon points="138,101 129,124 147,124" fill="rgba(5,109,66,0.82)" clip-path="url(#circle)"/>
   <rect x="136" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#circle)"/>
-  <!-- Fancy N -->
-  <text x="82" y="142" font-family="'Pinyon Script', cursive" font-size="116" fill="white" fill-opacity="0.95" text-anchor="middle" clip-path="url(#circle)" filter="url(#shadow)">N</text>
+  <!-- OAK EMR monogram -->
+  <ellipse cx="80" cy="79" rx="33" ry="42" fill="none" stroke="white" stroke-opacity="0.96" stroke-width="11" filter="url(#shadow)"/>
 </svg>

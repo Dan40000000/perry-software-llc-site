@@ -12,7 +12,7 @@
   --success: #22d3ee;
   --ink: #041225;
   --cream: #f7fbff;
-  --gradient-1: linear-gradient(135deg, #0b63f6 0%, #00c2ff 100%);
+  --gradient-1: linear-gradient(135deg, #0b63f6 0%, #0066cc 100%);
   --gradient-2: linear-gradient(135deg, #031022 0%, #062a63 54%, #0076ff 100%);
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
@@ -176,6 +176,10 @@ body {
 
 @media (max-width: 1100px) {
   .nav-toggle {
+    display: none;
+  }
+
+  html.js .nav-toggle {
     display: flex;
   }
 
@@ -189,13 +193,17 @@ body {
     padding: 1.5rem 2rem;
     gap: 1.25rem;
     box-shadow: var(--shadow-lg);
-    display: none;
+    display: flex;
     border-radius: 0 0 20px 20px;
     max-height: calc(100vh - 76px);
     overflow-y: auto;
   }
 
-  .nav-links.active {
+  html.js .nav-links {
+    display: none;
+  }
+
+  html.js .nav-links.active {
     display: flex;
   }
 
@@ -256,8 +264,18 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 summary:focus-visible {
-  outline: 3px solid #00a8e8;
+  outline: 3px solid #005fcc;
   outline-offset: 3px;
+  box-shadow: 0 0 0 5px #ffffff;
+}
+
+main p a:not(.btn),
+main li a:not(.btn),
+.resource-article a,
+.legal-card a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.08em;
 }
 
 /* ============================================
@@ -267,7 +285,7 @@ summary:focus-visible {
   min-height: 760px;
   padding: 9.2rem 0 5.25rem;
   isolation: isolate;
-  background-image: url('assets/nuvora-mountain-hero.webp');
+  background-image: url('assets/oak-emr-mountain-hero.webp');
   background-position: center center;
   background-size: cover;
 }
@@ -613,7 +631,7 @@ summary:focus-visible {
   color: #fff;
   background-image:
     linear-gradient(90deg, rgba(3, 16, 34, 0.98) 0%, rgba(3, 25, 45, 0.88) 47%, rgba(3, 24, 42, 0.45) 100%),
-    url('assets/nuvora-mountain-hero.webp');
+    url('assets/oak-emr-mountain-hero.webp');
   background-position: center;
   background-size: cover;
 }
@@ -2731,7 +2749,6 @@ section {
 }
 
 .quote-field input:focus {
-  outline: none;
   border-bottom-color: var(--primary);
 }
 
@@ -3255,7 +3272,7 @@ section {
 }
 
 /* ============================================
-   NUVORA BLUE IDENTITY PASS
+   OAK EMR BLUE IDENTITY PASS
    Installed front-end-design skill direction:
    premium blue medical command center, glass workflow,
    cinematic depth, one memorable operating-console hero.
@@ -3280,6 +3297,7 @@ section {
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.055em;
+  word-spacing: 0.14em;
 }
 
 .nav-links a {
@@ -3553,7 +3571,15 @@ h1,
 
 @media (max-width: 600px) {
   .nav-wordmark {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .hero {
@@ -3774,7 +3800,6 @@ h1,
 }
 
 .account-form input:focus {
-  outline: none;
   border-color: var(--primary);
   background: #ffffff;
   box-shadow: 0 0 0 4px rgba(11, 99, 246, 0.1);
@@ -4868,7 +4893,6 @@ h1,
 .provider-field input:focus,
 .provider-field select:focus,
 .provider-field textarea:focus {
-  outline: none;
   border-color: var(--primary);
   background: #ffffff;
   box-shadow: 0 0 0 4px rgba(11, 99, 246, 0.1);
@@ -5219,8 +5243,9 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 summary:focus-visible {
-  outline: 3px solid #00a8e8;
+  outline: 3px solid #005fcc;
   outline-offset: 3px;
+  box-shadow: 0 0 0 5px #ffffff;
 }
 
 .quote-field input:focus-visible,
@@ -5228,8 +5253,9 @@ summary:focus-visible {
 .provider-field input:focus-visible,
 .provider-field select:focus-visible,
 .provider-field textarea:focus-visible {
-  outline: 3px solid #00a8e8;
+  outline: 3px solid #005fcc;
   outline-offset: 3px;
+  box-shadow: 0 0 0 5px #ffffff;
 }
 
 
@@ -5360,12 +5386,12 @@ summary:focus-visible {
   white-space: nowrap;
 }
 
-.savings-row-nuvora {
+.savings-row-oak-emr {
   border-color: rgba(0, 194, 255, 0.32);
   background: rgba(0, 123, 255, 0.16);
 }
 
-.savings-row-nuvora strong {
+.savings-row-oak-emr strong {
   color: #9be7ff;
 }
 
@@ -5550,7 +5576,6 @@ summary:focus-visible {
 }
 
 .quote-field select:focus {
-  outline: none;
   border-bottom-color: var(--primary);
 }
 
@@ -5618,14 +5643,16 @@ summary:focus-visible {
   .pricing-tier-price {
     align-items: flex-start;
     flex-direction: column;
-=======
+  }
+}
+
 /* Keep the homepage nature treatment above the legacy shared hero layer. */
 .hero.home-hero {
   min-height: 760px;
   padding: 9.2rem 0 5.25rem;
   text-align: left;
   isolation: isolate;
-  background: url('assets/nuvora-mountain-hero.webp') center center / cover no-repeat;
+  background: url('assets/oak-emr-mountain-hero.webp') center center / cover no-repeat;
 }
 
 .hero.home-hero::before {
@@ -5683,6 +5710,5 @@ summary:focus-visible {
 
   .home-page .mobile-demo-bar {
     display: none;
-
   }
 }

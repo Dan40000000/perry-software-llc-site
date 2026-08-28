@@ -3,25 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SMS Consent | Nuvora Health</title>
+    <title>SMS Consent | OAK EMR</title>
     <meta
       name="description"
-      content="Consent form for operational SMS messages sent by Nuvora Health and its healthcare demo environment."
+      content="Consent form for operational SMS messages sent by OAK EMR and its healthcare demo environment."
     />
     <link rel="canonical" href="https://perrysoftwarellc.com/sms-consent.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Nuvora Health" />
-    <meta property="og:title" content="SMS Consent | Nuvora Health" />
-    <meta property="og:description" content="Optional consent form for operational Nuvora Health text messages." />
+    <meta property="og:site_name" content="OAK EMR" />
+    <meta property="og:title" content="SMS Consent | OAK EMR" />
+    <meta property="og:description" content="Optional consent form for operational OAK EMR text messages." />
     <meta property="og:url" content="https://perrysoftwarellc.com/sms-consent.html" />
     <meta name="twitter:card" content="summary" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 
-    <link rel="stylesheet" href="styles.css?v=nuvora-growth-20260818" />
+    <link rel="stylesheet" href="styles.css?v=oak-emr-20260828" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="site.js?v=nuvora-growth-20260818" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="site.js?v=oak-emr-20260828" defer></script>
     <style>
       .legal-shell {
         max-width: 880px;
@@ -127,12 +127,13 @@
     </style>
   </head>
   <body>
-    <main class="legal-shell">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main class="legal-shell" id="main-content" tabindex="-1">
       <section class="legal-card">
         <span class="legal-kicker">Operational Text Messaging</span>
         <h1>SMS Consent Form</h1>
         <p>
-          Use this form to opt in to operational text messages from <strong>Nuvora Health</strong>, operated by Perry Software LLC, and its
+          Use this form to opt in to operational text messages from <strong>OAK EMR</strong>, operated by Perry Software LLC, and its
           healthcare practice demo environment. These messages may include appointment reminders, scheduling updates,
           billing notices, account updates, and care follow-up messages. This SMS opt-in is optional and
           is not required to receive treatment, complete registration, schedule an appointment, make a payment, or
@@ -162,7 +163,7 @@
               <a href="sms-terms.html">SMS Terms of Service</a>
               <a href="sms-privacy.html">SMS Privacy Policy</a>
               <a href="sms-opt-in-evidence.html">SMS Opt-In Evidence</a>
-              <a href="contact.html">Contact Nuvora Health</a>
+              <a href="contact.html">Contact OAK EMR</a>
             </div>
           </div>
         </div>
@@ -174,7 +175,7 @@
           method="POST"
           data-formspree-endpoint="https://formspree.io/f/xreadryd"
         >
-          <input type="hidden" name="_subject" value="SMS Consent Request - Nuvora Health" />
+          <input type="hidden" name="_subject" value="SMS Consent Request - OAK EMR" />
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
 
           <div>
@@ -202,7 +203,7 @@
           <label class="consent-checkbox" for="sms-consent-checkbox">
             <input id="sms-consent-checkbox" name="sms_consent" type="checkbox" value="yes" />
             <span>
-              Optional SMS opt-in: I agree to receive operational SMS messages from Nuvora Health, operated by Perry
+              Optional SMS opt-in: I agree to receive operational SMS messages from OAK EMR, operated by Perry
               Software LLC, and its healthcare practice demo environment at the mobile number provided above. I
               understand that message frequency varies, message and data rates may apply, I can reply HELP for help,
               and I can reply STOP to opt out at any time. I understand that checking this box is not required for
@@ -211,7 +212,7 @@
           </label>
 
           <button type="submit" class="btn btn-primary">Submit Optional SMS Preference</button>
-          <p id="sms-consent-status" class="form-status" aria-live="polite"></p>
+          <p id="sms-consent-status" class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
         </form>
       </section>
     </main>
@@ -223,7 +224,10 @@
       function setFormStatus(type, message) {
         if (!statusEl) return;
         statusEl.className = `form-status ${type ? `form-status--${type}` : ''}`.trim();
+        statusEl.setAttribute('role', type === 'error' ? 'alert' : 'status');
+        statusEl.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
         statusEl.textContent = message || '';
+        if (type === 'error' && message) statusEl.focus();
       }
 
       if (consentForm) {

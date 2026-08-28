@@ -3,26 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dermatology Billing &amp; Revenue Cycle | Nuvora Health</title>
+    <title>Dermatology Billing &amp; Revenue Cycle | OAK EMR</title>
     <meta name="description" content="Dermatology billing workflows for charge capture, claim review, denial follow-up, prior authorization, eligibility, A/R, and patient payments." />
     <link rel="canonical" href="https://perrysoftwarellc.com/billing.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Nuvora Health" />
-    <meta property="og:title" content="Dermatology Billing &amp; Revenue Cycle | Nuvora Health" />
+    <meta property="og:site_name" content="OAK EMR" />
+    <meta property="og:title" content="Dermatology Billing &amp; Revenue Cycle | OAK EMR" />
     <meta property="og:description" content="Keep charge capture, claim review, denials, authorizations, A/R, and patient payments connected." />
     <meta property="og:url" content="https://perrysoftwarellc.com/billing.html" />
     <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/financial-dashboard.png" />
-    <meta property="og:image:alt" content="Illustrative Nuvora Health revenue workflow dashboard" />
+    <meta property="og:image:alt" content="Illustrative OAK EMR revenue workflow dashboard" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Dermatology Billing &amp; Revenue Cycle | Nuvora Health" />
+    <meta name="twitter:title" content="Dermatology Billing &amp; Revenue Cycle | OAK EMR" />
     <meta name="twitter:description" content="Keep claim review, denials, authorizations, A/R, and patient payments connected." />
     <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/financial-dashboard.png" />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=nuvora-growth-20260818" />
+    <link rel="stylesheet" href="styles.css?v=oak-emr-20260828" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="site.js?v=nuvora-growth-20260818" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="site.js?v=oak-emr-20260828" defer></script>
     <style>
       /* ── Hero ── */
       .bill-hero {
@@ -334,6 +334,15 @@
         color: var(--text);
         border-bottom: 1px solid var(--line);
       }
+      .ar-aging-table tbody th {
+        padding: 0.85rem 1rem;
+        color: var(--text);
+        border-bottom: 1px solid var(--line);
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: none;
+      }
       .ar-aging-table tbody tr:hover { background: var(--primary-light); }
       .ar-bar-wrap { width: 120px; }
       .ar-bar { height: 8px; border-radius: 100px; }
@@ -366,8 +375,8 @@
       /* Revenue Analytics */
       .analytics-section { background: var(--gradient-2); padding: 5.5rem 2rem; }
       .analytics-section .bill-section-header h2 { color: #fff; }
-      .analytics-section .bill-section-header p { color: rgba(255,255,255,0.60); }
-      .analytics-section .section-badge { background: rgba(255,255,255,0.1); color: #60c5ff; border-color: rgba(96,197,255,0.3); }
+      .analytics-section .bill-section-header p { color: #e6f0ff; }
+      .analytics-section .section-badge { background: rgba(255,255,255,0.1); color: #ffffff; border-color: rgba(255,255,255,0.35); }
       .bar-chart { display: flex; align-items: flex-end; gap: 1.5rem; justify-content: center; max-width: 700px; margin: 0 auto; height: 200px; }
       .bar-col { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; flex: 1; max-width: 120px; }
       .bar-fill {
@@ -379,19 +388,19 @@
         min-height: 20px;
       }
       .bar-fill-dim { background: rgba(11,99,246,0.35); }
-      .bar-value { font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.7); position: absolute; top: -1.4rem; left: 0; right: 0; text-align: center; }
-      .bar-cpt { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.55); font-family: 'Space Grotesk', sans-serif; }
-      .bar-desc { font-size: 0.65rem; color: rgba(255,255,255,0.35); text-align: center; line-height: 1.4; max-width: 80px; }
+      .bar-value { font-size: 0.75rem; font-weight: 700; color: #f5f9ff; position: absolute; top: -1.4rem; left: 0; right: 0; text-align: center; }
+      .bar-cpt { font-size: 0.7rem; font-weight: 700; color: #e0edff; font-family: 'Space Grotesk', sans-serif; }
+      .bar-desc { font-size: 0.7rem; color: #ccddf5; text-align: center; line-height: 1.4; max-width: 80px; }
       .analytics-filter { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
       .analytics-filter-btn {
         background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.15);
-        color: rgba(255,255,255,0.55);
+        border: 1px solid rgba(255,255,255,0.35);
+        color: #e6f0ff;
         font-size: 0.78rem;
         font-weight: 600;
         padding: 0.4rem 1rem;
         border-radius: 100px;
-        cursor: pointer;
+        cursor: default;
       }
       .analytics-filter-btn.active { background: var(--gradient-1); color: #fff; border-color: transparent; }
 
@@ -415,51 +424,13 @@
     </style>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
     <nav class="main-nav">
       <div class="nav-wrap">
         <a href="index.html" class="nav-logo">
-          <svg width="46" height="46" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-            <defs>
-              <linearGradient id="logo-grad" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#0a3f5c"/>
-                <stop offset="100%" stop-color="#0ea5e9"/>
-              </linearGradient>
-              <clipPath id="logo-circle"><circle cx="80" cy="80" r="76"/></clipPath>
-              <filter id="logo-shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.6)"/></filter>
-            </defs>
-            <circle cx="80" cy="80" r="76" fill="url(#logo-grad)"/>
-            <circle cx="30" cy="35" r="1" fill="rgba(255,255,255,0.35)" clip-path="url(#logo-circle)"/>
-            <circle cx="55" cy="25" r="0.8" fill="rgba(255,255,255,0.28)" clip-path="url(#logo-circle)"/>
-            <circle cx="120" cy="30" r="1.1" fill="rgba(255,255,255,0.30)" clip-path="url(#logo-circle)"/>
-            <circle cx="140" cy="45" r="0.7" fill="rgba(255,255,255,0.22)" clip-path="url(#logo-circle)"/>
-            <polygon points="0,95 10,80 25,88 40,70 55,82 70,60 85,75 100,58 115,72 130,62 145,75 160,65 160,100 0,100" fill="rgba(255,255,255,0.09)" clip-path="url(#logo-circle)"/>
-            <polygon points="0,118 0,100 15,85 30,95 48,78 65,92 80,72 95,88 112,74 128,86 145,70 160,82 160,118" fill="rgba(255,255,255,0.18)" clip-path="url(#logo-circle)"/>
-            <polygon points="80,72 65,92 80,118 95,118 95,88" fill="rgba(0,20,60,0.14)" clip-path="url(#logo-circle)"/>
-            <rect x="0" y="118" width="160" height="10" fill="rgba(14,100,160,0.55)" clip-path="url(#logo-circle)"/>
-            <line x1="0" y1="119" x2="160" y2="119" stroke="rgba(186,230,255,0.30)" stroke-width="0.8" clip-path="url(#logo-circle)"/>
-            <line x1="5" y1="122" x2="155" y2="122" stroke="rgba(186,230,255,0.18)" stroke-width="0.5" clip-path="url(#logo-circle)"/>
-            <polygon points="70,118 80,126 90,118" fill="rgba(255,255,255,0.05)" clip-path="url(#logo-circle)"/>
-            <rect x="0" y="128" width="160" height="32" fill="rgba(0,28,65,0.58)" clip-path="url(#logo-circle)"/>
-            <polygon points="8,118 1,144 15,144" fill="rgba(4,82,52,0.94)" clip-path="url(#logo-circle)"/>
-            <polygon points="8,108 0,133 16,133" fill="rgba(5,99,61,0.89)" clip-path="url(#logo-circle)"/>
-            <polygon points="8,100 0,123 16,123" fill="rgba(6,114,68,0.84)" clip-path="url(#logo-circle)"/>
-            <rect x="6" y="144" width="4" height="7" fill="rgba(28,16,4,0.70)" clip-path="url(#logo-circle)"/>
-            <polygon points="22,118 15,143 29,143" fill="rgba(3,78,50,0.92)" clip-path="url(#logo-circle)"/>
-            <polygon points="22,109 14,134 30,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
-            <polygon points="22,101 13,124 31,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
-            <rect x="20" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
-            <polygon points="152,118 145,144 159,144" fill="rgba(4,82,52,0.94)" clip-path="url(#logo-circle)"/>
-            <polygon points="152,108 144,133 160,133" fill="rgba(5,99,61,0.89)" clip-path="url(#logo-circle)"/>
-            <polygon points="152,100 143,123 161,123" fill="rgba(6,114,68,0.84)" clip-path="url(#logo-circle)"/>
-            <rect x="150" y="144" width="4" height="7" fill="rgba(28,16,4,0.70)" clip-path="url(#logo-circle)"/>
-            <polygon points="138,118 131,143 145,143" fill="rgba(3,78,50,0.92)" clip-path="url(#logo-circle)"/>
-            <polygon points="138,109 130,134 146,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
-            <polygon points="138,101 129,124 147,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
-            <rect x="136" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
-            <text x="82" y="142" font-family="'Pinyon Script', cursive" font-size="116" fill="white" fill-opacity="0.95" text-anchor="middle" clip-path="url(#logo-circle)" filter="url(#logo-shadow)">N</text>
-          </svg>
-          <span class="nav-wordmark">Nuvora Health</span>
+          <img src="assets/logo.svg" alt="" width="46" height="46">
+          <span class="nav-wordmark">OAK EMR</span>
         </a>
         <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
           <span></span>
@@ -470,7 +441,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="clinical.html">Clinical</a></li>
-          <li><a href="billing.html" class="active">Billing &amp; RCM</a></li>
+          <li><a href="billing.html" class="active" aria-current="page">Billing &amp; RCM</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="account/">Account Login</a></li>
@@ -485,7 +456,7 @@
     <header class="bill-hero">
       <div class="bill-hero-inner">
         <div class="bill-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
           Full-Cycle Revenue Management
         </div>
         <h1>Billing &amp; Revenue Cycle<br><span class="gradient-text">Organized in One Workflow</span></h1>
@@ -493,7 +464,7 @@
         <div class="cta-group">
           <a href="contact.html" class="btn btn-primary btn-lg">
             <span>See It In Action</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="clinical.html" class="btn btn-secondary">Explore Clinical Tools &rarr;</a>
         </div>
@@ -524,7 +495,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">
 
       <!-- 1. Claim Lifecycle -->
       <section class="bill-section">
@@ -537,42 +508,42 @@
           <div class="claim-flow">
             <div class="claim-step">
               <div class="claim-step-dot" style="background:rgba(11,99,246,0.15);border:2px solid #0b63f6;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b63f6" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b63f6" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
               <span class="claim-step-label">Draft</span>
               <span class="claim-step-sub">Built from signed charges</span>
             </div>
             <div class="claim-step">
               <div class="claim-step-dot" style="background:rgba(234,179,8,0.15);border:2px solid #eab308;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               </div>
               <span class="claim-step-label">Scrubbed</span>
               <span class="claim-step-sub">CPT/ICD-10 validation</span>
             </div>
             <div class="claim-step">
               <div class="claim-step-dot" style="background:rgba(11,99,246,0.15);border:2px solid #0b63f6;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b63f6" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b63f6" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
               </div>
               <span class="claim-step-label">Submitted</span>
               <span class="claim-step-sub">EDI 837P to payer</span>
             </div>
             <div class="claim-step">
               <div class="claim-step-dot" style="background:rgba(34,197,94,0.15);border:2px solid #22c55e;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
               <span class="claim-step-label">Accepted</span>
               <span class="claim-step-sub">999/277 acknowledgment</span>
             </div>
             <div class="claim-step">
               <div class="claim-step-dot" style="background:rgba(11,99,246,0.15);border:2px solid #0b63f6;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b63f6" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b63f6" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
               <span class="claim-step-label">ERA Posted</span>
               <span class="claim-step-sub">Posting and balance review</span>
             </div>
             <div class="claim-step denied">
               <div class="claim-step-dot">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
               </div>
               <span class="claim-step-label">Denied → Appeal</span>
               <span class="claim-step-sub">Assigned with follow-up task</span>
@@ -605,7 +576,7 @@
               <div class="claims-queue">
                 <div class="claim-row valid">
                   <div class="claim-row-left">
-                    <h4>Demonstration Claim A</h4>
+                    <h3>Demonstration Claim A</h3>
                     <p>Coding and payer edits reviewed</p>
                   </div>
                   <div class="claim-row-right">
@@ -615,7 +586,7 @@
                 </div>
                 <div class="claim-row valid">
                   <div class="claim-row-left">
-                    <h4>Demonstration Claim B</h4>
+                    <h3>Demonstration Claim B</h3>
                     <p>Charge detail and modifier reviewed</p>
                   </div>
                   <div class="claim-row-right">
@@ -625,7 +596,7 @@
                 </div>
                 <div class="claim-row error">
                   <div class="claim-row-left">
-                    <h4>Demonstration Claim C</h4>
+                    <h3>Demonstration Claim C</h3>
                     <p>Modifier requires team review</p>
                   </div>
                   <div class="claim-row-right">
@@ -695,35 +666,35 @@
             <div class="pa-step-row">
               <div class="pa-step-num">1</div>
               <div class="pa-step-body">
-                <h4>Requirement Review</h4>
+                <h3>Requirement Review</h3>
                 <p>Record the service, payer, policy details, and authorization requirements identified by the team.</p>
               </div>
             </div>
             <div class="pa-step-row">
               <div class="pa-step-num">2</div>
               <div class="pa-step-body">
-                <h4>Clinical Documentation Assembly</h4>
+                <h3>Clinical Documentation Assembly</h3>
                 <p>Collect relevant notes, diagnosis history, prior treatments, results, and photos for staff and provider review.</p>
               </div>
             </div>
             <div class="pa-step-row">
               <div class="pa-step-num">3</div>
               <div class="pa-step-body">
-                <h4>Supporting Letter</h4>
+                <h3>Supporting Letter</h3>
                 <p>Use an editable template to prepare the supporting rationale. The provider reviews and approves the final document.</p>
               </div>
             </div>
             <div class="pa-step-row">
               <div class="pa-step-num">4</div>
               <div class="pa-step-body">
-                <h4>Payer Submission</h4>
+                <h3>Payer Submission</h3>
                 <p>Document the submission channel, confirmation, owner, and next follow-up date.</p>
               </div>
             </div>
             <div class="pa-step-row">
               <div class="pa-step-num">5</div>
               <div class="pa-step-body">
-                <h4>Approval &amp; Expiration Tracking</h4>
+                <h3>Approval &amp; Expiration Tracking</h3>
                 <p>Store the decision, reference number, effective dates, and renewal task in the patient record.</p>
               </div>
             </div>
@@ -816,46 +787,47 @@
           </div>
           <div style="overflow-x:auto;">
             <table class="ar-aging-table">
+              <caption class="visually-hidden">Illustrative accounts receivable aging by time bucket</caption>
               <thead>
                 <tr>
-                  <th>Bucket</th>
-                  <th>Claims</th>
-                  <th>Amount</th>
-                  <th>% of A/R</th>
-                  <th>Visual</th>
+                  <th scope="col">Bucket</th>
+                  <th scope="col">Claims</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">% of A/R</th>
+                  <th scope="col">Visual</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>0–30 days</strong></td>
+                  <th scope="row">0–30 days</th>
                   <td>142</td>
                   <td class="ar-amount" style="color:#16a34a;">$48,220</td>
                   <td>54%</td>
                   <td class="ar-bar-wrap"><div class="ar-bar" style="width:100%;height:8px;background:#22c55e;border-radius:4px;"></div></td>
                 </tr>
                 <tr>
-                  <td><strong>31–60 days</strong></td>
+                  <th scope="row">31–60 days</th>
                   <td>48</td>
                   <td class="ar-amount" style="color:#0b63f6;">$18,450</td>
                   <td>21%</td>
                   <td class="ar-bar-wrap"><div class="ar-bar" style="width:38%;height:8px;background:#0b63f6;border-radius:4px;"></div></td>
                 </tr>
                 <tr>
-                  <td><strong>61–90 days</strong></td>
+                  <th scope="row">61–90 days</th>
                   <td>21</td>
                   <td class="ar-amount" style="color:#eab308;">$9,870</td>
                   <td>11%</td>
                   <td class="ar-bar-wrap"><div class="ar-bar" style="width:20%;height:8px;background:#eab308;border-radius:4px;"></div></td>
                 </tr>
                 <tr>
-                  <td><strong>91–120 days</strong></td>
+                  <th scope="row">91–120 days</th>
                   <td>14</td>
                   <td class="ar-amount" style="color:#f97316;">$6,340</td>
                   <td>7%</td>
                   <td class="ar-bar-wrap"><div class="ar-bar" style="width:13%;height:8px;background:#f97316;border-radius:4px;"></div></td>
                 </tr>
                 <tr>
-                  <td><strong>120+ days</strong></td>
+                  <th scope="row">120+ days</th>
                   <td>9</td>
                   <td class="ar-amount" style="color:#ef4444;">$6,120</td>
                   <td>7%</td>
@@ -892,39 +864,39 @@
           <div class="payment-grid">
             <div class="payment-card">
               <div class="payment-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
               </div>
-              <div><h4>Card on File</h4><p>Securely store payment method for seamless post-visit collections.</p></div>
+              <div><h3>Card on File</h3><p>Securely store payment method for seamless post-visit collections.</p></div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
-              <div><h4>Payment Links</h4><p>Send a payment link for patients to open on a supported device.</p></div>
+              <div><h3>Payment Links</h3><p>Send a payment link for patients to open on a supported device.</p></div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               </div>
-              <div><h4>Payment Plans</h4><p>Offer flexible installment plans for larger balances, auto-charged.</p></div>
+              <div><h3>Payment Plans</h3><p>Offer flexible installment plans for larger balances, auto-charged.</p></div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               </div>
-              <div><h4>Auto-Statements</h4><p>Automated patient statements by email, SMS, or paper — on a schedule.</p></div>
+              <div><h3>Auto-Statements</h3><p>Automated patient statements by email, SMS, or paper — on a schedule.</p></div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
               </div>
-              <div><h4>Planning Estimate</h4><p>Share an estimate based on available coverage and service information.</p></div>
+              <div><h3>Planning Estimate</h3><p>Share an estimate based on available coverage and service information.</p></div>
             </div>
             <div class="payment-card">
               <div class="payment-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
               </div>
-              <div><h4>Patient Portal Pay</h4><p>Patients view and pay balances anytime from the patient portal.</p></div>
+              <div><h3>Patient Portal Pay</h3><p>Patients view and pay balances anytime from the patient portal.</p></div>
             </div>
           </div>
         </div>
@@ -939,10 +911,10 @@
             <p>Review revenue activity by provider, payer, procedure, and date range. The figures shown below demonstrate the layout only.</p>
           </div>
           <div class="analytics-filter">
-            <button class="analytics-filter-btn active">By Procedure</button>
-            <button class="analytics-filter-btn">By Provider</button>
-            <button class="analytics-filter-btn">By Payer</button>
-            <button class="analytics-filter-btn">YTD</button>
+            <span class="analytics-filter-btn active">By Procedure</span>
+            <span class="analytics-filter-btn">By Provider</span>
+            <span class="analytics-filter-btn">By Payer</span>
+            <span class="analytics-filter-btn">YTD</span>
           </div>
           <div style="position:relative;">
             <div class="bar-chart">
@@ -998,11 +970,11 @@
         <div class="wrap">
           <span class="section-badge" style="background:rgba(255,255,255,0.08);color:#60c5ff;border-color:rgba(96,197,255,0.25);margin-bottom:1.25rem;display:inline-block;">Ready to Optimize Your Revenue</span>
           <h2>Bring Revenue Work Into Focus</h2>
-          <p>See how Nuvora Health can organize billing tasks, surface status, and give your team a clearer follow-up process.</p>
+          <p>See how OAK EMR can organize billing tasks, surface status, and give your team a clearer follow-up process.</p>
           <div class="bill-cta-btns">
             <a href="contact.html" class="btn btn-primary btn-lg">
               <span>Request a Demo</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <a href="clinical.html" class="btn btn-secondary">Explore Clinical Tools &rarr;</a>
           </div>
@@ -1015,7 +987,7 @@
       <div class="wrap">
         <div class="footer-content">
           <div class="footer-brand">
-            <span class="footer-logo">Nuvora Health</span>
+            <span class="footer-logo">OAK EMR</span>
             <p>Modern practice management for medical practices that demand better.</p>
           </div>
           <div class="footer-links">

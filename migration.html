@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dermatology EHR Migration Process | Nuvora Health</title>
-  <meta name="description" content="See how Nuvora Health prepares an EHR migration over several weeks, then plans a controlled Friday-to-Monday cutover with validation and go-live support."/>
+  <title>Dermatology EHR Migration Process | OAK EMR</title>
+  <meta name="description" content="See how OAK EMR prepares an EHR migration over several weeks, then plans a controlled Friday-to-Monday cutover with validation and go-live support."/>
   <link rel="canonical" href="https://perrysoftwarellc.com/migration.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Nuvora Health" />
-  <meta property="og:title" content="Dermatology EHR Migration Process | Nuvora Health" />
+  <meta property="og:site_name" content="OAK EMR" />
+  <meta property="og:title" content="Dermatology EHR Migration Process | OAK EMR" />
   <meta property="og:description" content="Weeks of preparation lead to a planned Friday-to-Monday EHR cutover with validation and go-live support." />
   <meta property="og:url" content="https://perrysoftwarellc.com/migration.html" />
   <meta property="og:image" content="https://perrysoftwarellc.com/assets/screenshots/patients-page.png" />
-  <meta property="og:image:alt" content="Illustrative Nuvora Health patient workflow screen" />
+  <meta property="og:image:alt" content="Illustrative OAK EMR patient workflow screen" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dermatology EHR Migration Process | Nuvora Health" />
+  <meta name="twitter:title" content="Dermatology EHR Migration Process | OAK EMR" />
   <meta name="twitter:description" content="Prepare over several weeks, then complete a controlled weekend cutover with support." />
   <meta name="twitter:image" content="https://perrysoftwarellc.com/assets/screenshots/patients-page.png" />
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/>
-  <link rel="stylesheet" href="styles.css?v=nuvora-outreach-20260822"/>
+  <link rel="stylesheet" href="styles.css?v=oak-emr-20260828"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="site.js?v=nuvora-growth-20260818" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="site.js?v=oak-emr-20260828" defer></script>
   <style>
     /* ─── Page shell ─── */
     .mig-page { background: #060f1a; min-height: 100vh; }
@@ -391,7 +391,7 @@
     }
     .mig-moment-time {
       font-size: 0.8rem;
-      color: rgba(255,255,255,0.35);
+      color: #cbd5e1;
     }
     .mig-moment-side h4 {
       font-size: 1.15rem;
@@ -472,8 +472,8 @@
       font-size: 0.8rem;
       line-height: 1.55;
     }
-    .friday .mig-side-note { color: rgba(255,255,255,0.35); }
-    .monday .mig-side-note { color: rgba(56,189,248,0.75); }
+    .friday .mig-side-note { color: #cbd5e1; }
+    .monday .mig-side-note { color: #bae6fd; }
 
     /* Middle arrow column */
     .mig-moment-arrow {
@@ -520,7 +520,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.30);
+      color: #cbd5e1;
       text-align: center;
       line-height: 1.4;
       position: relative;
@@ -553,7 +553,7 @@
     }
     .mig-bottom-item span {
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.40);
+      color: #cbd5e1;
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
@@ -577,7 +577,7 @@
       margin: 0 0 0.75rem;
     }
     .mig-included-header p {
-      color: rgba(255,255,255,0.45);
+      color: #cbd5e1;
       font-size: 1rem;
       line-height: 1.65;
       margin: 0;
@@ -695,6 +695,13 @@
 
     /* Nav override for dark page */
     .mig-page .main-nav { background: rgba(6,15,26,0.95); border-bottom-color: rgba(255,255,255,0.07); }
+    .mig-page .nav-wordmark,
+    .mig-page .nav-links a { color: #e6f0ff; }
+    .mig-page .nav-toggle span { background: #ffffff; }
+
+    @media (max-width: 1100px) {
+      .mig-page .nav-links { background: #060f1a; }
+    }
 
     @media (max-width: 768px) {
       .mig-moment-split { grid-template-columns: 1fr; }
@@ -712,49 +719,14 @@
   </style>
 </head>
 <body class="mig-page">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <!-- Nav -->
   <nav class="main-nav">
     <div class="nav-wrap">
       <a href="index.html" class="nav-logo">
-        <svg width="46" height="46" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-          <defs>
-            <linearGradient id="logo-grad" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#0a3f5c"/>
-              <stop offset="100%" stop-color="#0ea5e9"/>
-            </linearGradient>
-            <clipPath id="logo-circle"><circle cx="80" cy="80" r="76"/></clipPath>
-            <filter id="logo-shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.6)"/></filter>
-          </defs>
-          <circle cx="80" cy="80" r="76" fill="url(#logo-grad)"/>
-          <circle cx="30" cy="35" r="1" fill="rgba(255,255,255,0.35)" clip-path="url(#logo-circle)"/>
-          <circle cx="55" cy="25" r="0.8" fill="rgba(255,255,255,0.28)" clip-path="url(#logo-circle)"/>
-          <circle cx="120" cy="30" r="1.1" fill="rgba(255,255,255,0.30)" clip-path="url(#logo-circle)"/>
-          <circle cx="140" cy="45" r="0.7" fill="rgba(255,255,255,0.22)" clip-path="url(#logo-circle)"/>
-          <polygon points="0,95 10,80 25,88 40,70 55,82 70,60 85,75 100,58 115,72 130,62 145,75 160,65 160,100 0,100" fill="rgba(255,255,255,0.09)" clip-path="url(#logo-circle)"/>
-          <polygon points="0,118 0,100 15,85 30,95 48,78 65,92 80,72 95,88 112,74 128,86 145,70 160,82 160,118" fill="rgba(255,255,255,0.18)" clip-path="url(#logo-circle)"/>
-          <polygon points="80,72 65,92 80,118 95,118 95,88" fill="rgba(0,20,60,0.14)" clip-path="url(#logo-circle)"/>
-          <rect x="0" y="118" width="160" height="10" fill="rgba(14,100,160,0.55)" clip-path="url(#logo-circle)"/>
-          <line x1="0" y1="119" x2="160" y2="119" stroke="rgba(186,230,255,0.30)" stroke-width="0.8" clip-path="url(#logo-circle)"/>
-          <rect x="0" y="128" width="160" height="32" fill="rgba(0,28,65,0.58)" clip-path="url(#logo-circle)"/>
-          <polygon points="8,118 1,144 15,144" fill="rgba(4,82,52,0.94)" clip-path="url(#logo-circle)"/>
-          <polygon points="8,108 0,133 16,133" fill="rgba(5,99,61,0.89)" clip-path="url(#logo-circle)"/>
-          <polygon points="8,100 0,123 16,123" fill="rgba(6,114,68,0.84)" clip-path="url(#logo-circle)"/>
-          <rect x="6" y="144" width="4" height="7" fill="rgba(28,16,4,0.70)" clip-path="url(#logo-circle)"/>
-          <polygon points="22,118 15,143 29,143" fill="rgba(3,78,50,0.92)" clip-path="url(#logo-circle)"/>
-          <polygon points="22,109 14,134 30,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
-          <polygon points="22,101 13,124 31,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
-          <rect x="20" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
-          <polygon points="152,118 145,144 159,144" fill="rgba(4,82,52,0.94)" clip-path="url(#logo-circle)"/>
-          <polygon points="152,108 144,133 160,133" fill="rgba(5,99,61,0.89)" clip-path="url(#logo-circle)"/>
-          <polygon points="152,100 143,123 161,123" fill="rgba(6,114,68,0.84)" clip-path="url(#logo-circle)"/>
-          <rect x="150" y="144" width="4" height="7" fill="rgba(28,16,4,0.70)" clip-path="url(#logo-circle)"/>
-          <polygon points="138,118 131,143 145,143" fill="rgba(3,78,50,0.92)" clip-path="url(#logo-circle)"/>
-          <polygon points="138,109 130,134 146,134" fill="rgba(4,94,58,0.87)" clip-path="url(#logo-circle)"/>
-          <polygon points="138,101 129,124 147,124" fill="rgba(5,109,66,0.82)" clip-path="url(#logo-circle)"/>
-          <rect x="136" y="143" width="4" height="6" fill="rgba(28,16,4,0.67)" clip-path="url(#logo-circle)"/>
-          <text x="82" y="142" font-family="'Pinyon Script', cursive" font-size="116" fill="white" fill-opacity="0.95" text-anchor="middle" clip-path="url(#logo-circle)" filter="url(#logo-shadow)">N</text>
-        </svg>
+        <img src="assets/logo.svg" alt="" width="46" height="46">
+        <span class="nav-wordmark">OAK EMR</span>
       </a>
       <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -774,7 +746,7 @@
     </div>
   </nav>
 
-  <main>
+  <main id="main-content" tabindex="-1">
   <!-- ─── HERO ─── -->
   <header class="mig-hero">
     <div class="mig-hero-inner">
@@ -784,7 +756,7 @@
       </div>
       <h1>
         Finish Friday in the <span class="highlight">Old System.</span><br>
-        Start Monday in <span class="highlight">Nuvora.</span><br>
+        Start Monday in <span class="highlight">OAK EMR.</span><br>
         Go Live With Support.
       </h1>
       <p class="mig-hero-sub">
@@ -792,7 +764,7 @@
       </p>
       <a href="contact.html?interest=savings#request-form" class="mig-hero-cta">
         Build My Migration Plan
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </header>
@@ -801,19 +773,19 @@
   <div class="mig-promise-strip">
     <div class="mig-promise-strip-inner">
       <div class="mig-promise-item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         Scope documented before work begins
       </div>
       <div class="mig-promise-item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         Responsibilities clearly assigned
       </div>
       <div class="mig-promise-item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         Mapping and validation checkpoints
       </div>
       <div class="mig-promise-item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         Weekend cutover when scope is ready
       </div>
     </div>
@@ -851,7 +823,7 @@
           <p class="mig-week-eyebrow">Phase Two</p>
           <h3>Mapping and Configuration</h3>
           <ul class="mig-steps">
-            <li><strong>Field mapping</strong> — align agreed source fields with their destination in Nuvora Health</li>
+            <li><strong>Field mapping</strong> — align agreed source fields with their destination in OAK EMR</li>
             <li><strong>Data preparation</strong> — normalize and prepare records according to the approved mapping</li>
             <li><strong>Workflow configuration</strong> — configure templates, users, roles, locations, and selected workflows</li>
             <li><strong>Connection planning</strong> — define required external connections, owners, dependencies, and testing steps</li>
@@ -910,7 +882,7 @@
             <span class="mig-moment-day-badge">Friday</span>
             <span class="mig-moment-time">Close of Business</span>
           </div>
-          <h4>Complete the agreed source checklist</h4>
+          <h3>Complete the agreed source checklist</h3>
           <div class="mig-screen">
             <div class="mig-screen-bar">
               <div class="mig-screen-dot" style="background:#ef4444;opacity:0.6;"></div>
@@ -925,7 +897,7 @@
             </div>
           </div>
           <div class="mig-screen-logout">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
             Confirm source cutoff and export
           </div>
           <p class="mig-side-note">Your team follows the documented cutoff process and confirms the final export and approval contacts.</p>
@@ -935,7 +907,7 @@
         <div class="mig-moment-arrow">
           <span class="mig-arrow-label">CUT<br>OVER</span>
           <div class="mig-arrow-circle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
           <span class="mig-arrow-label">REVIEW<br>TOGETHER</span>
         </div>
@@ -946,7 +918,7 @@
             <span class="mig-moment-day-badge">Monday</span>
             <span class="mig-moment-time">Go-Live Support Active</span>
           </div>
-          <h4>Validate the agreed records and workflows</h4>
+          <h3>Validate the agreed records and workflows</h3>
           <div class="mig-screen">
             <div class="mig-screen-bar">
               <div class="mig-screen-dot" style="background:#ef4444;opacity:0.5;"></div>
@@ -961,7 +933,7 @@
             </div>
           </div>
           <div class="mig-screen-ready">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             Complete the go-live checklist
           </div>
           <p class="mig-side-note">Designated users confirm the scoped data and workflows, then route questions through the defined support process.</p>
@@ -1001,44 +973,44 @@
     <div class="mig-included-grid">
       <div class="mig-included-card">
         <div class="mig-included-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         </div>
-        <h4>Source Data Review</h4>
+        <h3>Source Data Review</h3>
         <p>We inventory the record types and exports available from your current system and document the data selected for migration.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <h4>Mapping &amp; Validation</h4>
+        <h3>Mapping &amp; Validation</h3>
         <p>We define field mappings, prepare the scoped data, and review representative samples with your designated team members.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
-        <h4>Workflow Configuration</h4>
+        <h3>Workflow Configuration</h3>
         <p>Selected templates, users, roles, locations, and workflows are configured according to the approved scope.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
         </div>
-        <h4>Role-Based Training</h4>
+        <h3>Role-Based Training</h3>
         <p>Training sessions are organized around the roles, workflows, format, and attendance plan listed in the implementation scope.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h4>Connection Planning</h4>
+        <h3>Connection Planning</h3>
         <p>Required external connections are identified with their dependencies, responsible parties, sequence, and testing steps.</p>
       </div>
       <div class="mig-included-card">
         <div class="mig-included-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </div>
-        <h4>Go-Live Support</h4>
+        <h3>Go-Live Support</h3>
         <p>The written plan defines the support period, contact method, issue-routing process, and responsible team members.</p>
       </div>
     </div>
@@ -1053,10 +1025,10 @@
       <div class="mig-cta-btns">
         <a href="contact.html" class="mig-btn-primary">
           Request a Transition Review
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="tel:541-231-8693" class="mig-btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Call 541-231-8693
         </a>
       </div>
@@ -1068,7 +1040,7 @@
     <div class="wrap">
       <div class="footer-content">
         <div class="footer-brand">
-          <span class="footer-logo" style="color:#fff;">Nuvora Health</span>
+          <span class="footer-logo" style="color:#fff;">OAK EMR</span>
           <p style="color:rgba(255,255,255,0.45);">Modern practice management for medical practices that demand better.</p>
         </div>
         <div class="footer-links">
@@ -1086,11 +1058,11 @@
         <div class="footer-contact">
           <a href="tel:541-231-8693" style="color:rgba(255,255,255,0.55);">541-231-8693</a>
           <a href="mailto:dan@perrysoftwarellc.com" style="color:rgba(255,255,255,0.55);">dan@perrysoftwarellc.com</a>
-          <span style="color:rgba(255,255,255,0.35);">Lehi, Utah</span>
+          <span style="color:#cbd5e1;">Lehi, Utah</span>
         </div>
       </div>
       <div class="footer-bottom" style="border-top-color:rgba(255,255,255,0.07);">
-        <p style="color:rgba(255,255,255,0.3);">&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
+        <p style="color:#b7c4d6;">&copy; <span data-current-year></span> Perry Software LLC. All rights reserved.</p>
       </div>
     </div>
   </footer>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Account Portal | Nuvora Health</title>
+    <title>Account Portal | OAK EMR</title>
     <meta
       name="description"
       content="Sign in to your Perry Software account to view account services, subscriptions, providers, implementation status, and managed connections."
@@ -11,18 +11,19 @@
     <meta name="robots" content="noindex,nofollow,noarchive" />
     <link rel="canonical" href="https://perrysoftwarellc.com/account/" />
     <link rel="icon" href="../assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css?v=nuvora-account-refine-20260824" />
+    <link rel="stylesheet" href="../styles.css?v=oak-emr-20260828" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script src="../site.js?v=nuvora-account-refine-20260824" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,850&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="../site.js?v=oak-emr-20260828" defer></script>
   </head>
   <body class="account-page">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <nav class="main-nav">
       <div class="nav-wrap">
         <a href="../index.html" class="nav-logo">
-          <img src="../assets/logo.svg" alt="Nuvora Health" style="height:46px;width:46px;display:block;" />
-          <span class="nav-wordmark">Nuvora Health</span>
+          <img src="../assets/logo.svg" alt="" style="height:46px;width:46px;display:block;" />
+          <span class="nav-wordmark">OAK EMR</span>
         </a>
         <button class="nav-toggle" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false" type="button">
           <span></span>
@@ -36,7 +37,7 @@
           <li><a href="../billing.html">Billing &amp; RCM</a></li>
           <li><a href="../pricing.html">Pricing</a></li>
           <li><a href="../about.html">About</a></li>
-          <li><a href="./" class="active">Account Login</a></li>
+          <li><a href="./" class="active" aria-current="page">Account Login</a></li>
           <li><a href="../contact.html">Contact</a></li>
           <li class="mobile-nav-demo"><a href="../contact.html">Request a Demo</a></li>
         </ul>
@@ -44,7 +45,7 @@
       </div>
     </nav>
 
-    <main class="account-shell account-shell-v2">
+    <main class="account-shell account-shell-v2" id="main-content" tabindex="-1">
       <section id="accountPanel" class="account-panel account-panel-v2" aria-labelledby="accountTitle">
         <div class="account-topbar portal-topbar">
           <div>
@@ -80,7 +81,7 @@
           <div class="account-card portal-login-card">
             <h2>Sign in</h2>
             <p class="muted">Use the credentials assigned by Perry Software.</p>
-            <div id="loginError" class="alert alert-error hidden" role="alert"></div>
+            <div id="loginError" class="alert alert-error hidden" role="alert" tabindex="-1"></div>
             <form id="loginForm" class="account-form">
               <label for="email">Email</label>
               <input id="email" name="email" type="email" autocomplete="username" required />
@@ -97,13 +98,13 @@
           <div class="account-header portal-dashboard-header">
             <div>
               <div id="dashboardEyebrow" class="eyebrow">Account Management</div>
-              <h2 id="dashboardTitle">Command Center</h2>
+              <h2 id="dashboardTitle" tabindex="-1">Command Center</h2>
               <p id="accountSubtitle" class="muted"></p>
             </div>
             <button id="refreshButton" class="btn btn-secondary account-action" type="button">Refresh</button>
           </div>
 
-          <div id="accountError" class="alert alert-error hidden" role="alert"></div>
+          <div id="accountError" class="alert alert-error hidden" role="alert" tabindex="-1"></div>
           <div id="dashboardContent"></div>
         </div>
       </section>
@@ -175,6 +176,7 @@
       function showError(element, message) {
         element.textContent = message || "";
         element.classList.toggle("hidden", !message);
+        if (message) element.focus();
       }
 
       function setLoading(isLoading) {
@@ -259,7 +261,8 @@
         const link = el("a", primary ? "btn btn-primary portal-link" : "btn btn-secondary portal-link", label);
         link.href = href;
         link.target = "_blank";
-        link.rel = "noreferrer";
+        link.rel = "noopener noreferrer";
+        link.append(el("span", "visually-hidden", " (opens in new tab)"));
         return link;
       }
 
@@ -291,6 +294,8 @@
       function renderNotice() {
         if (!state.notice) return null;
         const notice = el("div", "alert alert-success portal-notice", state.notice);
+        notice.setAttribute("role", "status");
+        notice.setAttribute("aria-live", "polite");
         return notice;
       }
 
@@ -458,18 +463,19 @@
         sessionStorage.setItem(USER_KEY, JSON.stringify(body.user));
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(USER_KEY);
-        await loadAccount();
+        await loadAccount({ focusDashboard: true });
       }
 
-      async function loadAccount() {
+      async function loadAccount({ focusDashboard = false } = {}) {
         if (!state.token) return;
         setLoading(true);
         showError(accountError, "");
         try {
           state.account = await api("/api/crm/client/account");
           render();
+          if (focusDashboard) dashboardTitle.focus();
         } catch (error) {
-          logout(false);
+          logout(true);
           showError(loginError, error.message || "Please sign in again.");
         } finally {
           setLoading(false);
@@ -491,9 +497,15 @@
 
         const wrap = el("div", "table-wrap");
         const table = document.createElement("table");
+        const caption = el("caption", "visually-hidden", title);
+        table.append(caption);
         const thead = document.createElement("thead");
         const headRow = document.createElement("tr");
-        headers.forEach((header) => headRow.append(el("th", "", header)));
+        headers.forEach((header) => {
+          const th = el("th", "", header);
+          th.scope = "col";
+          headRow.append(th);
+        });
         thead.append(headRow);
         table.append(thead);
 
@@ -986,7 +998,7 @@
       });
 
       if (state.token) {
-        loadAccount();
+        loadAccount({ focusDashboard: true });
       } else {
         render();
       }

@@ -1,4 +1,6 @@
 (() => {
+  document.documentElement.classList.add('js');
+
   const mainContent = document.querySelector('main');
   if (mainContent) {
     if (!mainContent.id) mainContent.id = 'main-content';

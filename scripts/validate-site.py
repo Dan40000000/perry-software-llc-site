@@ -24,6 +24,8 @@ CANONICAL_EXEMPT = {
 FORBIDDEN_PUBLIC_COPY = re.compile(
     r"\b(?:startup|beta|pilot|pharmacy)\b|OpenAI|Claude", re.IGNORECASE
 )
+LEGACY_BRAND = re.compile(r"\bnu" r"vora\b", re.IGNORECASE)
+PUBLIC_TEXT_SUFFIXES = {".html", ".css", ".js", ".svg", ".xml", ".txt"}
 
 
 class PageParser(HTMLParser):
@@ -108,6 +110,18 @@ def meta_content(page: PageParser, *, name: str | None = None, prop: str | None 
 
 def main() -> int:
     errors: list[str] = []
+    for path in ROOT.rglob("*"):
+        if (
+            not path.is_file()
+            or path.suffix.lower() not in PUBLIC_TEXT_SUFFIXES
+            or ".git" in path.parts
+            or "docs" in path.parts
+        ):
+            continue
+        relative = path.relative_to(ROOT).as_posix()
+        if LEGACY_BRAND.search(relative) or LEGACY_BRAND.search(path.read_text(encoding="utf-8")):
+            errors.append(f"{relative}: legacy product branding remains")
+
     html_files = sorted(
         path for path in ROOT.rglob("*.html")
         if path not in IGNORED and ".git" not in path.parts
