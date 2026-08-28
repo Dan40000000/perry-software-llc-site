@@ -211,7 +211,7 @@ def main() -> int:
         errors.append("sitemap.xml: duplicate URLs")
     for url in sitemap_urls:
         split = urlsplit(url)
-        if split.scheme != "https" or split.netloc != "perrysoftwarellc.com":
+        if split.scheme != "https" or split.netloc != "oakemr.com":
             errors.append(f"sitemap.xml: unexpected host or scheme {url}")
             continue
         target = ROOT / (split.path.lstrip("/") or "index.html")
