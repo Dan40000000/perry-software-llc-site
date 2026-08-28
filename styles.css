@@ -5652,7 +5652,15 @@ summary:focus-visible {
   padding: 9.2rem 0 5.25rem;
   text-align: left;
   isolation: isolate;
-  background: url('assets/oak-emr-mountain-hero.webp') center center / cover no-repeat;
+  /* Keep a plain 1x URL fallback before the density-aware image-set(). */
+  background-image: url('assets/oak-emr-mountain-hero.webp');
+  background-image: image-set(
+    url('assets/oak-emr-mountain-hero.webp') 1x,
+    url('assets/oak-emr-mountain-hero-retina.webp') 2x
+  );
+  background-position: center 20%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .hero.home-hero::before {
@@ -5683,7 +5691,7 @@ summary:focus-visible {
 
 @media (max-width: 1050px) {
   .hero.home-hero {
-    background-position: 62% center;
+    background-position: 62% 20%;
   }
 
   .hero.home-hero::before {
@@ -5695,7 +5703,7 @@ summary:focus-visible {
   .hero.home-hero {
     min-height: auto;
     padding: 7.5rem 0 4.5rem;
-    background-position: 69% center;
+    background-position: 69% 20%;
   }
 
   .hero.home-hero::before {
