@@ -6,6 +6,7 @@ from __future__ import annotations
 import re
 import sys
 import xml.etree.ElementTree as ET
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -37,6 +38,8 @@ REGIONAL_PAGES = (
     "las-vegas-medical-practice-emr.html",
 )
 PUBLIC_PLANNING_RATES = ("$995", "$1,250")
+EXPECTED_HEADER_CTA_HREF = "contact.html?interest=demo#request-form"
+EXPECTED_HEADER_CTA_LABEL = "Request a 15-Minute Demo"
 PUBLIC_TEXT_SUFFIXES = {".html", ".css", ".js", ".svg", ".xml", ".txt"}
 
 
@@ -270,6 +273,61 @@ def main() -> int:
         errors.append("pricing.html: must state that a matched-scope written quote governs final pricing")
     if re.search(r"\$(?:600|1,000)\b", index_source + pricing_source):
         errors.append("public pricing copy exposes an internal floor rate")
+
+    # Every public root page uses the shared header. Keep both desktop and
+    # mobile header CTAs aligned without constraining content-specific CTAs.
+    header_nav_pattern = re.compile(
+        r'<nav\b[^>]*class="[^"]*\bmain-nav\b[^"]*"[^>]*>.*?</nav>',
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    mobile_header_cta_pattern = re.compile(
+        r'<li\b[^>]*class="[^"]*\bmobile-nav-demo\b[^"]*"[^>]*>.*?'
+        r'<a\b[^>]*>(?P<label>.*?)</a>',
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    desktop_header_cta_pattern = re.compile(
+        r'<a\b[^>]*class="[^"]*\bnav-cta\b[^"]*"[^>]*>'
+        r'(?P<label>.*?)</a>',
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+
+    def header_cta_value(match: re.Match[str], source: str) -> tuple[str, str]:
+        match_source = source[match.start():match.end()]
+        anchor_match = re.search(r"<a\b[^>]*>", match_source, flags=re.IGNORECASE)
+        opening_tag = anchor_match.group(0) if anchor_match else ""
+        href_match = re.search(r'\bhref="([^"]+)"', opening_tag, flags=re.IGNORECASE)
+        raw_label = re.sub(r"<[^>]+>", " ", match.group("label"))
+        return (
+            href_match.group(1) if href_match else "",
+            " ".join(unescape(raw_label).split()),
+        )
+
+    for path in ROOT.glob("*.html"):
+        relative = path.relative_to(ROOT).as_posix()
+        if relative in SPECIAL_FILES:
+            continue
+        source = path.read_text(encoding="utf-8")
+        nav_match = header_nav_pattern.search(source)
+        if not nav_match:
+            continue
+        nav_source = nav_match.group(0)
+        for selector, pattern in (
+            ("mobile-nav-demo", mobile_header_cta_pattern),
+            ("nav-cta", desktop_header_cta_pattern),
+        ):
+            matches = list(pattern.finditer(nav_source))
+            if not matches:
+                continue
+            for match in matches:
+                href, label = header_cta_value(match, nav_source)
+                if href != EXPECTED_HEADER_CTA_HREF:
+                    errors.append(
+                        f"{relative}: header {selector} CTA must use {EXPECTED_HEADER_CTA_HREF}"
+                    )
+                if label != EXPECTED_HEADER_CTA_LABEL:
+                    errors.append(
+                        f"{relative}: header {selector} CTA must say {EXPECTED_HEADER_CTA_LABEL!r}"
+                    )
 
     for regional_page in REGIONAL_PAGES:
         page_path = ROOT / regional_page
