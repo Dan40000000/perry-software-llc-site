@@ -282,6 +282,15 @@ def main() -> int:
         flags=re.DOTALL,
     ):
         errors.append("site.js: mobile sticky-bar labels must preserve savings and demo actions")
+    if not re.search(
+        r"const\s+savingsPages\s*=\s*new\s+Set\(\[\s*"
+        r"'/pricing\.html'\s*,\s*'/migration\.html'\s*\]\s*\)",
+        site_js_source,
+        flags=re.DOTALL,
+    ):
+        errors.append(
+            "site.js: only pricing.html and migration.html may use the savings sticky action"
+        )
 
     pricing_source = (ROOT / "pricing.html").read_text(encoding="utf-8")
     for rate in PUBLIC_PLANNING_RATES:

@@ -95,7 +95,7 @@
     window.location.pathname !== '/contact.html' &&
     !document.querySelector('.mobile-demo-bar')
   ) {
-    const savingsPages = new Set(['/', '/index.html', '/pricing.html', '/migration.html']);
+    const savingsPages = new Set(['/pricing.html', '/migration.html']);
     const isSavingsPage = savingsPages.has(window.location.pathname);
     const mobileDemoBar = document.createElement('a');
     mobileDemoBar.className = 'mobile-demo-bar';
