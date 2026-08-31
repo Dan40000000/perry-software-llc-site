@@ -265,6 +265,24 @@ def main() -> int:
     ):
         errors.append("styles.css: mobile navigation CTA needs an explicit white text rule")
 
+    site_js_source = (ROOT / "site.js").read_text(encoding="utf-8")
+    if not re.search(
+        r"mobileDemoBar\.href\s*=\s*isSavingsPage\s*\?\s*"
+        r"'contact\.html\?interest=savings#request-form'\s*:\s*"
+        r"'contact\.html\?interest=demo#request-form'",
+        site_js_source,
+        flags=re.DOTALL,
+    ):
+        errors.append("site.js: mobile sticky-bar demo/savings hrefs changed")
+    if not re.search(
+        r"mobileDemoBar\.textContent\s*=\s*isSavingsPage\s*\?\s*"
+        r"'Get Savings \+ Migration Plan'\s*:\s*"
+        r"'Request a 15-Minute Demo'",
+        site_js_source,
+        flags=re.DOTALL,
+    ):
+        errors.append("site.js: mobile sticky-bar labels must preserve savings and demo actions")
+
     pricing_source = (ROOT / "pricing.html").read_text(encoding="utf-8")
     for rate in PUBLIC_PLANNING_RATES:
         if rate not in pricing_source:

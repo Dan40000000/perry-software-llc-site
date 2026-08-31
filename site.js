@@ -102,7 +102,9 @@
     mobileDemoBar.href = isSavingsPage
       ? 'contact.html?interest=savings#request-form'
       : 'contact.html?interest=demo#request-form';
-    mobileDemoBar.textContent = isSavingsPage ? 'Get Savings + Migration Plan' : 'Request a Demo';
+    mobileDemoBar.textContent = isSavingsPage
+      ? 'Get Savings + Migration Plan'
+      : 'Request a 15-Minute Demo';
     document.body.append(mobileDemoBar);
   }
 })();
