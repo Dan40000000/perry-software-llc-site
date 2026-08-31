@@ -30,6 +30,13 @@ HOMEPAGE_REQUIRED_COPY = (
     "Connected EMR & practice management for medical offices",
     "A better EMR.",
 )
+REGIONAL_PAGES = (
+    "st-george-dermatology-emr.html",
+    "utah-medical-practice-emr.html",
+    "idaho-medical-practice-emr.html",
+    "las-vegas-medical-practice-emr.html",
+)
+PUBLIC_PLANNING_RATES = ("$995", "$1,250")
 PUBLIC_TEXT_SUFFIXES = {".html", ".css", ".js", ".svg", ".xml", ".txt"}
 
 
@@ -221,6 +228,62 @@ def main() -> int:
             errors.append(f"sitemap.xml: missing local target {url}")
     if any("thank-you.html" in url for url in sitemap_urls):
         errors.append("sitemap.xml: noindex thank-you page must not be listed")
+
+    # Targeted regression checks for the conversion and regional SEO changes.
+    index_source = (ROOT / "index.html").read_text(encoding="utf-8")
+    hero_match = re.search(
+        r'<header\s+class="hero home-hero".*?</header>',
+        index_source,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    hero_source = hero_match.group(0) if hero_match else ""
+    if not re.search(
+        r'href="contact\.html\?interest=demo#request-form"[^>]*'
+        r'class="[^"]*\bbtn-primary\b[^"]*"[^>]*>.*?'
+        r"Request a 15-Minute Demo",
+        hero_source,
+        flags=re.IGNORECASE | re.DOTALL,
+    ):
+        errors.append("index.html: primary hero CTA must request a 15-minute demo")
+    if not re.search(
+        r'class="[^"]*\bbtn-secondary\b[^"]*"[^>]*>.*?'
+        r"Get My Savings \+ Migration Plan",
+        hero_source,
+        flags=re.IGNORECASE | re.DOTALL,
+    ):
+        errors.append("index.html: savings/migration path must remain the secondary hero CTA")
+
+    css_source = (ROOT / "styles.css").read_text(encoding="utf-8")
+    if not re.search(
+        r"\.nav-links\s+\.mobile-nav-demo\s*>\s*a\b[^{}]*\{[^}]*"
+        r"color\s*:\s*#ffffff\b",
+        css_source,
+        flags=re.IGNORECASE | re.DOTALL,
+    ):
+        errors.append("styles.css: mobile navigation CTA needs an explicit white text rule")
+
+    pricing_source = (ROOT / "pricing.html").read_text(encoding="utf-8")
+    for rate in PUBLIC_PLANNING_RATES:
+        if rate not in pricing_source:
+            errors.append(f"pricing.html: missing public planning rate {rate}")
+    if "matched-scope written quote governs final pricing" not in pricing_source.lower():
+        errors.append("pricing.html: must state that a matched-scope written quote governs final pricing")
+    if re.search(r"\$(?:600|1,000)\b", index_source + pricing_source):
+        errors.append("public pricing copy exposes an internal floor rate")
+
+    for regional_page in REGIONAL_PAGES:
+        page_path = ROOT / regional_page
+        canonical = f"https://oakemr.com/{regional_page}"
+        if not page_path.exists():
+            errors.append(f"{regional_page}: regional page is missing")
+            continue
+        page_source = page_path.read_text(encoding="utf-8")
+        if canonical not in page_source:
+            errors.append(f"{regional_page}: canonical URL is missing")
+        if regional_page not in index_source:
+            errors.append(f"index.html: regional page is not linked ({regional_page})")
+        if canonical not in sitemap_urls:
+            errors.append(f"sitemap.xml: regional page is not indexed ({canonical})")
 
     if errors:
         print(f"Site validation failed with {len(errors)} issue(s):")

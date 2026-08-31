@@ -5736,3 +5736,348 @@ summary:focus-visible {
     display: none;
   }
 }
+
+/* ============================================
+   2026-08-31 CONVERSION + REGIONAL PASS
+   ============================================ */
+
+/* Keep the desktop hero inside the intended image frame while the primary action
+   stays in the first viewport. The existing background crop is intentionally
+   unchanged. */
+@media (min-width: 721px) {
+  .hero.home-hero {
+    min-height: 760px;
+    padding: 7rem 0 3rem;
+  }
+
+  .hero.home-hero h1 {
+    font-size: clamp(3.2rem, 5vw, 4.75rem);
+    line-height: 0.95;
+  }
+
+  .home-hero .hero-badge {
+    margin-bottom: 0.75rem;
+  }
+
+  .home-hero .hero-capabilities {
+    margin-bottom: 1rem;
+  }
+
+  .home-hero .lead {
+    margin: 1rem 0;
+    font-size: clamp(1rem, 1.35vw, 1.12rem);
+    line-height: 1.55;
+  }
+
+  .home-hero .hero-savings-line {
+    margin: 0 0 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .home-hero .cta-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .home-hero .hero-contact-shortcut {
+    margin: 0.7rem 0 0;
+  }
+
+  .home-hero .hero-qualification {
+    margin: 0.6rem 0 0;
+  }
+}
+
+/* This selector intentionally outranks the later generic .nav-links a rule.
+   White remains readable over both stops of the blue CTA gradient. */
+@media (max-width: 1100px) {
+  .nav-links .mobile-nav-demo > a,
+  .nav-links .mobile-nav-demo > a:hover,
+  .nav-links .mobile-nav-demo > a:focus-visible {
+    color: #ffffff;
+  }
+}
+
+.trust-proof {
+  padding: 5.5rem 0;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.trust-proof .section-header {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.5rem;
+}
+
+.trust-proof-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.trust-proof .proof-card {
+  min-height: 100%;
+  padding: 1.35rem;
+}
+
+.trust-proof .proof-card h3 {
+  margin-top: 0;
+}
+
+.trust-proof .proof-card p {
+  font-size: 0.9rem;
+}
+
+.trust-proof-note {
+  max-width: 880px;
+  margin: 2rem auto 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.trust-proof-note a {
+  color: var(--primary-dark);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.regional-links {
+  padding: 5.5rem 0;
+  background: var(--primary-light);
+}
+
+.regional-links .section-header {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.regional-links-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.regional-link-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 1.35rem;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid rgba(7, 26, 51, 0.11);
+  border-radius: 18px;
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.regional-link-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(11, 99, 246, 0.45);
+  box-shadow: var(--shadow-lg);
+}
+
+.regional-link-card h3 {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+}
+
+.regional-link-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.regional-link-card > span {
+  margin-top: auto;
+  padding-top: 1.15rem;
+  color: var(--primary-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.regional-page {
+  padding-top: 8.5rem;
+}
+
+.regional-page .resource-article {
+  max-width: 980px;
+}
+
+.regional-page .resource-article h1 {
+  color: var(--text);
+}
+
+.regional-page .resource-article > h1 {
+  max-width: 780px;
+}
+
+.regional-kicker {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  color: var(--primary-dark);
+  background: var(--primary-light);
+  border-radius: 999px;
+  padding: 0.38rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.regional-intro {
+  max-width: 760px;
+  color: #334a68 !important;
+  font-size: clamp(1.08rem, 2vw, 1.3rem);
+  line-height: 1.7 !important;
+}
+
+.regional-cta {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin: 1.75rem 0 2.25rem;
+}
+
+.regional-page .regional-cta .btn-secondary,
+.regional-page .regional-bottom-cta .btn-secondary {
+  color: var(--primary-dark);
+  border-color: var(--line);
+  background: var(--primary-light);
+}
+
+.regional-page .regional-cta .btn-secondary:hover,
+.regional-page .regional-bottom-cta .btn-secondary:hover {
+  background: #c8e1ff;
+}
+
+.regional-page .resource-article a.btn {
+  text-decoration: none;
+}
+
+.regional-page .resource-article a.btn-primary {
+  color: var(--ink);
+}
+
+.regional-page .resource-article a.btn-secondary {
+  color: var(--primary-dark);
+}
+
+.regional-note {
+  margin: 0 0 2.25rem;
+  padding: 0.9rem 1rem;
+  color: #405a80;
+  border-left: 4px solid var(--primary);
+  border-radius: 0 12px 12px 0;
+  background: #eef6ff;
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.regional-page .resource-article h2 {
+  margin-top: 2.75rem;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+}
+
+.regional-page .resource-article h3 {
+  margin: 1.35rem 0 0.45rem;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.regional-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.regional-detail-card {
+  padding: 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #f7fbff;
+}
+
+.regional-detail-card h3 {
+  margin-top: 0 !important;
+}
+
+.regional-detail-card p {
+  margin-bottom: 0;
+  font-size: 0.88rem;
+}
+
+.regional-bottom-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 2.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.regional-bottom-cta p {
+  margin: 0;
+  color: var(--text) !important;
+  font-weight: 700;
+}
+
+.regional-bottom-cta .regional-cta {
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .trust-proof-grid,
+  .regional-links-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .trust-proof,
+  .regional-links {
+    padding: 4.5rem 0;
+  }
+
+  .regional-links-grid,
+  .regional-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .regional-page {
+    padding-top: 7.5rem;
+  }
+
+  .regional-page .resource-article {
+    padding: 1.5rem;
+  }
+
+  .regional-cta,
+  .regional-cta .btn {
+    width: 100%;
+  }
+
+  .regional-cta .btn {
+    justify-content: center;
+  }
+
+  .regional-bottom-cta {
+    align-items: stretch;
+  }
+}
+
+/* Final mobile CTA cascade: this follows the generic .nav-links a color rule. */
+.mobile-nav-demo a {
+  color: #ffffff;
+}
